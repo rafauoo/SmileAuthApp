@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Uploaded Photo</title>
+    <style>
+        body {
+            margin: 0; /* Resetuj marginesy dla body */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* 100% wysokości widoku */
+            overflow: hidden; /* Ukryj przewijanie, jeśli obraz jest większy niż widok */
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            height: auto;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+    {% if success %}
+        <img src="data:image/jpeg;base64,{{ image_data }}" alt="Przesłane Zdjęcie">
+    {% else %}
+        <p>Error: {{ error }}</p>
+    {% endif %}
+</body>
+</html>

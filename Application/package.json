@@ -1,0 +1,28 @@
+{
+  "name": "application",
+  "version": "1.0.0",
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@config-plugins/react-native-webrtc": "^7.0.0",
+    "axios": "^1.6.2",
+    "expo": "~49.0.15",
+    "expo-camera": "~13.4.4",
+    "expo-dev-client": "~2.4.12",
+    "expo-status-bar": "~1.6.0",
+    "react": "18.2.0",
+    "react-native": "0.72.6",
+    "react-native-camera": "^4.2.1",
+    "react-native-webrtc": "^111.0.6",
+    "expo-file-system": "~15.4.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0"
+  },
+  "private": true
+}
