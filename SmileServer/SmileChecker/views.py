@@ -8,7 +8,7 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from io import BytesIO
 from django.views.decorators.csrf import csrf_exempt
-
+import random
 @csrf_exempt
 def upload(request):
     if request.method == 'POST':
@@ -46,10 +46,9 @@ def upload(request):
             processed_image_path = os.path.join(settings.MEDIA_ROOT, 'processed_image.jpg')
             if os.path.exists(processed_image_path):
                 os.remove(processed_image_path)
-            
             image.save(processed_image_path)
-
-            result = {"result": "Success"}
+            number = random.randint(0,100)
+            result = {"result": number}
             return JsonResponse(result)
         except Exception as e:
             error = {"error": str(e)}
