@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Application",
-    "plugins": ["@config-plugins/react-native-webrtc"],
+    "plugins": [],
     "slug": "Application",
     "version": "1.0.0",
     "orientation": "portrait",

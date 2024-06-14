@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Alert, Image, ActivityIndicator } from 'react-native';
-import { Camera } from 'expo-camera';
+import { Camera, CameraView } from 'expo-camera';
 import * as FileSystem from 'expo-file-system';
 import axios from 'axios';
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
   const [cameraRef, setCameraRef] = useState(null);
-  const [cameraType, setCameraType] = useState(Camera.Constants.Type.back);
+  const [cameraType, setCameraType] = useState('back');
   const [capturedImage, setCapturedImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [lastPress, setLastPress] = useState(null);
+  const [imageModalVisible, setImageModalVisible] = useState(false);
+  const [imageWithFaces, setImageWithFaces] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -39,24 +41,15 @@ export default function App() {
       const data = {
         image: base64,
       };
-      const serverUrl = 'http://192.168.0.135:7000/SmileChecker/upload/';
+      const serverUrl = 'http://192.168.0.135:8000/upload/';
 
       axios.post(serverUrl, data, headers)
         .then(response => {
-          console.log('Zdjęcie zostało wysłane na serwer:', response.data);
+          setImageWithFaces(`data:image/jpeg;base64,${response.data}`);
+          console.log(response.data)
+          setCapturedImage(null);
+          setImageModalVisible(true);
           setLoading(false);
-          Alert.alert(
-            'Smile Checker',
-            'Smile is ' + response.data.result + '% genuine.',
-            [
-              {
-                text: 'Ok',
-                onPress: () => setCapturedImage(null),
-                style: 'cancel',
-              },
-            ],
-            { cancelable: false },
-          );
         })
         .catch(error => {
           console.error('Błąd podczas wysyłania zdjęcia:', error);
@@ -69,13 +62,17 @@ export default function App() {
   };
 
   const switchCameraType = () => {
+    console.log("aa")
     setCameraType(
-      cameraType === Camera.Constants.Type.back
-        ? Camera.Constants.Type.front
-        : Camera.Constants.Type.back
+      cameraType === 'back'
+        ? 'front'
+        : 'back'
     );
   };
-
+  const okPhoto = () => {
+    setImageModalVisible(false);
+    setCapturedImage(null);
+  }
   const onPress = () => {
     const currentTime = new Date().getTime();
     const delta = currentTime - lastPress;
@@ -96,9 +93,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Camera
+      <CameraView
         style={styles.camera}
-        type={cameraType}
+        facing={cameraType}
         ref={(ref) => setCameraRef(ref)}
       >
         <TouchableOpacity
@@ -115,6 +112,18 @@ export default function App() {
                 </View>
               )}
             </View>
+          ) : imageModalVisible ? (
+            <View style={{ flex: 1 }}>
+              <Image source={{ uri: imageWithFaces }} style={styles.capturedImage} />
+                <View style={styles.buttonContainer}>
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={okPhoto}
+                  >
+                    <Text style={styles.buttonText}>OK</Text>
+                  </TouchableOpacity>
+              </View>
+            </View>
           ) : (
             <View style={styles.buttonContainer}>
               <TouchableOpacity
@@ -126,7 +135,7 @@ export default function App() {
             </View>
           )}
         </TouchableOpacity>
-      </Camera>
+      </CameraView>
     </View>
   );
 }
@@ -145,12 +154,18 @@ const styles = StyleSheet.create({
   },
   capturedImage: {
     flex: 1,
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
   },
   buttonContainer: {
-    flex: 1,
-    alignSelf: 'flex-end',
-    alignItems: 'center',
-    marginBottom: 40,
+    position: 'absolute', // Position the container absolutely
+    bottom: 0, // Align it to the bottom
+    width: '100%', // Take full width
+
+    padding: 20,
+    alignItems: 'center', // Center the button horizontally
+    justifyContent: 'center', // Center the button vertically
   },
   button: {
     fontSize: 18,
