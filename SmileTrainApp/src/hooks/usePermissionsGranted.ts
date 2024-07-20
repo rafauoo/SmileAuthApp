@@ -16,39 +16,35 @@ export default function usePermissionsGranted() {
     const cameraStatus = await requestCameraPermission();
     if (!cameraStatus.granted) {
       Alert.alert("Error", "Camera permission is required.");
-      setPermissionsGranted(false);
-      return;
+      return false;
     }
 
     const microphoneStatus = await requestMicrophonePermission();
     if (!microphoneStatus.granted) {
       Alert.alert("Error", "Microphone permission is required.");
-      setPermissionsGranted(false);
-      return;
+      return false;
     }
 
     const mediaLibraryStatus = await requestMediaLibraryPermission();
     if (!mediaLibraryStatus.granted) {
       Alert.alert("Error", "Media Library permission is required.");
-      setPermissionsGranted(false);
-      return;
+      return false;
     }
 
     // only set to true once user provides permissions
     // this prevents taking user to home screen without permissions
     await AsyncStorage.setItem("hasOpened", "true");
-    setPermissionsGranted(true);
+    return true;
   }
 
   useEffect(() => {
     async function prepare() {
-      const permissions = requestAllPermissions();
-      if (permissions) {
+      const permission: boolean = await requestAllPermissions();
+      if (permission === true) {
         setPermissionsGranted(true);
       }
     }
     prepare();
   }, [permissionsGranted]);
-
   return permissionsGranted;
 }

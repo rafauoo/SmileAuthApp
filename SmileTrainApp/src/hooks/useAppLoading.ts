@@ -43,6 +43,5 @@ export default function useAppLoading() {
     }
     prepare();
   }, [fontsLoaded]);
-
   return appIsReady;
 }

@@ -3,7 +3,6 @@
     "name": "SmileTrainApp",
     "slug": "SmileTrainApp",
     "version": "1.3.0",
-    "assetBundlePatterns": ["**/*"],
     "orientation": "portrait",
     "scheme": "SmileTrainApp",
     "icon": "./src/assets/images/logo.png",
