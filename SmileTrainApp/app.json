@@ -2,14 +2,14 @@
   "expo": {
     "name": "SmileTrainApp",
     "slug": "SmileTrainApp",
-    "version": "1.0.0",
+    "version": "1.3.0",
+    "assetBundlePatterns": ["**/*"],
     "orientation": "portrait",
-    "scheme": "your-app-scheme",
-    "icon": "./assets/icon.png",
+    "scheme": "SmileTrainApp",
+    "icon": "./src/assets/images/logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "image": "./src/assets/images/logo.png",
       "backgroundColor": "#ffffff"
     },
     "ios": {
@@ -17,12 +17,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./src/assets/favicon.png"
     },
     "plugins": [
       "expo-router",
@@ -42,7 +42,8 @@
           "recordAudioAndroid": true
         }
       ],
-      "expo-video"
+      "expo-video",
+      "expo-font"
     ]
   }
 }

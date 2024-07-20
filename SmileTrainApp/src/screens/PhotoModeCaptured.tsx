@@ -1,64 +1,46 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
   Image,
-  Video,
   Alert,
 } from "react-native";
-import { useVideoPlayer, VideoView } from "expo-video";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import axios from "axios";
-import PHOTO_API_URL from "../config";
+import PHOTO_API_URL from "../config/config";
 
-export default function VideoModeCaptured() {
+export default function PhotoModeCaptured() {
   const router = useRouter();
   const { uri } = useLocalSearchParams();
   const [loading, setLoading] = useState(false);
-  const ref = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const player = useVideoPlayer(uri, (player) => {
-    player.loop = true;
-    player.muted = true;
-    player.play();
-  });
-  useEffect(() => {
-    const subscription = player.addListener("playingChange", (isPlaying) => {
-      setIsPlaying(isPlaying);
-    });
 
-    return () => {
-      subscription.remove();
-    };
-  }, [player]);
+  const sendPhoto = async () => {
+    console.log("send")
+  };
 
   return (
     <View style={styles.container}>
-      <VideoView
-        ref={ref}
-        style={{
-          width: "100%",
-          height: "100%",
-        }}
-        player={player}
-        allowsFullscreen
-        nativeControls={true}
-      />
+      {uri ? (
+        <Image source={{ uri }} style={styles.capturedImage} />
+      ) : (
+        <Text>No image data available</Text>
+      )}
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.push("/VideoMode")}
+          onPress={() => router.push("/PhotoMode")}
         >
           <Text style={styles.buttonText}>Take again</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, loading && styles.buttonDisabled]}
+          onPress={sendPhoto}
           disabled={loading}
         >
           <Text style={styles.buttonText}>
-            {loading ? "Sending..." : "Send Video"}
+            {loading ? "Sending..." : "Send Photo"}
           </Text>
         </TouchableOpacity>
       </View>
