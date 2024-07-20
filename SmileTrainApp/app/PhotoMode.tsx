@@ -70,6 +70,9 @@ export default function AppPhoto() {
   if (hasPermission === false) {
     return <Text>Brak dostępu do kamery</Text>;
   }
+  const goToHome = () => {
+    router.push("/"); // Zmienna ścieżka na stronę główną
+  };
 
   return (
     <View style={styles.container}>
@@ -83,20 +86,14 @@ export default function AppPhoto() {
           onPress={onPress}
           activeOpacity={1}
         >
-          {capturedImage ? (
-            <View style={{ flex: 1 }}>
-              <Image
-                source={{ uri: capturedImage }}
-                style={styles.capturedImage}
-              />
-            </View>
-          ) : (
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity style={styles.button} onPress={takePicture}>
-                <Text style={styles.buttonText}>Take Photo</Text>
-              </TouchableOpacity>
-            </View>
-          )}
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.button} onPress={takePicture}>
+              <Text style={styles.buttonText}>Take Photo</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.homeButton} onPress={goToHome}>
+              <Text style={styles.buttonText}>Back to Home</Text>
+            </TouchableOpacity>
+          </View>
         </TouchableOpacity>
       </CameraView>
     </View>
@@ -115,40 +112,34 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     flexDirection: "row",
   },
-  capturedImage: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
-    resizeMode: "cover",
-  },
   buttonContainer: {
-    position: "absolute", // Position the container absolutely
-    bottom: 0, // Align it to the bottom
-    width: "100%", // Take full width
-
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
     padding: 20,
-    alignItems: "center", // Center the button horizontally
-    justifyContent: "center", // Center the button vertically
+    alignItems: "center",
   },
   button: {
     fontSize: 18,
     color: "white",
     backgroundColor: "green",
-    padding: 30,
+    padding: 15, // Zmniejszono padding
     borderRadius: 5,
+    marginBottom: 10, // Oddzielenie przycisków
+    width: "80%", // Ustawienie szerokości przycisku
+    alignItems: "center", // Wyśrodkowanie tekstu w przycisku
+  },
+  homeButton: {
+    fontSize: 18,
+    color: "white",
+    backgroundColor: "blue",
+    padding: 15, // Zmniejszono padding
+    borderRadius: 5,
+    width: "80%", // Ustawienie szerokości przycisku
+    alignItems: "center", // Wyśrodkowanie tekstu w przycisku
   },
   buttonText: {
     fontSize: 18,
     color: "white",
-  },
-  loaderContainer: {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    marginLeft: -25,
-    marginTop: -25,
-  },
-  loader: {
-    position: "absolute",
   },
 });

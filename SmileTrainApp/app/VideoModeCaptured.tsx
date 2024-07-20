@@ -1,78 +1,64 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
   Image,
+  Video,
   Alert,
 } from "react-native";
+import { useVideoPlayer, VideoView } from "expo-video";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import axios from "axios";
 import PHOTO_API_URL from "../config";
 
-export default function PhotoModeCaptured() {
+export default function VideoModeCaptured() {
   const router = useRouter();
   const { uri } = useLocalSearchParams();
   const [loading, setLoading] = useState(false);
+  const ref = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const player = useVideoPlayer(uri, (player) => {
+    player.loop = true;
+    player.muted = true;
+    player.play();
+  });
+  useEffect(() => {
+    const subscription = player.addListener("playingChange", (isPlaying) => {
+      setIsPlaying(isPlaying);
+    });
 
-  const sendPhoto = async () => {
-    setLoading(true);
-    try {
-      const base64 = await FileSystem.readAsStringAsync(photo.uri, {
-        encoding: FileSystem.EncodingType.Base64,
-      });
-      const headers = {
-        "Content-Type": "application/json",
-      };
-      const data = {
-        image: base64,
-      };
-      const serverUrl = PHOTO_API_URL;
-
-      axios
-        .post(serverUrl, data, headers)
-        .then((response) => {
-          setImageWithFaces(`data:image/jpeg;base64,${response.data}`);
-          console.log(response.data);
-          setCapturedImage(null);
-          setImageModalVisible(true);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.error("Błąd podczas wysyłania zdjęcia:", error);
-          setLoading(false); // Zakończ ładowanie w przypadku błędu
-        });
-
-      Alert.alert("Success", "Photo uploaded successfully");
-    } catch (error) {
-      Alert.alert("Error", "Failed to upload photo");
-    } finally {
-      setLoading(false);
-    }
-  };
+    return () => {
+      subscription.remove();
+    };
+  }, [player]);
 
   return (
     <View style={styles.container}>
-      {uri ? (
-        <Image source={{ uri }} style={styles.capturedImage} />
-      ) : (
-        <Text>No image data available</Text>
-      )}
+      <VideoView
+        ref={ref}
+        style={{
+          width: "100%",
+          height: "100%",
+        }}
+        player={player}
+        allowsFullscreen
+        nativeControls={true}
+      />
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.push("/PhotoMode")}
+          onPress={() => router.push("/VideoMode")}
         >
           <Text style={styles.buttonText}>Take again</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, loading && styles.buttonDisabled]}
-          onPress={sendPhoto}
           disabled={loading}
         >
           <Text style={styles.buttonText}>
-            {loading ? "Sending..." : "Send Photo"}
+            {loading ? "Sending..." : "Send Video"}
           </Text>
         </TouchableOpacity>
       </View>
