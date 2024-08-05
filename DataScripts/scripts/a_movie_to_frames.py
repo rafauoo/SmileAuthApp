@@ -41,6 +41,3 @@ def movie_to_frames(id, video_name) -> None:
 
     video.release()
     cv2.destroyAllWindows()
-
-# Example usage
-movie_to_frames('example_id', 'example_video.mp4')
