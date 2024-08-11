@@ -8,6 +8,13 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(
 
 from config import TMP_DIR, CURRENT_MIN_NUM_SMILE_FRAMES
 
+def get_first_39_smile_frames(smile_beg_frame, num_smiles_frames):
+    if num_smiles_frames >= 39:
+        smile_start = smile_beg_frame
+        smile_end = smile_beg_frame + 38
+        return range(smile_start, smile_end + 1)
+    else:
+        raise ValueError("Not enough smile frames")
 
 def scale_frames(orig_len, req_len, beg_frame_num):
     fr = Fraction(orig_len, req_len)
@@ -20,7 +27,7 @@ def crop_smiles(id, video_name):
         smiles_data = json.load(fp)
         num_smiles_frames = smiles_data['num_smiles_frames']
         beg_frame = smiles_data['smile_beg_frame']
-        _scaled_frames_nums = scale_frames(num_smiles_frames, CURRENT_MIN_NUM_SMILE_FRAMES, beg_frame)
+        _scaled_frames_nums = get_first_39_smile_frames(beg_frame, num_smiles_frames)
     print(_scaled_frames_nums)
     print(f'**********************************************\n{video_name}\n')
     video_smile_dir = os.path.abspath(os.path.join(TMP_DIR, str(id), "smiles"))
