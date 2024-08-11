@@ -86,12 +86,9 @@ def smiles_to_csv(id, video_name):
         gray = cv2.cvtColor(src=img, code=cv2.COLOR_BGR2GRAY)
         _frame_number = get_frame_num(face_name)
 
-        faces = detector(gray)
-        for face in faces:
-            # save in the data file
-            _landmarks = predictor(image=gray, box=face)
-
-            save_landmarks_row(_writer, _landmarks, _frame_number)
+        face = detector(gray)[0]
+        _landmarks = predictor(image=gray, box=face)
+        save_landmarks_row(_writer, _landmarks, _frame_number)
 
     f.close()
     print(f'all_data.csv face features data file created successfully.')

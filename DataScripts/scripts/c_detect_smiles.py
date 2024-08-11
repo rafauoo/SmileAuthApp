@@ -13,6 +13,20 @@ from config import FACES_FEATURES_DET_FP, LIPS_CORNER1_IDX, LIPS_CORNER2_IDX, BE
     MIN_DIFF_IN_RISE_SMILE_BEG, SMILE_DURATION_MIN_RATIO
 from utils import get_filenames_sorted_by_frame_num, get_frame_num, save_dict_to_json_file
 
+def show_smile_plot(data):
+    frames = [d['frame'] for d in data]
+    diffs = [d['diff'] for d in data]
+
+    plt.figure(figsize=(18, 5))
+    plt.plot(frames, diffs, '-o')
+
+    plt.title('Zmiany odległości kącików ust od wartości początkowej w kolejnych klatkach')
+    plt.xlabel('numer klatki')
+    plt.ylabel('zmiana odległości kącików ust')
+    plt.rcParams["figure.figsize"] = (200, 3)
+
+    plt.show()
+
 def detect_smiles(id, video_name):
     detector = dlib.get_frontal_face_detector()
     predictor = dlib.shape_predictor(FACES_FEATURES_DET_FP)
@@ -32,6 +46,8 @@ def detect_smiles(id, video_name):
         _frame_number = get_frame_num(face_name)
 
         face = detector(gray)[0]
+        if (_frame_number == 87):
+            cv2.imshow('Image Title', img)
 
         _landmarks = predictor(image=gray, box=face)
 
@@ -122,7 +138,8 @@ def detect_smiles(id, video_name):
         'smile_end_frame': smile_end_frame,
         'num_smiles_frames': num_smiles_frames
     }
-
+    print(smile_data)
+    show_smile_plot(diffs_in_time)
     smiles_data = {
         "smile_config": {
             "BEG_SMILE_THRESHOLD": BEG_SMILE_THRESHOLD,
