@@ -1,2 +1,6 @@
 SmileServer/media
 *.pyc
+outputs
+videos
+lightning_logs
+checkpoints

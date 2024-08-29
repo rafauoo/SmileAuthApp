@@ -1,19 +1,19 @@
 import os
 import sys
 import cv2
-from config import TMP_DIR, FACES_FEATURES_DET_FP, LIPS_CORNER1_IDX, LIPS_CORNER2_IDX, BEG_SMILE_THRESHOLD, \
+from DataScripts.config import TMP_DIR, FACES_FEATURES_DET_FP, LIPS_CORNER1_IDX, LIPS_CORNER2_IDX, BEG_SMILE_THRESHOLD, \
     END_SMILE_THRESHOLD, NUM_FRAMES_RISE_SMILE_BEG, \
     MIN_DIFF_IN_RISE_SMILE_BEG, SMILE_DURATION_MIN_RATIO
 import hashlib
-from config import FACES_FEATURES_DET_FP, LIPS_CORNER1_IDX, LIPS_CORNER2_IDX
-from config import FACES_FEATURES_DET_FP, TMP_DIR, NUM_FACES_FEATURES, LIPS_CORNER1_IDX, LIPS_CORNER2_IDX, \
-    DESIRED_FACE_PHOTO_WIDTH, NOSE_TOP_IDX
+from DataScripts.config import FACES_FEATURES_DET_FP, LIPS_CORNER1_IDX, LIPS_CORNER2_IDX
+from DataScripts.config import FACES_FEATURES_DET_FP, TMP_DIR, NUM_FACES_FEATURES, LIPS_CORNER1_IDX, LIPS_CORNER2_IDX, \
+    DESIRED_FACE_PHOTO_WIDTH, NOSE_TOP_IDX, ROOT_DIR
 import random
 import dlib
 import pandas as pd
 import time
 import threading
-from exceptions import NoFaceException, MoreThanOneFaceException
+from DataScripts.exceptions import NoFaceException, MoreThanOneFaceException
 from .FaceAligner import FaceAligner
 from concurrent.futures import ThreadPoolExecutor
 import numpy as np
@@ -104,9 +104,10 @@ def detect_faces_on_frames(frames):
             _faces = detector(_gray)
             
             if len(_faces) > 1:
-                raise MoreThanOneFaceException(f"More than one face detected in #{num}.")
+                #print(num, frame, _faces)
+                raise MoreThanOneFaceException(f"More than one face detected in #{num}.", "")
             if len(_faces) == 0:
-                raise NoFaceException(f"No face detected in #{num}.")
+                raise NoFaceException(f"No face detected in #{num}.", "")
             
             aligned_face = fa.align(frame, _gray, _faces[0])
             faces.append(aligned_face)
@@ -140,8 +141,13 @@ def detect_smiles(faces):
     diffs_in_time = []
     first_dist = None
     for num, face in enumerate(faces):
+        if face is None:
+            continue
         gray = cv2.cvtColor(src=face, code=cv2.COLOR_BGR2GRAY)
-        face_gray = detector(gray)[0]
+        faces_detected = detector(gray)
+        if len(faces_detected) == 0:
+            continue
+        face_gray = faces_detected[0]
 
         _landmarks = predictor(image=gray, box=face_gray)
 
@@ -316,9 +322,13 @@ def generate_data(faces):
     all_landmarks = []
     
     for num, face in enumerate(faces):
+        if face is None:
+            continue
         gray = cv2.cvtColor(face, cv2.COLOR_BGR2GRAY)
-
-        face_box = detector(gray)[0]
+        faces_detected = detector(gray)
+        if len(faces_detected) == 0:
+            continue
+        face_box = faces_detected[0]
         landmarks = predictor(gray, face_box)
         
         x = lambda n: landmarks.part(n).x
@@ -339,18 +349,39 @@ def generate_data(faces):
 """
 SAVE DATA TO CSV
 """
-def flow(video_path):
+def flow(video_path, output_path):
     #tmp_dir = create_unique_tmp_dir(TMP_DIR, random.randbytes(10))
     frames = export_frames_from_video(video_path)
     faces = detect_faces_on_frames(frames)
     smile_data = detect_smiles(faces)
     ids = get_selected_ids(smile_data)
     faces = [face for num, face in enumerate(faces) if num in ids ]
-    for num, face in enumerate(faces):
-        cv2.imwrite(f"face{num}.jpg", face)
+    # for num, face in enumerate(faces):
+    #     cv2.imwrite(f"face{num}.jpg", face)
     angles = generate_data(faces)
-    angles.to_csv("output.csv", index=False)
+    angles.to_csv(output_path, index=False)
+
+######
+
+def rename_videos():
+    for num, file in enumerate(os.listdir(os.path.abspath(os.path.join(os.sep, ROOT_DIR, "videos")))):
+        e_file = os.path.abspath(os.path.join(os.sep, ROOT_DIR, "videos", file))
+        if "deliberate" in file:
+            os.rename(e_file, os.path.join(os.sep, ROOT_DIR, "videos", f"{num+1:04}_deliberate.mp4"))
+        if "spontaneous" in file:
+            os.rename(e_file, os.path.join(os.sep, ROOT_DIR, "videos", f"{num+1:04}_spontaneous.mp4"))
+
+def process_videos():
+    for num, file in enumerate(os.listdir(os.path.abspath(os.path.join(os.sep, ROOT_DIR, "videos")))):
+        e_file = os.path.abspath(os.path.join(os.sep, ROOT_DIR, "videos", file))
+        save_path = os.path.abspath(os.path.join(os.sep, ROOT_DIR, "outputs", f"{file}.csv"))
+        flow(e_file, save_path)
+        os.remove(e_file)
+        print(f"#{file[:4]} done")
 
 if __name__ == "__main__":
-    video_path = os.path.abspath(os.path.join(os.sep, TMP_DIR, "1013", "movie.mp4"))
-    flow(video_path)
+    # rename_videos()
+    process_videos()
+    # video_path = os.path.abspath(os.path.join(os.sep, TMP_DIR, "1013", "movie.mp4"))
+    # save_path = os.path.abspath(os.path.join(os.sep, ROOT_DIR, "1.csv"))
+    # flow(video_path, save_path)
