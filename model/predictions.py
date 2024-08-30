@@ -15,12 +15,13 @@ from model_config import COL_LEN, CLASSES, CLASSES_STRS
 
 
 def show_conf_matrix(conf_matrix):
-    hmap = sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues')
+    plt.figure(figsize=(8, 6))
+    hmap = sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues', xticklabels=CLASSES_STRS, yticklabels=CLASSES_STRS)
     hmap.yaxis.set_ticklabels(hmap.yaxis.get_ticklabels(), rotation=0, ha='right')
     hmap.xaxis.set_ticklabels(hmap.xaxis.get_ticklabels(), rotation=0, ha='right')
-    plt.title('Macierz błędów sieci LSTM')
-    plt.ylabel('rzeczywista autentyczność')
-    plt.xlabel('przewidziana autentyczność')
+    plt.title('Confusion Matrix')
+    plt.ylabel('Actual Label')
+    plt.xlabel('Predicted Label')
     plt.show()
 
 
@@ -36,6 +37,7 @@ def review_predictions(trainer, test_data):
     )
     trained_model.to(device)
     trained_model.freeze()
+    trained_model.eval()
 
     # Create the test dataset
     test_dataset = FacesFeaturesDataset(test_data)
@@ -49,12 +51,14 @@ def review_predictions(trainer, test_data):
         prediction = torch.argmax(output, dim=1)
         predictions.append(prediction.item())
         auths.append(auth.item())
-
+    print(predictions)
+    print(auths)
     # Print classification report
     print(classification_report(auths, predictions, target_names=CLASSES_STRS))
 
     # Create confusion matrix
     cm = confusion_matrix(auths, predictions)
+    print(cm)
     cm_df = pd.DataFrame(
         cm, index=CLASSES, columns=CLASSES
     )

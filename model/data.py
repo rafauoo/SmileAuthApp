@@ -14,16 +14,15 @@ def load_data_from_csv(csv_dir):
             # Load the CSV file into a DataFrame
             df = pd.read_csv(file_path)
             line_count = len(df)
-
             # Check if the file has 39 lines (excluding the header)
-            if line_count == 40:
+            if line_count == 39:
                 angles = df['lips_corners_from_nose_angle'].tolist()
                 is_authentic = 1 if 'spontaneous' in file_name else 0
                 data.append((angles, is_authentic))
-            elif line_count < 40:
+            elif line_count < 39:
                 # If less than 40 lines, copy last line(s) to make up to 40 lines
                 # Calculate how many lines are needed
-                needed_lines = 40 - line_count
+                needed_lines = 39 - line_count
                 # Repeat the last line as needed
                 last_line = df.iloc[-1].tolist()
                 # Create a DataFrame with repeated lines

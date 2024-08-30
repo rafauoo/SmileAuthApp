@@ -6,29 +6,36 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from model.model_lstm import SmileAuthenticityPredictor
 from data import load_data_from_csv
 from utils import get_trainer
+from pytorch_lightning.callbacks import ModelCheckpoint
 from predictions import review_predictions
 from dataset_loader import FacesFeaturesDataModule
 from sklearn.model_selection import train_test_split
 
 def train():
-    csv_directory = 'DataScripts/outputs'
-    data = load_data_from_csv(csv_directory)
-    # Podział na zbiór treningowy i testowy
-    train_data, test_data = train_test_split(data, test_size=0.2, random_state=321)
-    batch_size = 16  # Przykładowa wielkość batcha
-    data_module = FacesFeaturesDataModule(train_data, test_data, batch_size=batch_size)
-    data_module.setup()
+    try:
+        csv_directory = 'DataScripts/outputs'
+        data = load_data_from_csv(csv_directory)
+        # Podział na zbiór treningowy i testowy
+        train_data, test_data = train_test_split(data, test_size=0.4, random_state=6546)
+        batch_size = 16  # Przykładowa wielkość batcha
+        data_module = FacesFeaturesDataModule(train_data, test_data, batch_size=batch_size)
+        data_module.setup()
+        print(train_data[0][0])
+        num_features = len(train_data[0][0])
+        print(num_features)
+        num_classes = 2  # Autentyczny (1) lub nieautentyczny (0)
+        # Konfiguracja trenera
 
-    num_features = len(train_data[0][0])
-    num_classes = 2  # Autentyczny (1) lub nieautentyczny (0)
-    model = SmileAuthenticityPredictor(num_features=num_features, num_classes=num_classes)
+        model = SmileAuthenticityPredictor.load_from_checkpoint("./checkpoints/best-checkpoint-v2.ckpt", num_classes=2, num_features=39)
+        #os.remove("./checkpoints/best-checkpoint.ckpt")
+        trainer = get_trainer()
+        trainer.fit(model, datamodule=data_module)
+        trainer.test(datamodule=data_module, ckpt_path='best')
 
-    trainer = get_trainer()
-
-    trainer.fit(model, datamodule=data_module)
-    trainer.test(datamodule=data_module, ckpt_path='best')
-
-    review_predictions(trainer=trainer, test_data=test_data)
+        review_predictions(trainer=trainer, test_data=test_data)
+    except Exception as e:
+        print(f"Error during training: {e}")
+        raise
 
 
 if __name__ == '__main__':
