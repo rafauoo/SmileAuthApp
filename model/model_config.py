@@ -28,9 +28,9 @@ CLASSES_NAMES = []
 
 LSTM_config = DotMap({
     'num_epochs': 2000,
-    'batch_size': 16,
+    'batch_size': 32,
     'num_hidden': 512,
     'num_lstm_layers': 3,
-    'dropout': 0.45,
-    'learning_rate': 0.0004
+    'dropout': 0.55,
+    'learning_rate': 0.00009
 })
