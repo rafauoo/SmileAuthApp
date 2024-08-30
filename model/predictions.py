@@ -25,13 +25,13 @@ def show_conf_matrix(conf_matrix):
     plt.show()
 
 
-def review_predictions(trainer, test_data):
+def review_predictions(trainer, test_data, ckpt_path):
     # Determine the device (GPU if available, else CPU)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     # Load the trained model and move it to the appropriate device
     trained_model = SmileAuthenticityPredictor.load_from_checkpoint(
-        trainer.checkpoint_callback.best_model_path,
+        ckpt_path,
         num_features=COL_LEN,
         num_classes=len(CLASSES)
     )

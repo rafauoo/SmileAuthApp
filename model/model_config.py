@@ -32,5 +32,5 @@ LSTM_config = DotMap({
     'num_hidden': 512,
     'num_lstm_layers': 3,
     'dropout': 0.55,
-    'learning_rate': 0.00009
+    'learning_rate': 0.000096
 })
