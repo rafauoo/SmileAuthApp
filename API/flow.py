@@ -20,6 +20,7 @@ import numpy as np
 from queue import Queue
 import imageio.v3 as iio
 import av
+from API.rotate_mp4 import detect_rotation
 import io
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -39,15 +40,29 @@ EXPORT FRAMES FROM VIDEO
 def export_frames_from_video(video_bytes):
     # Otwórz strumień wideo z bajtów za pomocą PyAV
     container = av.open(io.BytesIO(video_bytes))
-
     frames = []
+    rotation = detect_rotation(video_bytes)
+    print(rotation)
     
     # Iteracja przez klatki wideo
     for frame in container.decode(video=0):
         # Konwersja klatki do formatu kompatybilnego z OpenCV (BGR)
         img = frame.to_ndarray(format='bgr24')
-        frames.append(img)
 
+        # Obróć obraz w zależności od orientacji
+        if rotation != 0:
+            if rotation == 2:
+                img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+            elif rotation == 1:
+                img = cv2.rotate(img, cv2.ROTATE_180)
+            elif rotation == 3:
+                img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
+
+        frames.append(img)
+        cv2.imshow('Video Frame', img)
+        if cv2.waitKey(25) & 0xFF == ord('q'):
+            break
+    cv2.destroyAllWindows()
     return frames
 
 

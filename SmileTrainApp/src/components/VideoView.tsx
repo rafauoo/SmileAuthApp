@@ -32,6 +32,7 @@ export default function VideoViewComponent({
   });
 
   useEffect(() => {
+    console.log(video)
     const subscription = player.addListener("playingChange", (isPlaying) => {
       setIsPlaying(isPlaying);
     });

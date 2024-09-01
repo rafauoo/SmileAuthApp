@@ -1,24 +1,27 @@
 import { Alert } from "react-native";
-import PHOTO_API_URL from "../config/config";
-export async function sendVideoToServer(videoUri: string) {
+import { VIDEO_API_URL, PHOTO_API_URL } from "../config/config";
+import * as FileSystem from "expo-file-system";
+export async function sendVideoToServer(videoUri) {
   try {
-    // Create a FormData object to send the video file
-    const formData = new FormData();
-    formData.append("video", {
-      uri: videoUri,
-      type: "video/mp4", // Adjust this based on your video type
-      name: "video.mp4",
+    // Read the video file as a base64 encoded string
+    const base64Video = await FileSystem.readAsStringAsync(videoUri, {
+      encoding: FileSystem.EncodingType.Base64,
     });
 
-    // Send the video to the server
-    const response = await fetch(PHOTO_API_URL, {
+    // Prepare the payload
+    const payload = {
+      video: base64Video,
+    };
+    console.log(JSON.stringify(payload))
+    // Send the base64-encoded video string to the server in a JSON object
+    const response = await fetch(VIDEO_API_URL, {
       method: "POST",
-      body: formData,
+      body: JSON.stringify(payload),
       headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
     });
-
+    console.log("Response status: ", response.status);
     // Check if the upload was successful
     if (!response.ok) {
       throw new Error("Upload failed: " + response.statusText);

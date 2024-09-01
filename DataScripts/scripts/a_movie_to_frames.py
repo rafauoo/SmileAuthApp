@@ -2,7 +2,7 @@ import os
 import sys
 import cv2
 import concurrent.futures
-from config import TMP_DIR
+from DataScripts.config import TMP_DIR
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 

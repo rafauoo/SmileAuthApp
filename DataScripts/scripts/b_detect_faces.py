@@ -1,12 +1,12 @@
 import os
 import threading
-from config import TMP_DIR
+from DataScripts.config import TMP_DIR
 from scripts.FaceAligner import FaceAligner
 import dlib
 import concurrent.futures
 import cv2
-from utils import get_all_filenames
-from config import FACES_FEATURES_DET_FP
+from DataScripts.utils import get_all_filenames
+from DataScripts.config import FACES_FEATURES_DET_FP
 from exceptions import MoreThanOneFaceException, NoFaceException
 import traceback
 

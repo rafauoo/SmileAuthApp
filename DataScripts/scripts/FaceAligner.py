@@ -17,9 +17,9 @@ FACIAL_LANDMARKS_IDXS = {
     'lips': (61, 68)
 }
 
-from utils import landmarks_to_np
-from config import DESIRED_FACE_PHOTO_WIDTH
-from config import DESIRED_LEFT_EYE_POS as DLAP
+from DataScripts.utils import landmarks_to_np
+from DataScripts.config import DESIRED_FACE_PHOTO_WIDTH
+from DataScripts.config import DESIRED_LEFT_EYE_POS as DLAP
 
 
 class FaceAligner:

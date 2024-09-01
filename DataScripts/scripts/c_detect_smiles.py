@@ -5,7 +5,7 @@ import dlib
 import numpy as np
 import matplotlib.pyplot as plt
 import json
-from config import TMP_DIR
+from DataScripts.config import TMP_DIR
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from config import FACES_FEATURES_DET_FP, LIPS_CORNER1_IDX, LIPS_CORNER2_IDX, BEG_SMILE_THRESHOLD, \

@@ -11,6 +11,7 @@ from model.model_lstm import SmileAuthenticityPredictor
 from API.flow import flow
 import torch.nn.functional as F
 from model.model_config import CLASSES_STRS
+from API.rotate_mp4 import detect_rotation
 
 app = FastAPI()
 model = SmileAuthenticityPredictor.load_from_checkpoint("./API/model/checkpoint.ckpt", num_classes=2, num_features=39)
@@ -36,6 +37,8 @@ app.add_middleware(
 async def upload_video(data: VideoData):
     try:
         video_bytes = base64.b64decode(data.video)
+        print(detect_rotation(video_bytes))
+        save_video(video_bytes, "new.mp4")
         #print(video_bytes)
         result = analyze_video(video_bytes)
         return result
@@ -62,7 +65,7 @@ def analyze_video(video_bytes: bytes) -> List[dict]:
         elif isinstance(angles, list):
             angles = np.array(angles)
         features_tensor = torch.tensor(angles, dtype=torch.float32)
-        print(f"Original tensor shape: {features_tensor.shape}")
+        print(angles)
         features_tensor = features_tensor.transpose(0, 1)
         features_tensor = features_tensor.to(device)
         _, output = model(features_tensor)
