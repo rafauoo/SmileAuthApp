@@ -70,6 +70,7 @@ def analyze_video(video_bytes: bytes) -> List[dict]:
         features_tensor = features_tensor.to(device)
         _, output = model(features_tensor)
         probabilities = F.softmax(output, dim=1)
+        print(probabilities)
         authentic_smile_prob = probabilities[0][1].item()
         authentic_smile_percentage = authentic_smile_prob * 100
         return {"result": authentic_smile_percentage}

@@ -29,7 +29,7 @@ export async function sendVideoToServer(videoUri) {
 
     // Optionally, handle the response
     const result = await response.json();
-    Alert.alert("Success", "Video uploaded successfully!");
+    Alert.alert("Success", "Smile authenticity: " + result.result + "%");
   } catch (error) {
     // Handle errors
     Alert.alert("Error", "Failed to upload video. Please try again.");
