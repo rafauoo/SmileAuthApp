@@ -10,8 +10,8 @@ def load_data_from_csv(csv_dir):
     for file_name in os.listdir(csv_dir):
         file_name: str
         number = int(file_name[:4])
-        if number < 445:
-            continue
+        # if number < 500:
+        #     continue
         if file_name.endswith('.csv'):
             file_path = os.path.join(csv_dir, file_name)
             

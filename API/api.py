@@ -3,11 +3,26 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import base64
+import numpy as np
+import cv2
+from typing import List
+import torch
+from model.model_lstm import SmileAuthenticityPredictor
+from API.flow import flow
+import torch.nn.functional as F
+from model.model_config import CLASSES_STRS
 
 app = FastAPI()
+model = SmileAuthenticityPredictor.load_from_checkpoint("./API/model/checkpoint.ckpt", num_classes=2, num_features=39)
+model.eval()
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model.to(device)
 
 class ImageData(BaseModel):
     image: str
+
+class VideoData(BaseModel):
+    video: str
 
 app.add_middleware(
     CORSMiddleware,
@@ -17,44 +32,46 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.post("/upload/")
-async def upload_image(data: ImageData):
+@app.post("/video/")
+async def upload_video(data: VideoData):
     try:
-        image_bytes = base64.b64decode(data.image)
-        result = analyze_image(image_bytes)
+        video_bytes = base64.b64decode(data.video)
+        #print(video_bytes)
+        result = analyze_video(video_bytes)
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-def analyze_image(image_data):
-    import cv2
-    import numpy as np
-    import base64
-    from io import BytesIO
+def save_video(video_bytes: bytes, save_path: str):
+    """
+    Save the video to the given path.
 
-    # Załaduj pre-trenowany klasyfikator twarzy
-    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+    Parameters:
+    - video_bytes: Byte stream of the video.
+    - save_path: Path where the video will be saved.
+    """
+    with open(save_path, 'wb') as f:
+        f.write(video_bytes)
 
-    # Konwertuj dane obrazu z base64 na format numpy array
-    nparr = np.frombuffer(image_data, np.uint8)
-
-    # Dekoduj obraz
-    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-
-    # Konwertuj obraz na skalę szarości
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-    # Wykrywanie twarzy
-    faces = face_cascade.detectMultiScale(gray, 1.1, 4)
-
-    # Rysuj prostokąty wokół twarzy
-    for (x, y, w, h) in faces:
-        cv2.rectangle(img, (x, y), (x + w, y + h), (255, 255, 0), 10)
-
-    # Koduj obraz do formatu JPEG
-    _, buffer = cv2.imencode('.jpg', img)
-    jpg_as_text = base64.b64encode(buffer).decode()
-    return jpg_as_text
+def analyze_video(video_bytes: bytes) -> List[dict]:
+    try:
+        angles = flow(video_bytes)
+        import pandas as pd
+        if isinstance(angles, pd.DataFrame):
+            angles = angles.to_numpy()
+        elif isinstance(angles, list):
+            angles = np.array(angles)
+        features_tensor = torch.tensor(angles, dtype=torch.float32)
+        print(f"Original tensor shape: {features_tensor.shape}")
+        features_tensor = features_tensor.transpose(0, 1)
+        features_tensor = features_tensor.to(device)
+        _, output = model(features_tensor)
+        probabilities = F.softmax(output, dim=1)
+        authentic_smile_prob = probabilities[0][1].item()
+        authentic_smile_percentage = authentic_smile_prob * 100
+        return {"result": authentic_smile_percentage}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="192.168.0.135", port=8000)
+    uvicorn.run(app, host="192.168.0.192", port=8000)

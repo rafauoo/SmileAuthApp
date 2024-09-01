@@ -109,7 +109,7 @@ class SmileAuthenticityPredictor(pl.LightningModule):
         try:
             faces_features = batch['faces_features']
             authenticities = batch['authenticity']
-
+            print(f"Original tensor shape: {faces_features.shape}")
             loss, outputs = self(faces_features, authenticities)
             predictions = torch.argmax(outputs, dim=1)
             acc = accuracy(predictions, authenticities, task="binary")
