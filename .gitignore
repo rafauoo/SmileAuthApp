@@ -4,3 +4,6 @@ outputs
 videos
 lightning_logs
 checkpoints
+videos_new
+outputs_new_flow
+*.mp4

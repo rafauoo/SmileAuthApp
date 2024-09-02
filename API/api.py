@@ -8,10 +8,11 @@ import cv2
 from typing import List
 import torch
 from model.model_lstm import SmileAuthenticityPredictor
-from API.flow import flow
+#from API.flow import flow
 import torch.nn.functional as F
 from model.model_config import CLASSES_STRS
 from API.rotate_mp4 import detect_rotation
+from API.apiflow import flow
 
 app = FastAPI()
 model = SmileAuthenticityPredictor.load_from_checkpoint("./API/model/checkpoint.ckpt", num_classes=2, num_features=39)

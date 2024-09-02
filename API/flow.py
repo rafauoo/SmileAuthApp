@@ -41,8 +41,11 @@ def export_frames_from_video(video_bytes):
     # Otwórz strumień wideo z bajtów za pomocą PyAV
     container = av.open(io.BytesIO(video_bytes))
     frames = []
-    rotation = detect_rotation(video_bytes)
-    print(rotation)
+    rotation = 0
+    try:
+        rotation = detect_rotation(video_bytes)
+    except ValueError:
+        roration = 0
     
     # Iteracja przez klatki wideo
     for frame in container.decode(video=0):
@@ -59,10 +62,6 @@ def export_frames_from_video(video_bytes):
                 img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
 
         frames.append(img)
-        cv2.imshow('Video Frame', img)
-        if cv2.waitKey(25) & 0xFF == ord('q'):
-            break
-    cv2.destroyAllWindows()
     return frames
 
 
@@ -187,7 +186,6 @@ def detect_smiles(faces):
             'frame': num,
             'diff': curr_diff
         })
-
     # finding top of the chart (to be able to find the end of the smile - It has to be after the top of
     # the chart.)
     filtered_diffs = [_dict for _dict in diffs_in_time if _dict['diff'] is not None]
@@ -202,7 +200,6 @@ def detect_smiles(faces):
     try:
         for i in range(1, len(diffs_in_time)-1):  # From 1 because first value is always None.
             dY = diffs_in_time[i+1]['diff'] - diffs_in_time[i]['diff']  # dX = 1 (frames difference)
-
             diff = diffs_in_time[i+1]['diff']
 
             rise_diffs = []
@@ -217,6 +214,7 @@ def detect_smiles(faces):
                 # beginning of the smile found (slope of the line (differences between the current lips corners
                 # location and the lips corners location in the first frame) > BEG_SMILE_THRESHOLD
                 # - fast increase and then several values bigger than this point)
+                print(i, rise_diffs)
                 beg_found = True
                 smile_beg_frame = diffs_in_time[i]['frame']
 
@@ -263,6 +261,7 @@ def detect_smiles(faces):
 CROP SMILES
 """
 def get_first_39_smile_frames(smile_beg_frame, num_smiles_frames):
+
     if num_smiles_frames >= 39:
         smile_start = smile_beg_frame
         smile_end = smile_beg_frame + 38

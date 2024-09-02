@@ -91,7 +91,7 @@ def smile_data_from_beg_to_end(video_bytes):
     first_beg = True
     curr_data = None
     counter = CURRENT_MIN_NUM_SMILE_FRAMES
-    dist_deque = collections.deque(maxlen=NUM_FRAMES_RISE_SMILE_BEG+1)
+    dist_deque = collections.deque(maxlen=NUM_FRAMES_RISE_SMILE_BEG)
     for i, (landmarks, dist) in enumerate(mouth_edges_distances(video_bytes)):
         if first_dist == None:
             first_dist = dist # set first distance
@@ -101,14 +101,21 @@ def smile_data_from_beg_to_end(video_bytes):
             i = i - 1
             dY = curr_diff - last_diff
             dist_deque.append(DotMap(curr_diff=curr_diff, landmarks=landmarks, dY=dY))
+            print(i, curr_diff)
             if not beg_found:
                 if not len(dist_deque) == dist_deque.maxlen:
                     continue # waiting for collecting 20 values
                 last_data = curr_data
                 curr_data = dist_deque.popleft() # get (curr_diff, landmarks, dY) of the oldest value
-                if curr_data.dY > BEG_SMILE_THRESHOLD:
+                if last_data is None:
+                    continue
+                print(last_data, curr_data)
+                if curr_data.dY > BEG_SMILE_THRESHOLD and curr_data.curr_diff > last_data.curr_diff + MIN_DIFF_IN_RISE_SMILE_BEG:
+                    print(curr_data.curr_diff)
                     for landmark_dY in dist_deque:
+                        print(landmark_dY.curr_diff, last_data.curr_diff, MIN_DIFF_IN_RISE_SMILE_BEG)
                         if landmark_dY.curr_diff <= last_data.curr_diff + MIN_DIFF_IN_RISE_SMILE_BEG:
+                            print("yes")
                             break
                     else:
                         beg_found = True
@@ -186,40 +193,7 @@ def generate_data(video_bytes):
     
     return selected_data_x
 
-"""
-SAVE DATA TO CSV
-"""
-def flow(video_path, output_path):
-    with open(video_path, "rb") as video_file:
-        video_bytes = video_file.read()
+def flow(video_bytes):
+    #tmp_dir = create_unique_tmp_dir(TMP_DIR, random.randbytes(10))
     angles = generate_data(video_bytes)
-    angles.to_csv(output_path, index=False)
-
-######
-
-def rename_videos():
-    for num, file in enumerate(os.listdir(os.path.abspath(os.path.join(os.sep, ROOT_DIR, "videos")))):
-        e_file = os.path.abspath(os.path.join(os.sep, ROOT_DIR, "videos", file))
-        if "deliberate" in file:
-            os.rename(e_file, os.path.join(os.sep, ROOT_DIR, "videos", f"{num+1:04}_deliberate.mp4"))
-        if "spontaneous" in file:
-            os.rename(e_file, os.path.join(os.sep, ROOT_DIR, "videos", f"{num+1:04}_spontaneous.mp4"))
-
-def process_videos():
-    for num, file in enumerate(os.listdir(os.path.abspath(os.path.join(os.sep, ROOT_DIR, "videos")))):
-        e_file = os.path.abspath(os.path.join(os.sep, ROOT_DIR, "videos_new", file))
-        save_path = os.path.abspath(os.path.join(os.sep, ROOT_DIR, "outputs_new_flow", f"{file}.csv"))
-        start_time = time.time()
-        flow(e_file, save_path)
-        end_time = time.time()
-        execution_time = end_time - start_time
-        print(f"Czas wykonania: {execution_time:.6f} sekund")
-        os.remove(e_file)
-        print(f"#{file[:4]} done")
-
-if __name__ == "__main__":
-    # rename_videos()
-    process_videos()
-    # video_path = os.path.abspath(os.path.join(os.sep, TMP_DIR, "1013", "movie.mp4"))
-    # save_path = os.path.abspath(os.path.join(os.sep, ROOT_DIR, "1.csv"))
-    # flow(video_path, save_path)
+    return angles
