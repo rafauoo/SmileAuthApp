@@ -16,12 +16,20 @@ from API.rotate_mp4 import detect_rotation
 from API.apiflow import flow
 
 app = FastAPI()
-model = SmileAuthenticityPredictor.load_from_checkpoint(
-    "./API/model/checkpoint.ckpt", num_classes=2, num_features=39
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
-model.eval()
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model.to(device)
+if __name__ == "__main__":
+    model = SmileAuthenticityPredictor.load_from_checkpoint(
+        "./API/model/checkpoint.ckpt", num_classes=2, num_features=39
+    )
+    model.eval()
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model.to(device)
 
 
 class ImageData(BaseModel):
@@ -30,15 +38,6 @@ class ImageData(BaseModel):
 
 class VideoData(BaseModel):
     video: str
-
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 
 @app.post("/video/")

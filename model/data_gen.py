@@ -43,5 +43,5 @@ def generate_data():
                     file.write(f"{value}\n")
 
 
-# Wywołanie funkcji generującej plik
-generate_data()
+if __name__ == "__main__":
+    generate_data()

@@ -1,24 +1,27 @@
-import struct
+from enum import Enum
+
+
+class VideoRotation(Enum):
+    ERR = -1
+    STRAIGHT = 0
+    ROTATED_180 = 1
+    ROTATED_90_CW = 2
+    ROTATED_90_CCW = 3
 
 
 def detect_rotation(video_bytes):
     def find_tkhd_start(data):
-        # Search for 'trak' in the byte stream
         trak_pos = data.find(b"trak")
         if trak_pos == -1:
             return -1
-        # Start searching for 'tkhd' after 'trak'
         data = data[trak_pos + len(b"trak") :]
         tkhd_pos = data.find(b"tkhd")
         if tkhd_pos == -1:
             return -1
-
-        # Position of 'tkhd' box in the byte stream
-        return trak_pos + len(b"trak") + tkhd_pos + 4  # +4 to skip 'tkhd'
+        return trak_pos + len(b"trak") + tkhd_pos + 4
 
     def get_rotation_matrix(data, tkhd_start):
-        # Szukaj '@' (0x40) po atomie 'tkhd'
-        at_pos = data.find(b"\x40", tkhd_start + 12)  # +12 aby pominąć nagłówek 'tkhd'
+        at_pos = data.find(b"\x40", tkhd_start + 12)
         if at_pos == -1:
             raise ValueError("Znak @ (0x40) nie znaleziony po atomie tkhd.")
         start = at_pos - 32
@@ -37,24 +40,26 @@ def detect_rotation(video_bytes):
         matrix = hex_string[:36].upper()
         # no rotation
         if matrix == "000100000000000000000000000000000001":
-            return 0
+            return VideoRotation.STRAIGHT
         # 180
         elif matrix == "FFFF0000000000000000000000000000FFFF":
-            return 1
+            return VideoRotation.ROTATED_180
         # 90 cw
         elif matrix == "000000000001000000000000FFFF00000000":
-            return 2
+            return VideoRotation.ROTATED_90_CW
         # 90 ccw
         elif matrix == "00000000FFFF000000000000000100000000":
-            return 3
+            return VideoRotation.ROTATED_90_CCW
         else:
-            return 4
+            return VideoRotation.ERR
 
     # Find 'tkhd' atom position and extract rotation matrix
     tkhd_start = find_tkhd_start(video_bytes)
     if tkhd_start == -1:
-        return "tkhd atom not found"
-
-    matrix = get_rotation_matrix(video_bytes, tkhd_start)
-    rotation = detect_rotation(matrix)
+        return VideoRotation.ERR
+    try:
+        matrix = get_rotation_matrix(video_bytes, tkhd_start)
+        rotation = detect_rotation(matrix)
+    except ValueError:
+        return VideoRotation.ERR
     return rotation

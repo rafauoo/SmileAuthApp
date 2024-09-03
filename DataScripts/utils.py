@@ -3,6 +3,28 @@ import numpy as np
 import os
 import re
 import json
+from DataScripts.config import DATA_DIR
+
+
+def rename_videos():
+    for num, file in enumerate(
+        os.listdir(os.path.abspath(os.path.join(os.sep, DATA_DIR, "videos_new")))
+    ):
+        e_file = os.path.abspath(os.path.join(os.sep, DATA_DIR, "videos_new", file))
+        if "deliberate" in file:
+            os.rename(
+                e_file,
+                os.path.join(
+                    os.sep, DATA_DIR, "videos_new", f"{num+1:04}_deliberate.mp4"
+                ),
+            )
+        if "spontaneous" in file:
+            os.rename(
+                e_file,
+                os.path.join(
+                    os.sep, DATA_DIR, "videos_new", f"{num+1:04}_spontaneous.mp4"
+                ),
+            )
 
 
 def landmarks_to_np(shape, dtype="int"):

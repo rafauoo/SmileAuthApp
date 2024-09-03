@@ -6,7 +6,7 @@ import json
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from utils import get_current_time_str
+from DataScripts.utils import get_current_time_str
 
 
 AUTH_SMILE_ENC_DICT = {"deliberate": 0, "spontaneous": 1}

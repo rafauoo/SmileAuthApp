@@ -3,15 +3,14 @@ from pytorch_lightning.loggers import TensorBoardLogger
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import RichProgressBar
 from model.model_config import LSTM_config as lstm_conf
-import os
 
 
 def get_trainer():
     try:
-        logger = TensorBoardLogger("lightning_logs", name="authenticity")
+        logger = TensorBoardLogger("model/lightning_logs", name="authenticity")
 
         checkpoint_callback = ModelCheckpoint(
-            dirpath="checkpoints",
+            dirpath="model/checkpoints",
             filename="best-checkpoint",
             save_top_k=1,  # only the best model
             verbose=True,

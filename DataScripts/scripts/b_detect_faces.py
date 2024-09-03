@@ -1,7 +1,7 @@
 import os
 import threading
 from DataScripts.config import TMP_DIR
-from scripts.FaceAligner import FaceAligner
+from DataScripts.FaceAligner import FaceAligner
 import dlib
 import concurrent.futures
 import cv2

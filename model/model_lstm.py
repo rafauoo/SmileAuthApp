@@ -30,6 +30,7 @@ class FacesFeaturesLSTM(nn.Module):
         self.classifier = nn.Linear(num_hidden, num_classes)
 
     def forward(self, x):
+        """a"""
         try:
             # self.lstm.flatten_parameters()  # for multi-GPU purposes
             lstm_out, (hidden, _) = self.lstm(x)
@@ -57,11 +58,13 @@ class SmileAuthenticityPredictor(pl.LightningModule):
 
     @classmethod
     def load_model(cls, checkpoint_path, num_features, num_classes):
+        """a"""
         model = cls(num_features=num_features, num_classes=num_classes)
         model.load_state_dict(torch.load(checkpoint_path)["state_dict"])
         return model
 
     def forward(self, x, auths=None):
+        """a"""
         try:
             output = self.model(x)
             loss = 0
@@ -73,6 +76,7 @@ class SmileAuthenticityPredictor(pl.LightningModule):
             raise
 
     def training_step(self, batch, batch_idx):
+        """a"""
         try:
             faces_features = batch["faces_features"]
             authenticities = batch["authenticity"]
@@ -92,6 +96,7 @@ class SmileAuthenticityPredictor(pl.LightningModule):
             raise
 
     def validation_step(self, batch, batch_idx):
+        """a"""
         try:
             faces_features = batch["faces_features"]
             authenticities = batch["authenticity"]
@@ -109,6 +114,7 @@ class SmileAuthenticityPredictor(pl.LightningModule):
             raise
 
     def test_step(self, batch, batch_idx):
+        """a"""
         try:
             faces_features = batch["faces_features"]
             authenticities = batch["authenticity"]
@@ -126,6 +132,7 @@ class SmileAuthenticityPredictor(pl.LightningModule):
             raise
 
     def configure_optimizers(self):
+        """a"""
         try:
             return optim.Adam(self.parameters(), lr=lstm_conf.learning_rate)
         except Exception as e:

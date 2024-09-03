@@ -36,12 +36,13 @@ def compare_csv_files(folder1, folder2):
         print("Wszystkie wspólne pliki CSV są identyczne.")
 
 
-# Przykładowe użycie
-folder1 = os.path.abspath(
-    os.path.join(os.sep, ROOT_DIR, "outputs")
-)  # Zmień na właściwą ścieżkę do pierwszego folderu
-folder2 = os.path.abspath(
-    os.path.join(os.sep, ROOT_DIR, "outputs_new_flow")
-)  # Zmień na właściwą ścieżkę do drugiego folderu
+if __name__ == "__main__":
+    # Przykładowe użycie
+    folder1 = os.path.abspath(
+        os.path.join(os.sep, ROOT_DIR, "outputs")
+    )  # Zmień na właściwą ścieżkę do pierwszego folderu
+    folder2 = os.path.abspath(
+        os.path.join(os.sep, ROOT_DIR, "outputs_new_flow")
+    )  # Zmień na właściwą ścieżkę do drugiego folderu
 
-compare_csv_files(folder1, folder2)
+    compare_csv_files(folder1, folder2)
