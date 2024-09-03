@@ -7,8 +7,6 @@ import matplotlib.pyplot as plt
 import json
 from DataScripts.config import TMP_DIR
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 from config import (
     FACES_FEATURES_DET_FP,
     LIPS_CORNER1_IDX,
@@ -22,7 +20,6 @@ from config import (
 from utils import (
     get_filenames_sorted_by_frame_num,
     get_frame_num,
-    save_dict_to_json_file,
 )
 
 

@@ -5,6 +5,7 @@ from DataScripts.FaceAligner import FaceAligner
 import dlib
 import concurrent.futures
 import cv2
+from cv2.typing import MatLike
 from DataScripts.utils import get_all_filenames
 from DataScripts.config import FACES_FEATURES_DET_FP
 from exceptions import MoreThanOneFaceException, NoFaceException
@@ -15,23 +16,42 @@ thread_local = threading.local()
 
 
 def init_thread():
+    """Init thread for multithreading purposes.
+    """
     if not hasattr(thread_local, "fa"):
         predictor = dlib.shape_predictor(FACES_FEATURES_DET_FP)
         thread_local.fa = FaceAligner(predictor)
         thread_local.detector = dlib.get_frontal_face_detector()
 
 
-def get_face_aligner():
+def get_face_aligner() -> FaceAligner:
+    """Get face aligner for multithreading purposes.
+
+    :return: shared face aligner
+    :rtype: FaceAligner
+    """
     init_thread()
     return thread_local.fa
 
 
-def get_detector():
+def get_detector() -> dlib.fhog_object_detector:
+    """Get detectore for multithreading purposes.
+
+    :return: shared detector
+    :rtype: dlib.fhog_object_detector
+    """
     init_thread()
     return thread_local.detector
 
 
-def save_face(face, face_name):
+def save_face(face: MatLike, face_name: str) -> None:
+    """Saves a face to a file
+
+    :param face: image of a face
+    :type face: MatLike
+    :param face_name: name of the file to save
+    :type face_name: str
+    """
     try:
         cv2.imwrite(face_name, face)
     except Exception as e:
@@ -39,7 +59,21 @@ def save_face(face, face_name):
         raise
 
 
-def process_frame(frame_name, frames_dir, faces_dir):
+def process_frame(frame_name: str, frames_dir: str, faces_dir: str) -> str | None:
+    """Process one frame of the video - detect face.
+
+    :param frame_name: name of the frame to process
+    :type frame_name: str
+    :param frames_dir: frames directory
+    :type frames_dir: str
+    :param faces_dir: faces directory
+    :type faces_dir: str
+    :raises ValueError: _description_
+    :raises MoreThanOneFaceException: detected more than one face
+    :raises NoFaceException: no face was detected
+    :return: may return an error message or None
+    :rtype: str
+    """
     try:
         fa = get_face_aligner()
         detector = get_detector()
@@ -59,7 +93,7 @@ def process_frame(frame_name, frames_dir, faces_dir):
             )
         if len(_faces) == 0:
             raise NoFaceException(f"No face detected in {frame_name}.")
-        aligned_face = fa.align(img, _gray, _faces[0])
+        aligned_face: MatLike = fa.align(img, _gray, _faces[0])
         save_face(aligned_face, os.path.join(faces_dir, frame_name))
     except Exception as e:
         error_msg = f"Exception in processing frame {frame_name}: {str(e)}"
@@ -68,7 +102,14 @@ def process_frame(frame_name, frames_dir, faces_dir):
     return None
 
 
-def detect_faces(id, video_name):
+def detect_faces(id: int, video_name: str) -> None:
+    """Detect faces on the video.
+
+    :param id: video ID
+    :type id: int
+    :param video_name: video name
+    :type video_name: str
+    """
     faces_dir = os.path.join(TMP_DIR, str(id), "faces")
     frames_dir = os.path.join(TMP_DIR, str(id), "frames")
     frames_names = get_all_filenames(frames_dir)

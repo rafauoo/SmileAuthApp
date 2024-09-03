@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from DataScripts.config import ROOT_DIR
+from DataScripts.config import DATA_DIR
 
 
 def compare_csv_files(folder1, folder2):
@@ -39,10 +39,10 @@ def compare_csv_files(folder1, folder2):
 if __name__ == "__main__":
     # Przykładowe użycie
     folder1 = os.path.abspath(
-        os.path.join(os.sep, ROOT_DIR, "outputs")
+        os.path.join(os.sep, DATA_DIR, "outputs")
     )  # Zmień na właściwą ścieżkę do pierwszego folderu
     folder2 = os.path.abspath(
-        os.path.join(os.sep, ROOT_DIR, "outputs_new_flow")
+        os.path.join(os.sep, DATA_DIR, "outputs_new_flow")
     )  # Zmień na właściwą ścieżkę do drugiego folderu
 
     compare_csv_files(folder1, folder2)

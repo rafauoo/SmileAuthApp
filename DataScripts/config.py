@@ -1,11 +1,13 @@
 import os
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.abspath(os.path.join(os.sep, ROOT_DIR, "data"))
+TMP_DIR = os.path.abspath(os.path.join(os.sep, DATA_SCRIPTS_DIR, "tmp"))
 
 FACES_FEATURES_DET_FP = os.path.abspath(
     os.path.join(
-        os.sep, ROOT_DIR, "face_features", "shape_predictor_68_face_landmarks.dat"
+        os.sep, DATA_SCRIPTS_DIR, "face_features", "shape_predictor_68_face_landmarks.dat"
     )
 )
 DESIRED_FACE_PHOTO_WIDTH = 256

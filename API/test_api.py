@@ -1,13 +1,10 @@
-import requests
 import base64
-from API.rotate_mp4 import detect_rotation
-from API.apiflow import flow
-
-# from API.flow import flow
+from DataScripts.flow.video_rotation import detect_rotation
+from DataScripts.flow.flow import flow
 import time
 
 if __name__ == "__main__":
-    with open("./API/movie1.mp4", "rb") as video_file:
+    with open("./API/movie.mp4", "rb") as video_file:
         video_bytes = video_file.read()
         video_base64 = base64.b64encode(video_bytes).decode("utf-8")
 

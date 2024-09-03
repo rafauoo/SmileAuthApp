@@ -30,13 +30,13 @@ import pandas as pd
 import time
 import threading
 from DataScripts.exceptions import NoFaceException, MoreThanOneFaceException
-from DataScripts.flow.FaceAligner import FaceAligner
+from DataScripts.FaceAligner import FaceAligner
 from concurrent.futures import ThreadPoolExecutor
 import numpy as np
 from queue import Queue
 import imageio.v3 as iio
 import av
-from API.rotate_mp4 import detect_rotation
+from DataScripts.flow.video_rotation import detect_rotation
 import io
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

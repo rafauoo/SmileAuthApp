@@ -1,19 +1,28 @@
 import os
-import sys
 import cv2
 import concurrent.futures
 from DataScripts.config import TMP_DIR
+from cv2.typing import MatLike
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+def save_frame(frame: MatLike, frame_name: str) -> None:
+    """Saves a frame
 
-def save_frame(frame, frame_name):
+    :param frame: frame
+    :type frame: MatLike
+    :param frame_name: name of saved file
+    :type frame_name: str
+    """
     cv2.imwrite(frame_name, frame)
 
 
-def movie_to_frames(id, video_name) -> None:
-    """
-    Exports frames from video file
+def movie_to_frames(id: int, video_name: str) -> None:
+    """Exports frames from video file
+
+    :param id: movie ID
+    :type id: int
+    :param video_name: name of the video
+    :type video_name: str
     """
     print(f"**********************************************\n{id}\n")
     frames_dir = os.path.abspath(os.path.join(os.sep, TMP_DIR, str(id), "frames"))

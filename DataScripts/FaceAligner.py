@@ -1,10 +1,7 @@
-import sys
-import os
 import numpy as np
 import cv2
 import dlib
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from cv2.typing import MatLike
 
 FACIAL_LANDMARKS_IDXS = {
     "jaw": (0, 17),
@@ -23,13 +20,26 @@ from DataScripts.config import DESIRED_LEFT_EYE_POS as DLAP
 
 
 class FaceAligner:
+    """FaceAligner class. It aligns, cuts and scales the face from an image.
+    """
     def __init__(
         self,
-        predictor,
-        desired_left_eye_pos=(DLAP, DLAP),
-        desired_face_photo_width=DESIRED_FACE_PHOTO_WIDTH,
-        desired_face_photo_height=None,
+        predictor: dlib.shape_predictor,
+        desired_left_eye_pos: tuple = (DLAP, DLAP),
+        desired_face_photo_width: int = DESIRED_FACE_PHOTO_WIDTH,
+        desired_face_photo_height: int | None = None,
     ):
+        """FaceAligner constructor
+
+        :param predictor: predictor
+        :type predictor: dlib.shape_predictor
+        :param desired_left_eye_pos: desired left eye position, defaults to (0.35, 0.35)
+        :type desired_left_eye_pos: tuple, optional
+        :param desired_face_photo_width: desired face photo width, defaults to DESIRED_FACE_PHOTO_WIDTH
+        :type desired_face_photo_width: int, optional
+        :param desired_face_photo_height: desired face photo height, defaults to None
+        :type desired_face_photo_height: int, optional
+        """
         self.predictor = predictor
         self.desired_left_eye_pos = desired_left_eye_pos
         self.desired_face_photo_width = desired_face_photo_width
@@ -37,7 +47,18 @@ class FaceAligner:
         if self.desired_face_photo_height is None:
             self.desired_face_photo_height = self.desired_face_photo_width
 
-    def align(self, image, gray, rect):
+    def align(self, image: MatLike, gray: MatLike, rect: dlib.rectangle) -> MatLike:
+        """Aligns face on the frame
+
+        :param image: source frame
+        :type image: MatLike
+        :param gray: grayed frame
+        :type gray: MatLike
+        :param rect: coordinates of the face
+        :type rect: dlib.rectangle
+        :return: aligned image
+        :rtype: MatLike
+        """
         if (
             isinstance(rect, np.ndarray) and len(rect) == 4
         ):  # data format for first 2 algorithms extracting faces

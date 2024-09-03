@@ -20,9 +20,9 @@ from DataScripts.config import (
     NOSE_TOP_IDX,
     CURRENT_MIN_NUM_SMILE_FRAMES,
 )
-from DataScripts.exceptions import NoFaceException, MoreThanOneFaceException
-from DataScripts.flow.FaceAligner import FaceAligner
-from API.rotate_mp4 import detect_rotation, VideoRotation
+from DataScripts.FaceAligner import FaceAligner
+from DataScripts.flow.video_rotation import detect_rotation, VideoRotation
+from DataScripts.exceptions import NoFaceException, MoreThanOneFaceException, SmileNotDetectedException
 
 
 def frames_from_video(video_bytes: bytes) -> Generator[MatLike, None, None]:
@@ -239,6 +239,7 @@ def generate_data(video_bytes: bytes) -> pd.DataFrame:
 
     :param video_bytes: bytes of the video
     :type video_bytes: bytes
+    :raises SmileNotDetectedException: smile was not detected or was too short
     :return: smile angles data
     :rtype: pd.DataFrame
     """
@@ -248,6 +249,8 @@ def generate_data(video_bytes: bytes) -> pd.DataFrame:
         y = lambda n: landmarks.part(n).y
         row = [num] + [f(i) for i in range(NUM_FACES_FEATURES) for f in (x, y)]
         all_landmarks.append(row)
+    if len(all_landmarks) < CURRENT_MIN_NUM_SMILE_FRAMES:
+        raise SmileNotDetectedException("Smile was not detected.", "")
     f1 = lambda num: f"{num}x"
     f2 = lambda num: f"{num}y"
     header = ["frame_number"] + [
@@ -262,6 +265,7 @@ def flow(video_bytes: bytes) -> pd.DataFrame:
 
     :param video_bytes: bytes of the video
     :type video_bytes: bytes
+    :raises SmileNotDetectedException: smile was not detected or was too short
     :return: angles data
     :rtype: pd.DataFrame
     """
