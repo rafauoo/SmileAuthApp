@@ -4,14 +4,6 @@ DataScripts.flow package
 Submodules
 ----------
 
-DataScripts.flow.FaceAligner module
------------------------------------
-
-.. automodule:: DataScripts.flow.FaceAligner
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 DataScripts.flow.bulk\_videos module
 ------------------------------------
 
@@ -32,6 +24,22 @@ DataScripts.flow.flow module
 ----------------------------
 
 .. automodule:: DataScripts.flow.flow
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+DataScripts.flow.old\_flow module
+---------------------------------
+
+.. automodule:: DataScripts.flow.old_flow
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+DataScripts.flow.video\_rotation module
+---------------------------------------
+
+.. automodule:: DataScripts.flow.video_rotation
    :members:
    :undoc-members:
    :show-inheritance:

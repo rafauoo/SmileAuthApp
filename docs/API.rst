@@ -20,26 +20,18 @@ API.api module
    :undoc-members:
    :show-inheritance:
 
-API.apiflow module
-------------------
+API.config module
+-----------------
 
-.. automodule:: API.apiflow
+.. automodule:: API.config
    :members:
    :undoc-members:
    :show-inheritance:
 
-API.flow module
----------------
-
-.. automodule:: API.flow
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-API.rotate\_mp4 module
+API.definitions module
 ----------------------
 
-.. automodule:: API.rotate_mp4
+.. automodule:: API.definitions
    :members:
    :undoc-members:
    :show-inheritance:

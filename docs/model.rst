@@ -4,6 +4,14 @@ model package
 Submodules
 ----------
 
+model.analyze\_video module
+---------------------------
+
+.. automodule:: model.analyze_video
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 model.data module
 -----------------
 

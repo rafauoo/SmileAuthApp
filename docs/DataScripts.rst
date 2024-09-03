@@ -13,6 +13,14 @@ Subpackages
 Submodules
 ----------
 
+DataScripts.FaceAligner module
+------------------------------
+
+.. automodule:: DataScripts.FaceAligner
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 DataScripts.config module
 -------------------------
 
@@ -21,26 +29,10 @@ DataScripts.config module
    :undoc-members:
    :show-inheritance:
 
-DataScripts.data\_prep\_utils module
-------------------------------------
-
-.. automodule:: DataScripts.data_prep_utils
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 DataScripts.exceptions module
 -----------------------------
 
 .. automodule:: DataScripts.exceptions
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-DataScripts.main module
------------------------
-
-.. automodule:: DataScripts.main
    :members:
    :undoc-members:
    :show-inheritance:

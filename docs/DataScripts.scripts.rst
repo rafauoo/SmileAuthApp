@@ -4,14 +4,6 @@ DataScripts.scripts package
 Submodules
 ----------
 
-DataScripts.scripts.FaceAligner module
---------------------------------------
-
-.. automodule:: DataScripts.scripts.FaceAligner
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 DataScripts.scripts.a\_movie\_to\_frames module
 -----------------------------------------------
 
@@ -48,6 +40,14 @@ DataScripts.scripts.e\_smiles\_to\_csv\_data module
 ---------------------------------------------------
 
 .. automodule:: DataScripts.scripts.e_smiles_to_csv_data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+DataScripts.scripts.main module
+-------------------------------
+
+.. automodule:: DataScripts.scripts.main
    :members:
    :undoc-members:
    :show-inheritance:

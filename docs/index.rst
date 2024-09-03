@@ -10,7 +10,9 @@ Welcome to SmileAuthApp's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   modules
+   API
+   model
+   DataScripts
 
 Indices and tables
 ==================
