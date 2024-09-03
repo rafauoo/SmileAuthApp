@@ -1,19 +1,19 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from fastapi.middleware.cors import CORSMiddleware
+
 import uvicorn
 import base64
-import numpy as np
-import cv2
-from typing import List
+import os
 import torch
-from model.model_lstm import SmileAuthenticityPredictor
-
-# from API.flow import flow
+import numpy as np
 import torch.nn.functional as F
-from model.model_config import CLASSES_STRS
+from typing import List
+from pydantic import BaseModel
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from model.model_lstm import SmileAuthenticityPredictor
 from API.rotate_mp4 import detect_rotation
-from API.apiflow import flow
+from API.config import API_MODEL_DIR
+from DataScripts.flow import flow
+
 
 app = FastAPI()
 app.add_middleware(
@@ -23,13 +23,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-if __name__ == "__main__":
-    model = SmileAuthenticityPredictor.load_from_checkpoint(
-        "./API/model/checkpoint.ckpt", num_classes=2, num_features=39
-    )
-    model.eval()
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model.to(device)
+checkpoint_path = os.path.join(os.sep, API_MODEL_DIR, f"checkpoint.ckpt")
+model = SmileAuthenticityPredictor.load_from_checkpoint(
+    "./API/model/checkpoint.ckpt", num_classes=2, num_features=39
+)
+model.eval()
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model.to(device)
 
 
 class ImageData(BaseModel):
