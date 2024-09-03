@@ -6,14 +6,16 @@ from DataScripts.config import TMP_DIR
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+
 def save_frame(frame, frame_name):
     cv2.imwrite(frame_name, frame)
+
 
 def movie_to_frames(id, video_name) -> None:
     """
     Exports frames from video file
     """
-    print(f'**********************************************\n{id}\n')
+    print(f"**********************************************\n{id}\n")
     frames_dir = os.path.abspath(os.path.join(os.sep, TMP_DIR, str(id), "frames"))
     if not os.path.exists(frames_dir):
         os.makedirs(frames_dir)
@@ -23,18 +25,18 @@ def movie_to_frames(id, video_name) -> None:
     video = cv2.VideoCapture(video_path)
 
     os.chdir(frames_dir)
-    
+
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
         futures = []
         while True:
             success, frame = video.read()
             if success:
-                frame_name = f'frame{str(current_frame)}.jpg'
+                frame_name = f"frame{str(current_frame)}.jpg"
                 futures.append(executor.submit(save_frame, frame, frame_name))
                 current_frame += 1
             else:
                 break
-        
+
         # Wait for all futures to complete
         for future in concurrent.futures.as_completed(futures):
             future.result()

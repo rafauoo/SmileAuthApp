@@ -1,6 +1,3 @@
-
-
-
 def f():
     for i in range(0, 10):
         yield i

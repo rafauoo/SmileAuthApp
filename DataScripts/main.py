@@ -6,6 +6,7 @@ from DataScripts.scripts.e_smiles_to_csv_data import smiles_to_csv
 
 VIDEO_ID = 1000
 
+
 def main():
     movie_to_frames(VIDEO_ID, "movie.mp4")
     detect_faces(VIDEO_ID, "movie.mp4")
@@ -13,6 +14,6 @@ def main():
     crop_smiles(VIDEO_ID, "movie.mp4")
     smiles_to_csv(VIDEO_ID, "movie.mp4")
 
+
 if __name__ == "__main__":
     main()
-        

@@ -8,23 +8,29 @@ import cv2
 from typing import List
 import torch
 from model.model_lstm import SmileAuthenticityPredictor
-#from API.flow import flow
+
+# from API.flow import flow
 import torch.nn.functional as F
 from model.model_config import CLASSES_STRS
 from API.rotate_mp4 import detect_rotation
 from API.apiflow import flow
 
 app = FastAPI()
-model = SmileAuthenticityPredictor.load_from_checkpoint("./API/model/checkpoint.ckpt", num_classes=2, num_features=39)
+model = SmileAuthenticityPredictor.load_from_checkpoint(
+    "./API/model/checkpoint.ckpt", num_classes=2, num_features=39
+)
 model.eval()
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
 
+
 class ImageData(BaseModel):
     image: str
 
+
 class VideoData(BaseModel):
     video: str
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -34,27 +40,30 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.post("/video/")
 async def upload_video(data: VideoData):
     try:
         video_bytes = base64.b64decode(data.video)
         print(detect_rotation(video_bytes))
         save_video(video_bytes, "new.mp4")
-        #print(video_bytes)
+        # print(video_bytes)
         result = analyze_video(video_bytes)
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+
 @app.post("/video_bulk/")
 async def upload_video_bulk(data: VideoData):
     try:
         video_bytes = base64.b64decode(data.video)
-        #print(video_bytes)
+        # print(video_bytes)
         result = get_video_data(video_bytes)
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
 
 def save_video(video_bytes: bytes, save_path: str):
     """
@@ -64,13 +73,15 @@ def save_video(video_bytes: bytes, save_path: str):
     - video_bytes: Byte stream of the video.
     - save_path: Path where the video will be saved.
     """
-    with open(save_path, 'wb') as f:
+    with open(save_path, "wb") as f:
         f.write(video_bytes)
+
 
 def analyze_video(video_bytes: bytes) -> List[dict]:
     try:
         angles = flow(video_bytes)
         import pandas as pd
+
         if isinstance(angles, pd.DataFrame):
             angles = angles.to_numpy()
         elif isinstance(angles, list):
@@ -88,10 +99,12 @@ def analyze_video(video_bytes: bytes) -> List[dict]:
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+
 def get_video_data(video_bytes: bytes) -> List[dict]:
     try:
         angles = flow(video_bytes)
         import pandas as pd
+
         if isinstance(angles, pd.DataFrame):
             angles = angles.to_numpy()
         elif isinstance(angles, list):
@@ -99,6 +112,7 @@ def get_video_data(video_bytes: bytes) -> List[dict]:
         return {"result": angles}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="192.168.0.192", port=8000)

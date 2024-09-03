@@ -17,8 +17,7 @@ class FacesFeaturesDataset(Dataset):
     def __getitem__(self, idx):
         ffs, auth = self.data[idx]
         return dict(
-            faces_features=torch.Tensor(ffs),
-            authenticity=torch.tensor(auth).long()
+            faces_features=torch.Tensor(ffs), authenticity=torch.tensor(auth).long()
         )
 
 

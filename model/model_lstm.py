@@ -12,28 +12,35 @@ from model_config import LSTM_config as lstm_conf
 
 
 class FacesFeaturesLSTM(nn.Module):
-    def __init__(self, num_features, num_classes, num_hidden=lstm_conf.num_hidden,
-                 num_lstm_layers=lstm_conf.num_lstm_layers):
+    def __init__(
+        self,
+        num_features,
+        num_classes,
+        num_hidden=lstm_conf.num_hidden,
+        num_lstm_layers=lstm_conf.num_lstm_layers,
+    ):
         super().__init__()
         self.lstm = nn.LSTM(
             input_size=num_features,
             hidden_size=num_hidden,  # number of neurons in each layer
             num_layers=num_lstm_layers,
             batch_first=True,
-            dropout=lstm_conf.dropout
+            dropout=lstm_conf.dropout,
         )
         self.classifier = nn.Linear(num_hidden, num_classes)
 
     def forward(self, x):
         try:
-            #self.lstm.flatten_parameters()  # for multi-GPU purposes
+            # self.lstm.flatten_parameters()  # for multi-GPU purposes
             lstm_out, (hidden, _) = self.lstm(x)
-            #print(f"lstm_out shape: {lstm_out.shape}")
+            # print(f"lstm_out shape: {lstm_out.shape}")
             if lstm_out.dim() == 2:
-                lstm_out = lstm_out.unsqueeze(1)  # Dodaj wymiar sekwencji, jeśli brakuje
+                lstm_out = lstm_out.unsqueeze(
+                    1
+                )  # Dodaj wymiar sekwencji, jeśli brakuje
             lstm_out = lstm_out[:, -1, :]  # Wybierz ostatni krok czasowy
             output = self.classifier(lstm_out)
-            #print(f"Output shape: {output.shape}")
+            # print(f"Output shape: {output.shape}")
             return output
         except Exception as e:
             print(f"Error in forward pass: {e}")
@@ -43,15 +50,17 @@ class FacesFeaturesLSTM(nn.Module):
 class SmileAuthenticityPredictor(pl.LightningModule):
     def __init__(self, num_features: int, num_classes: int):
         super().__init__()
-        self.model = FacesFeaturesLSTM(num_features=num_features, num_classes=num_classes)
+        self.model = FacesFeaturesLSTM(
+            num_features=num_features, num_classes=num_classes
+        )
         self.loss_func = nn.CrossEntropyLoss()
-        
+
     @classmethod
     def load_model(cls, checkpoint_path, num_features, num_classes):
         model = cls(num_features=num_features, num_classes=num_classes)
-        model.load_state_dict(torch.load(checkpoint_path)['state_dict'])
+        model.load_state_dict(torch.load(checkpoint_path)["state_dict"])
         return model
-    
+
     def forward(self, x, auths=None):
         try:
             output = self.model(x)
@@ -65,62 +74,53 @@ class SmileAuthenticityPredictor(pl.LightningModule):
 
     def training_step(self, batch, batch_idx):
         try:
-            faces_features = batch['faces_features']
-            authenticities = batch['authenticity']
-            #print("ff", faces_features.shape)
-            #print("auth", authenticities.shape)
+            faces_features = batch["faces_features"]
+            authenticities = batch["authenticity"]
+            # print("ff", faces_features.shape)
+            # print("auth", authenticities.shape)
             loss, outputs = self(faces_features, authenticities)
             predictions = torch.argmax(outputs, dim=1)
-            #print("pred", predictions)
+            # print("pred", predictions)
             acc = accuracy(predictions, authenticities, task="binary")
 
-            self.log('train_loss', loss, prog_bar=True, logger=True)
-            self.log('train_accuracy', acc, prog_bar=True, logger=True)
+            self.log("train_loss", loss, prog_bar=True, logger=True)
+            self.log("train_accuracy", acc, prog_bar=True, logger=True)
 
-            return {
-                'loss': loss,
-                'accuracy': acc
-            }
+            return {"loss": loss, "accuracy": acc}
         except Exception as e:
             print(f"Error in training_step: {e}")
             raise
 
     def validation_step(self, batch, batch_idx):
         try:
-            faces_features = batch['faces_features']
-            authenticities = batch['authenticity']
+            faces_features = batch["faces_features"]
+            authenticities = batch["authenticity"]
 
             loss, outputs = self(faces_features, authenticities)
             predictions = torch.argmax(outputs, dim=1)
             acc = accuracy(predictions, authenticities, task="binary")
 
-            self.log('val_loss', loss, prog_bar=True, logger=True)
-            self.log('val_accuracy', acc, prog_bar=True, logger=True)
+            self.log("val_loss", loss, prog_bar=True, logger=True)
+            self.log("val_accuracy", acc, prog_bar=True, logger=True)
 
-            return {
-                'loss': loss,
-                'accuracy': acc
-            }
+            return {"loss": loss, "accuracy": acc}
         except Exception as e:
             print(f"Error in validation_step: {e}")
             raise
 
     def test_step(self, batch, batch_idx):
         try:
-            faces_features = batch['faces_features']
-            authenticities = batch['authenticity']
+            faces_features = batch["faces_features"]
+            authenticities = batch["authenticity"]
             print(f"Original tensor shape: {faces_features.shape}")
             loss, outputs = self(faces_features, authenticities)
             predictions = torch.argmax(outputs, dim=1)
             acc = accuracy(predictions, authenticities, task="binary")
 
-            self.log('test_loss', loss, prog_bar=True, logger=True)
-            self.log('test_accuracy', acc, prog_bar=True, logger=True)
+            self.log("test_loss", loss, prog_bar=True, logger=True)
+            self.log("test_accuracy", acc, prog_bar=True, logger=True)
 
-            return {
-                'loss': loss,
-                'accuracy': acc
-            }
+            return {"loss": loss, "accuracy": acc}
         except Exception as e:
             print(f"Error in test_step: {e}")
             raise
