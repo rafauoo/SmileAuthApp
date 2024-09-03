@@ -34,7 +34,7 @@ def frames_from_video(video_bytes):
     try:
         rotation = detect_rotation(video_bytes)
     except ValueError:
-        roration = 0
+        rotation = 0
     for frame in container.decode(video=0):
         img = frame.to_ndarray(format='bgr24')
         match rotation:
@@ -53,6 +53,7 @@ DETECT FACES ON FRAMES
 def faces_landmarks(video_bytes):
     detector = dlib.get_frontal_face_detector()
     predictor = dlib.shape_predictor(FACES_FEATURES_DET_FP)
+    last_face = None
     fa = FaceAligner(predictor)
     for num, frame in enumerate(frames_from_video(video_bytes)):
         try:
@@ -66,7 +67,13 @@ def faces_landmarks(video_bytes):
             aligned_face = fa.align(frame, _gray, _faces[0])
             gray = cv2.cvtColor(src=aligned_face, code=cv2.COLOR_BGR2GRAY)
             faces_detected = detector(gray)
-            _landmarks = predictor(image=gray, box=faces_detected[0])
+            if len(faces_detected) == 0:
+                if last_face is None:
+                    continue
+                _landmarks = predictor(image=gray, box=last_face)
+            else:
+                _landmarks = predictor(image=gray, box=faces_detected[0])
+                last_face = faces_detected[0]
             yield _landmarks
         except (MoreThanOneFaceException, NoFaceException) as e:
             print(e)
@@ -91,7 +98,7 @@ def smile_data_from_beg_to_end(video_bytes):
     first_beg = True
     curr_data = None
     counter = CURRENT_MIN_NUM_SMILE_FRAMES
-    dist_deque = collections.deque(maxlen=NUM_FRAMES_RISE_SMILE_BEG+1)
+    dist_deque = collections.deque(maxlen=NUM_FRAMES_RISE_SMILE_BEG)
     for i, (landmarks, dist) in enumerate(mouth_edges_distances(video_bytes)):
         if first_dist == None:
             first_dist = dist # set first distance
@@ -106,7 +113,9 @@ def smile_data_from_beg_to_end(video_bytes):
                     continue # waiting for collecting 20 values
                 last_data = curr_data
                 curr_data = dist_deque.popleft() # get (curr_diff, landmarks, dY) of the oldest value
-                if curr_data.dY > BEG_SMILE_THRESHOLD:
+                if last_data is None:
+                    continue
+                if curr_data.dY > BEG_SMILE_THRESHOLD and curr_data.curr_diff > last_data.curr_diff + MIN_DIFF_IN_RISE_SMILE_BEG:
                     for landmark_dY in dist_deque:
                         if landmark_dY.curr_diff <= last_data.curr_diff + MIN_DIFF_IN_RISE_SMILE_BEG:
                             break
@@ -186,6 +195,7 @@ def generate_data(video_bytes):
     
     return selected_data_x
 
+
 """
 SAVE DATA TO CSV
 """
@@ -198,15 +208,15 @@ def flow(video_path, output_path):
 ######
 
 def rename_videos():
-    for num, file in enumerate(os.listdir(os.path.abspath(os.path.join(os.sep, ROOT_DIR, "videos")))):
-        e_file = os.path.abspath(os.path.join(os.sep, ROOT_DIR, "videos", file))
+    for num, file in enumerate(os.listdir(os.path.abspath(os.path.join(os.sep, ROOT_DIR, "videos_new")))):
+        e_file = os.path.abspath(os.path.join(os.sep, ROOT_DIR, "videos_new", file))
         if "deliberate" in file:
-            os.rename(e_file, os.path.join(os.sep, ROOT_DIR, "videos", f"{num+1:04}_deliberate.mp4"))
+            os.rename(e_file, os.path.join(os.sep, ROOT_DIR, "videos_new", f"{num+1:04}_deliberate.mp4"))
         if "spontaneous" in file:
-            os.rename(e_file, os.path.join(os.sep, ROOT_DIR, "videos", f"{num+1:04}_spontaneous.mp4"))
+            os.rename(e_file, os.path.join(os.sep, ROOT_DIR, "videos_new", f"{num+1:04}_spontaneous.mp4"))
 
 def process_videos():
-    for num, file in enumerate(os.listdir(os.path.abspath(os.path.join(os.sep, ROOT_DIR, "videos")))):
+    for num, file in enumerate(os.listdir(os.path.abspath(os.path.join(os.sep, ROOT_DIR, "videos_new")))):
         e_file = os.path.abspath(os.path.join(os.sep, ROOT_DIR, "videos_new", file))
         save_path = os.path.abspath(os.path.join(os.sep, ROOT_DIR, "outputs_new_flow", f"{file}.csv"))
         start_time = time.time()
@@ -218,7 +228,7 @@ def process_videos():
         print(f"#{file[:4]} done")
 
 if __name__ == "__main__":
-    # rename_videos()
+    #rename_videos()
     process_videos()
     # video_path = os.path.abspath(os.path.join(os.sep, TMP_DIR, "1013", "movie.mp4"))
     # save_path = os.path.abspath(os.path.join(os.sep, ROOT_DIR, "1.csv"))

@@ -6,7 +6,6 @@ def detect_rotation(video_bytes):
         trak_pos = data.find(b'trak')
         if trak_pos == -1:
             return -1
-        
         # Start searching for 'tkhd' after 'trak'
         data = data[trak_pos + len(b'trak'):]
         tkhd_pos = data.find(b'tkhd')

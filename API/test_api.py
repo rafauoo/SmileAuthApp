@@ -1,8 +1,8 @@
 import requests
 import base64
 from API.rotate_mp4 import detect_rotation
-#from API.apiflow import flow
-from API.flow import flow
+from API.apiflow import flow
+#from API.flow import flow
 import time
 
 with open("./API/movie.mp4", "rb") as video_file:

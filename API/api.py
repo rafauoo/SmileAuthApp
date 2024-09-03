@@ -46,6 +46,16 @@ async def upload_video(data: VideoData):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.post("/video_bulk/")
+async def upload_video_bulk(data: VideoData):
+    try:
+        video_bytes = base64.b64decode(data.video)
+        #print(video_bytes)
+        result = get_video_data(video_bytes)
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 def save_video(video_bytes: bytes, save_path: str):
     """
     Save the video to the given path.
@@ -75,6 +85,18 @@ def analyze_video(video_bytes: bytes) -> List[dict]:
         authentic_smile_prob = probabilities[0][1].item()
         authentic_smile_percentage = authentic_smile_prob * 100
         return {"result": authentic_smile_percentage}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+def get_video_data(video_bytes: bytes) -> List[dict]:
+    try:
+        angles = flow(video_bytes)
+        import pandas as pd
+        if isinstance(angles, pd.DataFrame):
+            angles = angles.to_numpy()
+        elif isinstance(angles, list):
+            angles = np.array(angles)
+        return {"result": angles}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
