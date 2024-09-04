@@ -1,5 +1,4 @@
 import os
-import sys
 import cv2
 from DataScripts.config import (
     BEG_SMILE_THRESHOLD,

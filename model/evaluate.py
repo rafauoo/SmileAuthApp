@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import torch.nn.functional as F
 from torch import device
-from model.model_lstm import SmileAuthenticityPredictor
+from model.lstm import SmileAuthenticityPredictor
 
 
 def evaluate_data(
