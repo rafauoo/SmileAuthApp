@@ -7,7 +7,10 @@ from model.model_lstm import SmileAuthenticityPredictor
 from DataScripts.flow.flow import flow
 from torch import device
 
-def analyze_video(model: SmileAuthenticityPredictor, device: device, video_bytes: bytes) -> float:
+
+def analyze_video(
+    model: SmileAuthenticityPredictor, device: device, video_bytes: bytes
+) -> float:
     angles = flow(video_bytes)
     if isinstance(angles, pd.DataFrame):
         angles = angles.to_numpy()

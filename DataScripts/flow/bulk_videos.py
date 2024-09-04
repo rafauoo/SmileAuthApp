@@ -4,6 +4,12 @@ from DataScripts.flow.flow import flow
 from concurrent.futures import ThreadPoolExecutor
 
 
+"""
+Use this module to process whole directory of videos at once.
+It uses multithreading to make it faster.
+"""
+
+
 def process_video(file: str) -> None:
     """Process single video file
 

@@ -1,8 +1,8 @@
 import os
 import cv2
 import concurrent.futures
-from DataScripts.config import TMP_DIR
 from cv2.typing import MatLike
+from DataScripts.config import TMP_DIR
 
 
 def save_frame(frame: MatLike, frame_name: str) -> None:

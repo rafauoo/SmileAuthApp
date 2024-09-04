@@ -1,7 +1,29 @@
 from enum import Enum
 
 
+"""
+Check video rotation of the video.
+It was created due to IOS videos being rotated when
+transferred to the API.
+"""
+
+
 class VideoRotation(Enum):
+    """VideoRotation enum
+
+    Values:
+
+        ERR = -1
+
+        STRAIGHT = 0
+
+        ROTATED_180 = 1
+
+        ROTATED_90_CW = 2
+
+        ROTATED_90_CCW = 3
+    """
+
     ERR = -1
     STRAIGHT = 0
     ROTATED_180 = 1

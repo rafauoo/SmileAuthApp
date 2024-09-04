@@ -5,14 +5,22 @@ from DataScripts.scripts.d_crop_smiles import crop_smiles
 from DataScripts.scripts.e_smiles_to_csv_data import smiles_to_csv
 
 VIDEO_ID = 1000
+VIDEO_NAME = "movie.mp4"
 
 
 def main():
-    movie_to_frames(VIDEO_ID, "movie.mp4")
-    detect_faces(VIDEO_ID, "movie.mp4")
-    detect_smiles(VIDEO_ID, "movie.mp4")
-    crop_smiles(VIDEO_ID, "movie.mp4")
-    smiles_to_csv(VIDEO_ID, "movie.mp4")
+    """To make a script work you need to create a folder named "TMP_DIR/<VIDEO_ID>"
+    and copy the video to the folder (name it <VIDEO_NAME>).
+
+    The scripts are quite slow due to multiple IO operations as well as eager evaluation.
+
+    Try DataScripts.flow for faster processing.
+    """
+    movie_to_frames(VIDEO_ID, VIDEO_NAME)
+    detect_faces(VIDEO_ID, VIDEO_NAME)
+    detect_smiles(VIDEO_ID, VIDEO_NAME)
+    crop_smiles(VIDEO_ID, VIDEO_NAME)
+    smiles_to_csv(VIDEO_ID, VIDEO_NAME)
 
 
 if __name__ == "__main__":

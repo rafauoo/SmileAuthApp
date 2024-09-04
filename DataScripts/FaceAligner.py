@@ -20,8 +20,8 @@ from DataScripts.config import DESIRED_LEFT_EYE_POS as DLAP
 
 
 class FaceAligner:
-    """FaceAligner class. It aligns, cuts and scales the face from an image.
-    """
+    """FaceAligner class. It aligns, cuts and scales the face from an image."""
+
     def __init__(
         self,
         predictor: dlib.shape_predictor,

@@ -1,4 +1,3 @@
-
 import uvicorn
 import base64
 import os
@@ -44,6 +43,7 @@ async def upload_video(data: VideoData) -> dict:
         return {"result": result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="192.168.0.192", port=8000)

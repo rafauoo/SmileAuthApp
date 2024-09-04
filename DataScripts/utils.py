@@ -6,9 +6,9 @@ import json
 from DataScripts.config import DATA_DIR
 import dlib
 
+
 def rename_videos() -> None:
-    """Rename videos from DATA_DIR/videos_new.
-    """
+    """Rename videos from DATA_DIR/videos_new."""
     for num, file in enumerate(
         os.listdir(os.path.abspath(os.path.join(os.sep, DATA_DIR, "videos_new")))
     ):
@@ -29,7 +29,9 @@ def rename_videos() -> None:
             )
 
 
-def landmarks_to_np(shape: dlib.full_object_detection, dtype: str = "int") -> np.ndarray:
+def landmarks_to_np(
+    shape: dlib.full_object_detection, dtype: str = "int"
+) -> np.ndarray:
     """Changes landmarks to coordinates.
 
     :param shape: object detection
@@ -96,7 +98,9 @@ def get_frame_num(name: str) -> int:
     return int(re.search(r"frame(\d+)", name).group(1))
 
 
-def save_dict_to_json_file(path: str, title: str, data: dict, time_str: str | None = None) -> None:
+def save_dict_to_json_file(
+    path: str, title: str, data: dict, time_str: str | None = None
+) -> None:
     """Saves dict to json.
 
     :param path: saving path

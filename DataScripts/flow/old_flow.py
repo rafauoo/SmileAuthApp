@@ -2,10 +2,6 @@ import os
 import sys
 import cv2
 from DataScripts.config import (
-    TMP_DIR,
-    FACES_FEATURES_DET_FP,
-    LIPS_CORNER1_IDX,
-    LIPS_CORNER2_IDX,
     BEG_SMILE_THRESHOLD,
     END_SMILE_THRESHOLD,
     NUM_FRAMES_RISE_SMILE_BEG,
@@ -15,31 +11,23 @@ from DataScripts.config import (
 import hashlib
 from DataScripts.config import FACES_FEATURES_DET_FP, LIPS_CORNER1_IDX, LIPS_CORNER2_IDX
 from DataScripts.config import (
-    FACES_FEATURES_DET_FP,
-    TMP_DIR,
     NUM_FACES_FEATURES,
-    LIPS_CORNER1_IDX,
-    LIPS_CORNER2_IDX,
     DESIRED_FACE_PHOTO_WIDTH,
     NOSE_TOP_IDX,
-    ROOT_DIR,
 )
-import random
 import dlib
 import pandas as pd
 import time
-import threading
 from DataScripts.exceptions import NoFaceException, MoreThanOneFaceException
 from DataScripts.FaceAligner import FaceAligner
-from concurrent.futures import ThreadPoolExecutor
 import numpy as np
-from queue import Queue
-import imageio.v3 as iio
 import av
 from DataScripts.flow.video_rotation import detect_rotation
 import io
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+"""
+This is an old flow file - not including lazy evaluation (yield). It is slower.
+"""
 
 
 def create_unique_tmp_dir(base_dir="/tmp", salt="random_salt"):

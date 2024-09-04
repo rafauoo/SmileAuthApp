@@ -1,23 +1,22 @@
 import os
-import threading
-from DataScripts.config import TMP_DIR
-from DataScripts.FaceAligner import FaceAligner
-import dlib
-import concurrent.futures
 import cv2
+import dlib
+import traceback
+import threading
+import concurrent.futures
 from cv2.typing import MatLike
 from DataScripts.utils import get_all_filenames
-from DataScripts.config import FACES_FEATURES_DET_FP
-from exceptions import MoreThanOneFaceException, NoFaceException
-import traceback
+from DataScripts.FaceAligner import FaceAligner
+from DataScripts.config import FACES_FEATURES_DET_FP, TMP_DIR
+from DataScripts.exceptions import MoreThanOneFaceException, NoFaceException
+
 
 # Thread-local storage for shared objects
 thread_local = threading.local()
 
 
 def init_thread():
-    """Init thread for multithreading purposes.
-    """
+    """Init thread for multithreading purposes."""
     if not hasattr(thread_local, "fa"):
         predictor = dlib.shape_predictor(FACES_FEATURES_DET_FP)
         thread_local.fa = FaceAligner(predictor)

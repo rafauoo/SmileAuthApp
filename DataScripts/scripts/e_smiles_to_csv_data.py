@@ -1,16 +1,12 @@
 import os
-import sys
 import cv2
+import csv
+import _csv
 import dlib
 import pandas as pd
-import csv
 import numpy as np
-
-sys.path.append(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-)
-
-from config import (
+from typing import IO
+from DataScripts.config import (
     FACES_FEATURES_DET_FP,
     TMP_DIR,
     NUM_FACES_FEATURES,
@@ -19,55 +15,68 @@ from config import (
     DESIRED_FACE_PHOTO_WIDTH,
     NOSE_TOP_IDX,
 )
-from utils import get_filenames_sorted_by_frame_num, get_frame_num
+from DataScripts.utils import get_filenames_sorted_by_frame_num, get_frame_num
 
 f1 = lambda num: f"{num}x"
 f2 = lambda num: f"{num}y"
 header = ["frame_number"] + [f(i) for i in range(NUM_FACES_FEATURES) for f in (f1, f2)]
 
 
-def calculate_dx_dy(
-    left_lips_corner_x,
-    left_lips_corner_y,
-    right_lips_corner_x,
-    right_lips_corner_y,
-    nose_top_x,
-    nose_top_y,
-):
-    lc_dx = left_lips_corner_x - nose_top_x
-    lc_dy = left_lips_corner_y - nose_top_y
+def angle_between(v1: tuple, v2: tuple) -> np.ndarray:
+    """Calculates angle between two vectors
 
-    rc_dx = right_lips_corner_x - nose_top_x
-    rc_dy = right_lips_corner_y - nose_top_y
-
-    return lc_dx, lc_dy, rc_dx, rc_dy
-
-
-def unit_vector(vector):
-    return vector / np.linalg.norm(vector)
-
-
-def angle_between(v1, v2):
-    v1_u = unit_vector(v1)
-    v2_u = unit_vector(v2)
+    :param v1: vector1
+    :type v1: tuple
+    :param v2: vector2
+    :type v2: tuple
+    :return: arccos of an angle between two vectors
+    :rtype: np.ndarray
+    """
+    v1_u = v1 / np.linalg.norm(v1)
+    v2_u = v2 / np.linalg.norm(v2)
     return np.arccos(np.clip(np.dot(v1_u, v2_u), -1.0, 1.0))
 
 
-def create_ff_data_file_writer(filepath):
+def create_ff_data_file_writer(filepath: str) -> tuple[IO, _csv._writer]:
+    """Opens file and creates writes object.
+
+    :param filepath: filepath
+    :type filepath: str
+    :return: tuple of file handle and writer object
+    :rtype: tuple[IO, _csv._writer]
+    """
     file = open(filepath, "w", newline="")
     writer = csv.writer(file, delimiter=";")
     writer.writerow(header)
     return file, writer
 
 
-def save_landmarks_row(writer, landmarks, frame_number):
+def save_landmarks_row(
+    writer: _csv._writer, landmarks: dlib.full_object_detection, frame_number: int
+) -> None:
+    """Writes one row of face data.
+
+    :param writer: csv writer
+    :type writer: _csv._writer
+    :param landmarks: face landmarks
+    :type landmarks: dlib.full_object_detection
+    :param frame_number: frame ID
+    :type frame_number: int
+    """
     x = lambda n: landmarks.part(n).x
     y = lambda n: landmarks.part(n).y
     row = [frame_number] + [f(i) for i in range(NUM_FACES_FEATURES) for f in (x, y)]
     writer.writerow(row)
 
 
-def prepare_angle_data(data):
+def prepare_angle_data(data: pd.DataFrame) -> pd.DataFrame:
+    """Prepares DataFrame with angle data for a video
+
+    :param data: faces landmarks data
+    :type data: pd.DataFrame
+    :return: angles data
+    :rtype: pd.DataFrame
+    """
     left_lips_corner_x = data[f"{LIPS_CORNER1_IDX}x"]
     left_lips_corner_y = DESIRED_FACE_PHOTO_WIDTH - data[f"{LIPS_CORNER1_IDX}y"]
 
@@ -77,14 +86,13 @@ def prepare_angle_data(data):
     nose_top_x = data[f"{NOSE_TOP_IDX}x"]
     nose_top_y = DESIRED_FACE_PHOTO_WIDTH - data[f"{NOSE_TOP_IDX}y"]
     angles = []
-    lc_dx, lc_dy, rc_dx, rc_dy = calculate_dx_dy(
-        left_lips_corner_x,
-        left_lips_corner_y,
-        right_lips_corner_x,
-        right_lips_corner_y,
-        nose_top_x,
-        nose_top_y,
-    )
+
+    lc_dx = left_lips_corner_x - nose_top_x
+    lc_dy = left_lips_corner_y - nose_top_y
+
+    rc_dx = right_lips_corner_x - nose_top_x
+    rc_dy = right_lips_corner_y - nose_top_y
+
     for i in range(len(lc_dx)):
         v1 = lc_dx.iloc[i], lc_dy.iloc[i]
         v2 = rc_dx.iloc[i], rc_dy.iloc[i]
@@ -93,7 +101,14 @@ def prepare_angle_data(data):
     return pd.DataFrame(angles, columns=["lips_corners_from_nose_angle"])
 
 
-def smiles_to_csv(id, video_name):
+def smiles_to_csv(id: int, video_name: str) -> None:
+    """Prepares angle data of smiles and saves them into csv.
+
+    :param id: video ID
+    :type id: int
+    :param video_name: video name
+    :type video_name: str
+    """
     detector = dlib.get_frontal_face_detector()
     predictor = dlib.shape_predictor(FACES_FEATURES_DET_FP)
 

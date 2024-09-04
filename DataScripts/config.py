@@ -7,7 +7,10 @@ TMP_DIR = os.path.abspath(os.path.join(os.sep, DATA_SCRIPTS_DIR, "tmp"))
 
 FACES_FEATURES_DET_FP = os.path.abspath(
     os.path.join(
-        os.sep, DATA_SCRIPTS_DIR, "face_features", "shape_predictor_68_face_landmarks.dat"
+        os.sep,
+        DATA_SCRIPTS_DIR,
+        "face_features",
+        "shape_predictor_68_face_landmarks.dat",
     )
 )
 DESIRED_FACE_PHOTO_WIDTH = 256

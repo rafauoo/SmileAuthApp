@@ -1,13 +1,12 @@
 import os
-import sys
 import cv2
 import dlib
-import numpy as np
-import matplotlib.pyplot as plt
 import json
-from DataScripts.config import TMP_DIR
-
-from config import (
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from DataScripts.config import (
+    TMP_DIR,
     FACES_FEATURES_DET_FP,
     LIPS_CORNER1_IDX,
     LIPS_CORNER2_IDX,
@@ -17,13 +16,18 @@ from config import (
     MIN_DIFF_IN_RISE_SMILE_BEG,
     SMILE_DURATION_MIN_RATIO,
 )
-from utils import (
+from DataScripts.utils import (
     get_filenames_sorted_by_frame_num,
     get_frame_num,
 )
 
 
-def show_smile_plot(data):
+def show_smile_plot(data: pd.DataFrame) -> None:
+    """Shows smile (mouth edges distance changes) plot.
+
+    :param data: differences data
+    :type data: pd.DataFrame
+    """
     frames = [d["frame"] for d in data]
     diffs = [d["diff"] for d in data]
 
@@ -40,7 +44,14 @@ def show_smile_plot(data):
     plt.show()
 
 
-def detect_smiles(id, video_name):
+def detect_smiles(id: int, video_name: str) -> None:
+    """Detect smile beginning and end. Saves smile data to json.
+
+    :param id: video ID
+    :type id: int
+    :param video_name: video name
+    :type video_name: str
+    """
     detector = dlib.get_frontal_face_detector()
     predictor = dlib.shape_predictor(FACES_FEATURES_DET_FP)
     faces_dir = os.path.abspath(os.path.join(os.sep, TMP_DIR, str(id), "faces"))

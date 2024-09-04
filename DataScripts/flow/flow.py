@@ -1,13 +1,15 @@
-import cv2
-import dlib
 import io
 import av
+import cv2
+import dlib
 import collections
 from dotmap import DotMap
 import pandas as pd
 import numpy as np
 from typing import Generator
 from cv2.typing import MatLike
+from DataScripts.FaceAligner import FaceAligner
+from DataScripts.flow.video_rotation import detect_rotation, VideoRotation
 from DataScripts.config import (
     FACES_FEATURES_DET_FP,
     LIPS_CORNER1_IDX,
@@ -20,9 +22,15 @@ from DataScripts.config import (
     NOSE_TOP_IDX,
     CURRENT_MIN_NUM_SMILE_FRAMES,
 )
-from DataScripts.FaceAligner import FaceAligner
-from DataScripts.flow.video_rotation import detect_rotation, VideoRotation
-from DataScripts.exceptions import NoFaceException, MoreThanOneFaceException, SmileNotDetectedException
+from DataScripts.exceptions import (
+    NoFaceException,
+    MoreThanOneFaceException,
+    SmileNotDetectedException,
+)
+
+"""
+Use this flow to process video and get angle data.
+"""
 
 
 def frames_from_video(video_bytes: bytes) -> Generator[MatLike, None, None]:
