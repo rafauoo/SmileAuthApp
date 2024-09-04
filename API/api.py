@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from model.lstm import SmileAuthenticityPredictor
 from model.evaluate import evaluate_data
 from DataScripts.process.flow import flow
+from DataScripts.exceptions import SmileNotDetectedException
 from API.config import API_CKPT_PATH
 from API.definitions import VideoData
 
@@ -38,7 +39,10 @@ async def upload_video(data: VideoData) -> dict:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model.to(device)
         video_bytes = base64.b64decode(data.video)
-        angles = flow(video_bytes)
+        try:
+            angles = flow(video_bytes)
+        except SmileNotDetectedException:
+            return {"result": "Smile was not detected!"}
         result = evaluate_data(model, device, angles)
         return {"result": result}
     except Exception as e:
