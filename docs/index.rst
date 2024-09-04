@@ -11,8 +11,8 @@ Welcome to SmileAuthApp's documentation!
    :caption: Contents:
 
    API
-   model
    DataScripts
+   model
 
 Indices and tables
 ==================

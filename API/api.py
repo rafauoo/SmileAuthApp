@@ -1,12 +1,12 @@
 import uvicorn
 import base64
-import os
 import torch
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from model.model_lstm import SmileAuthenticityPredictor
-from model.analyze_video import analyze_video
-from API.config import API_MODEL_DIR
+from model.lstm import SmileAuthenticityPredictor
+from model.evaluate import evaluate_data
+from DataScripts.process.flow import flow
+from API.config import API_CKPT_PATH
 from API.definitions import VideoData
 
 
@@ -18,7 +18,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-checkpoint_path = os.path.join(os.sep, API_MODEL_DIR, f"checkpoint.ckpt")
 
 
 @app.post("/video/")
@@ -33,13 +32,14 @@ async def upload_video(data: VideoData) -> dict:
     """
     try:
         model = SmileAuthenticityPredictor.load_from_checkpoint(
-            "./API/model/checkpoint.ckpt", num_classes=2, num_features=39
+            API_CKPT_PATH, num_classes=2, num_features=39
         )
         model.eval()
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model.to(device)
         video_bytes = base64.b64decode(data.video)
-        result = analyze_video(model, device, video_bytes)
+        angles = flow(video_bytes)
+        result = evaluate_data(model, device, angles)
         return {"result": result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

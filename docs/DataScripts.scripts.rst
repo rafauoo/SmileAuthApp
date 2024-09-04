@@ -44,6 +44,15 @@ DataScripts.scripts.e\_smiles\_to\_csv\_data module
    :undoc-members:
    :show-inheritance:
 
+DataScripts.scripts.generate\_test\_data module
+---------------------------------------------------
+
+.. automodule:: DataScripts.scripts.generate_test_data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
 DataScripts.scripts.main module
 -------------------------------
 

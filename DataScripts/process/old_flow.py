@@ -22,7 +22,7 @@ from DataScripts.exceptions import NoFaceException, MoreThanOneFaceException
 from DataScripts.FaceAligner import FaceAligner
 import numpy as np
 import av
-from DataScripts.flow.video_rotation import detect_rotation
+from DataScripts.process.video_rotation import detect_rotation
 import io
 
 """

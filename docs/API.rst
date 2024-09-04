@@ -7,7 +7,7 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   API.model
+   API.checkpoint
 
 Submodules
 ----------

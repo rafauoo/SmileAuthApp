@@ -1,45 +1,45 @@
-DataScripts.flow package
+DataScripts.process package
 ========================
 
 Submodules
 ----------
 
-DataScripts.flow.bulk\_videos module
+DataScripts.process.bulk\_videos module
 ------------------------------------
 
-.. automodule:: DataScripts.flow.bulk_videos
+.. automodule:: DataScripts.process.bulk_videos
    :members:
    :undoc-members:
    :show-inheritance:
 
-DataScripts.flow.compare\_outputs module
+DataScripts.process.compare\_outputs module
 ----------------------------------------
 
-.. automodule:: DataScripts.flow.compare_outputs
+.. automodule:: DataScripts.process.compare_outputs
    :members:
    :undoc-members:
    :show-inheritance:
 
-DataScripts.flow.flow module
+DataScripts.process.flow module
 ----------------------------
 
-.. automodule:: DataScripts.flow.flow
+.. automodule:: DataScripts.process.flow
    :members:
    :undoc-members:
    :show-inheritance:
 
-DataScripts.flow.old\_flow module
+DataScripts.process.old\flow module
 ---------------------------------
 
-.. automodule:: DataScripts.flow.old_flow
+.. automodule:: DataScripts.process.flow
    :members:
    :undoc-members:
    :show-inheritance:
 
-DataScripts.flow.video\_rotation module
+DataScripts.process.video\_rotation module
 ---------------------------------------
 
-.. automodule:: DataScripts.flow.video_rotation
+.. automodule:: DataScripts.process.video_rotation
    :members:
    :undoc-members:
    :show-inheritance:
@@ -47,7 +47,7 @@ DataScripts.flow.video\_rotation module
 Module contents
 ---------------
 
-.. automodule:: DataScripts.flow
+.. automodule:: DataScripts.process
    :members:
    :undoc-members:
    :show-inheritance:

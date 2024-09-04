@@ -1,20 +1,19 @@
-import os
-import sys
 import torch
-from torch.utils.data import Dataset, DataLoader
+import pandas as pd
 import pytorch_lightning as pl
-
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from torch.utils.data import Dataset, DataLoader
 
 
 class FacesFeaturesDataset(Dataset):
-    def __init__(self, data):
+    """Faces features dataset handler."""
+
+    def __init__(self, data: pd.DataFrame):
         self.data = data
 
-    def __len__(self):
+    def __len__(self) -> pd.DataFrame:
         return len(self.data)
 
-    def __getitem__(self, idx):
+    def __getitem__(self, idx: int) -> dict[torch.Tensor, torch.Tensor]:
         ffs, auth = self.data[idx]
         return dict(
             faces_features=torch.Tensor(ffs), authenticity=torch.tensor(auth).long()
@@ -22,7 +21,11 @@ class FacesFeaturesDataset(Dataset):
 
 
 class FacesFeaturesDataModule(pl.LightningDataModule):
-    def __init__(self, train_data, test_data, batch_size):
+    """Faces features data module handler."""
+
+    def __init__(
+        self, train_data: pd.DataFrame, test_data: pd.DataFrame, batch_size: int
+    ):
         super().__init__()
         self.train_data = train_data
         self.test_data = test_data
@@ -30,18 +33,30 @@ class FacesFeaturesDataModule(pl.LightningDataModule):
         self.train_dataset = None
         self.batch_size = batch_size
 
-    def setup(self, stage=None):
+    def setup(self, stage: str = None):
         self.train_dataset = FacesFeaturesDataset(self.train_data)
         self.test_dataset = FacesFeaturesDataset(self.test_data)
 
-    def train_dataloader(self):
-        """a"""
+    def train_dataloader(self) -> DataLoader:
+        """Creates train DataLoader.
+
+        :return: train DataLoader
+        :rtype: DataLoader
+        """
         return DataLoader(self.train_dataset, batch_size=self.batch_size, shuffle=True)
 
-    def val_dataloader(self):
-        """a"""
+    def val_dataloader(self) -> DataLoader:
+        """Creates validation DataLoader.
+
+        :return: validation DataLoader
+        :rtype: DataLoader
+        """
         return DataLoader(self.test_dataset, batch_size=self.batch_size, shuffle=False)
 
-    def test_dataloader(self):
-        """a"""
+    def test_dataloader(self) -> DataLoader:
+        """Creates test DataLoader.
+
+        :return: test DataLoader
+        :rtype: DataLoader
+        """
         return DataLoader(self.test_dataset, batch_size=self.batch_size, shuffle=False)

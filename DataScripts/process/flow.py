@@ -9,7 +9,7 @@ import numpy as np
 from typing import Generator
 from cv2.typing import MatLike
 from DataScripts.FaceAligner import FaceAligner
-from DataScripts.flow.video_rotation import detect_rotation, VideoRotation
+from DataScripts.process.video_rotation import detect_rotation, VideoRotation
 from DataScripts.config import (
     FACES_FEATURES_DET_FP,
     LIPS_CORNER1_IDX,

@@ -4,10 +4,10 @@ model package
 Submodules
 ----------
 
-model.analyze\_video module
----------------------------
+model.config module
+--------------------------
 
-.. automodule:: model.analyze_video
+.. automodule:: model.config
    :members:
    :undoc-members:
    :show-inheritance:
@@ -20,34 +20,26 @@ model.data module
    :undoc-members:
    :show-inheritance:
 
-model.data\_gen module
-----------------------
-
-.. automodule:: model.data_gen
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-model.dataset\_loader module
+model.dataloader module
 ----------------------------
 
-.. automodule:: model.dataset_loader
+.. automodule:: model.dataloader
    :members:
    :undoc-members:
    :show-inheritance:
 
-model.model\_config module
---------------------------
+model.evaluate module
+---------------------------
 
-.. automodule:: model.model_config
+.. automodule:: model.evaluate
    :members:
    :undoc-members:
    :show-inheritance:
 
-model.model\_lstm module
+model.lstm module
 ------------------------
 
-.. automodule:: model.model_lstm
+.. automodule:: model.lstm
    :members:
    :undoc-members:
    :show-inheritance:

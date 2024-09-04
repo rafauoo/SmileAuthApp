@@ -31,8 +31,21 @@ class VideoRotation(Enum):
     ROTATED_90_CCW = 3
 
 
-def detect_rotation(video_bytes):
-    def find_tkhd_start(data):
+def detect_rotation(video_bytes: bytes) -> VideoRotation:
+    """Detects rotation of the video.
+
+    :param video_bytes: video bytes
+    :type video_bytes: bytes
+    """
+
+    def find_tkhd_start(data: bytes) -> int:
+        """Find 'trak tkhd' in bytes.
+
+        :param data: data bytes
+        :type data: bytes
+        :return: position after 'trak tkhd'
+        :rtype: int
+        """
         trak_pos = data.find(b"trak")
         if trak_pos == -1:
             return -1
@@ -42,21 +55,39 @@ def detect_rotation(video_bytes):
             return -1
         return trak_pos + len(b"trak") + tkhd_pos + 4
 
-    def get_rotation_matrix(data, tkhd_start):
+    def get_rotation_matrix(data: bytes, tkhd_start: int) -> bytes:
+        """Get rotation bytes from data.
+
+        :param data: data bytes
+        :type data: bytes
+        :param tkhd_start: position of tkhd
+        :type tkhd_start: int
+        :raises ValueError: @ was not found
+        :raises ValueError: Not valid rotation bytes size
+        :return: rotation bytes
+        :rtype: bytes
+        """
         at_pos = data.find(b"\x40", tkhd_start + 12)
         if at_pos == -1:
-            raise ValueError("Znak @ (0x40) nie znaleziony po atomie tkhd.")
+            raise ValueError("@ was not found")
         start = at_pos - 32
         if start < tkhd_start:
             start = tkhd_start
 
         matrix = data[start:at_pos]
         if len(matrix) != 32:
-            raise ValueError("Nieprawidłowy rozmiar bufora macierzy rotacji.")
+            raise ValueError("Not valid rotation bytes size")
 
         return matrix
 
-    def detect_rotation(matrix):
+    def detect_rotation(matrix: bytes) -> VideoRotation:
+        """Detects rotation on bytes.
+
+        :param matrix: rotation bytes
+        :type matrix: bytes
+        :return: video rotation information
+        :rtype: VideoRotation
+        """
         matrix = [hex(i) for i in matrix]
         hex_string = "".join(format(int(x, 16), "02x") for x in matrix)
         matrix = hex_string[:36].upper()
@@ -75,7 +106,6 @@ def detect_rotation(video_bytes):
         else:
             return VideoRotation.ERR
 
-    # Find 'tkhd' atom position and extract rotation matrix
     tkhd_start = find_tkhd_start(video_bytes)
     if tkhd_start == -1:
         return VideoRotation.ERR

@@ -7,7 +7,7 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   DataScripts.flow
+   DataScripts.process
    DataScripts.scripts
 
 Submodules

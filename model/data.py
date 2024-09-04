@@ -1,42 +1,23 @@
 import os
 import pandas as pd
-from sklearn.model_selection import train_test_split
-import sys
-
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 
-def load_data_from_csv(csv_dir):
+def load_data_from_csv(csv_dir: str) -> list[pd.DataFrame]:
+    """Loads data from given directory.
+
+    :param csv_dir: data directory
+    :type csv_dir: str
+    :return: list of DataFrames containing data from the directory
+    :rtype: list[pd.DataFrame]
+    """
     data = []
     for file_name in os.listdir(csv_dir):
         file_name: str
-        number = int(file_name[:4])
-        # if number < 500:
-        #     continue
         if file_name.endswith(".csv"):
             file_path = os.path.join(csv_dir, file_name)
-
-            # Load the CSV file into a DataFrame
             df = pd.read_csv(file_path)
             line_count = len(df)
-            # Check if the file has 39 lines (excluding the header)
             if line_count == 39:
-                angles = df["lips_corners_from_nose_angle"].tolist()
-                is_authentic = 1 if "spontaneous" in file_name else 0
-                data.append((angles, is_authentic))
-            elif line_count < 39:
-                # If less than 40 lines, copy last line(s) to make up to 40 lines
-                # Calculate how many lines are needed
-                needed_lines = 39 - line_count
-                # Repeat the last line as needed
-                last_line = df.iloc[-1].tolist()
-                # Create a DataFrame with repeated lines
-                additional_lines_df = pd.DataFrame(
-                    [last_line] * needed_lines, columns=df.columns
-                )
-                # Append additional lines to the original DataFrame
-                df = pd.concat([df, additional_lines_df], ignore_index=True)
-
                 angles = df["lips_corners_from_nose_angle"].tolist()
                 is_authentic = 1 if "spontaneous" in file_name else 0
                 data.append((angles, is_authentic))
@@ -44,5 +25,4 @@ def load_data_from_csv(csv_dir):
                 print(
                     f"Skipped {file_name} due to incorrect number of lines: {line_count}"
                 )
-
     return data

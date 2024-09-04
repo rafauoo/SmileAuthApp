@@ -1,6 +1,6 @@
 import os
 from DataScripts.config import ROOT_DIR
-from DataScripts.flow.flow import flow
+from DataScripts.process.flow import flow
 from concurrent.futures import ThreadPoolExecutor
 
 

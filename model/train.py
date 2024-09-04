@@ -1,43 +1,43 @@
-import os
-import sys
-
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
-from model.model_lstm import SmileAuthenticityPredictor
-from data import load_data_from_csv
-from utils import get_trainer
-from pytorch_lightning.callbacks import ModelCheckpoint
+from model.lstm import SmileAuthenticityPredictor
+from model.data import load_data_from_csv
+from model.utils import get_trainer
+from model.config import TRAIN_CKPT_PATH, TRAIN_CSV_DIR
 from predictions import review_predictions
-from dataset_loader import FacesFeaturesDataModule
+from model.dataloader import FacesFeaturesDataModule
 from sklearn.model_selection import train_test_split
 
 
 def train():
+    """Train loop.
+
+    Use "SmileAuthenticityPredictor(num_classes=2, num_features=39)" to create new model.
+
+    Use "SmileAuthenticityPredictor.load_from_checkpoint()" to load from checkpoint.
+
+    Config TRAIN_CKPT_PATH in model.model_config to choose model checkpoint path.
+
+    Config TRAIN_CSV_DIR in model.model_config to choose data directory.
+    """
     try:
-        csv_directory = "DataScripts/outputs"
+        csv_directory = TRAIN_CSV_DIR
         data = load_data_from_csv(csv_directory)
-        # Podział na zbiór treningowy i testowy
         train_data, test_data = train_test_split(data, test_size=0.3, random_state=694)
-        batch_size = 32  # Przykładowa wielkość batcha
+        batch_size = 32
         data_module = FacesFeaturesDataModule(
             train_data, test_data, batch_size=batch_size
         )
         data_module.setup()
         # print(train_data[0][0])
-        num_features = len(train_data[0][0])
-        # print(num_features)
-        num_classes = 2  # Autentyczny (1) lub nieautentyczny (0)
-        # Konfiguracja trenera
+
         # model = SmileAuthenticityPredictor(num_classes=2, num_features=39)
         model = SmileAuthenticityPredictor.load_from_checkpoint(
-            "./checkpoints/best-checkpoint-v6.ckpt", num_classes=2, num_features=39
+            TRAIN_CKPT_PATH, num_classes=2, num_features=39
         )
-        # os.remove("./checkpoints/best-checkpoint.ckpt")
+
         trainer = get_trainer()
         trainer.fit(model, datamodule=data_module)
         trainer.test(datamodule=data_module, ckpt_path="best")
-
-        review_predictions(trainer=trainer, test_data=test_data)
+        review_predictions(test_data, trainer.checkpoint_callback.best_model_path)
     except Exception as e:
         print(f"Error during training: {e}")
         raise

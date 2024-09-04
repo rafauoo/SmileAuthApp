@@ -2,10 +2,15 @@ from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import TensorBoardLogger
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import RichProgressBar
-from model.model_config import LSTM_config as lstm_conf
+from model.config import LSTM_config as lstm_conf
 
 
-def get_trainer():
+def get_trainer() -> Trainer:
+    """Inits logger, checkpoint callback and returns the trainer.
+
+    :return: configured trainer object
+    :rtype: Trainer
+    """
     try:
         logger = TensorBoardLogger("model/lightning_logs", name="authenticity")
 
@@ -18,7 +23,6 @@ def get_trainer():
             mode="min",
         )
 
-        # Dodaj RichProgressBar do callbacków
         progress_bar = RichProgressBar()
 
         trainer = Trainer(
@@ -26,7 +30,7 @@ def get_trainer():
             callbacks=[
                 checkpoint_callback,
                 progress_bar,
-            ],  # Dodaj progress_bar do callbacków
+            ],
             max_epochs=lstm_conf.num_epochs,
             accelerator="gpu",
             devices=1,

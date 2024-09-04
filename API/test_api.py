@@ -1,6 +1,6 @@
 import base64
-from DataScripts.flow.video_rotation import detect_rotation
-from DataScripts.flow.flow import flow
+from DataScripts.process.video_rotation import detect_rotation
+from DataScripts.process.flow import flow
 import time
 
 if __name__ == "__main__":
