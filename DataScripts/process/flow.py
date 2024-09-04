@@ -269,7 +269,7 @@ def generate_data(video_bytes: bytes) -> pd.DataFrame:
 
 
 def flow(video_bytes: bytes) -> pd.DataFrame:
-    """Main function of the module - entry point.
+    """Entry point for processing video to retrieve angle data from it.
 
     :param video_bytes: bytes of the video
     :type video_bytes: bytes
