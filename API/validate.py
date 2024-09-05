@@ -3,6 +3,7 @@ from API.config import VIDEO_LENGTH_LIMIT_MS
 import av
 import io
 
+
 def get_video_length(video_bytes: bytes) -> tuple[int, int]:
     """Get video length from video bytes.
 

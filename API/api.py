@@ -41,10 +41,8 @@ async def upload_video(data: VideoData) -> dict:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model.to(device)
         video_bytes = base64.b64decode(data.video)
-        print("ASAS")
         try:
             validate_video(video_bytes)
-            print("TSS")
             angles = flow(video_bytes)
         except SmileNotDetectedException:
             return {"result": "Smile was not detected!"}
