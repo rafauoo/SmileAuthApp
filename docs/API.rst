@@ -36,10 +36,26 @@ API.definitions module
    :undoc-members:
    :show-inheritance:
 
+API.exceptions module
+----------------------
+
+.. automodule:: API.exceptions
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 API.test\_api module
 --------------------
 
 .. automodule:: API.test_api
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+API.validate module
+--------------------
+
+.. automodule:: API.validate
    :members:
    :undoc-members:
    :show-inheritance:
