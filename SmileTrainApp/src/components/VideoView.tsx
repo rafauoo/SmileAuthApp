@@ -1,8 +1,10 @@
-import React, { useEffect, useRef } from "react";
-import { View, StyleSheet } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { View, StyleSheet, ActivityIndicator, Text, Alert } from "react-native";
 import { ResizeMode, Video } from "expo-av";
 import IconButton from "./IconButton";
 import { sendVideoToServer } from "../hooks/sendToServer";
+import { useRouter } from "expo-router";
+import { saveEvaluation } from "../hooks/saveEvaluation";
 
 interface VideoViewProps {
   video: string;
@@ -11,6 +13,8 @@ interface VideoViewProps {
 
 export default function VideoViewComponent({ video, setVideo }: VideoViewProps) {
   const videoRef = useRef<Video>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (videoRef.current) {
@@ -23,8 +27,31 @@ export default function VideoViewComponent({ video, setVideo }: VideoViewProps) 
   };
 
   const handleSend = async () => {
-    await sendVideoToServer(video);
+    setLoading(true);
+    const result = await sendVideoToServer(video);
+    console.log(result)
+
+    if (result.success) {
+      const score = result.result;
+      const comment = "Komentarz"
+      const scoreNum = Number(score)
+      const date = await saveEvaluation(scoreNum, comment);
+      setLoading(false);
+      router.push({ pathname: "/score", params: { score, comment, date } });
+    } else {
+      setLoading(false);
+      Alert.alert("Evaluation failed. Please try again.");
+    }
   };
+
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="white" />
+        <Text style={styles.loadingText}>Evaluating the video...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -78,5 +105,16 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     paddingHorizontal: 20,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "gray",
+  },
+  loadingText: {
+    color: "white",
+    marginTop: 10,
+    fontSize: 18,
   },
 });

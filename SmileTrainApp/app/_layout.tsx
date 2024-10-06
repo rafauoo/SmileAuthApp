@@ -24,6 +24,16 @@ export default function AppLayout() {
           animation: "slide_from_right"
         }}
       />
+      <Stack.Screen
+        name="score"
+        options={{
+          presentation: "card", // Można zostawić 'fullScreenModal' jeśli to potrzebne
+          headerShown: false,
+          gestureEnabled: true,
+          gestureDirection: "horizontal", // Ustawiamy gest w poziomie
+          animation: "slide_from_right"
+        }}
+      />
     </Stack>
   );
 }

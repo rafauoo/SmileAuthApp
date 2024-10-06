@@ -10,7 +10,7 @@ export async function sendVideoToServer(videoUri: string) {
     const payload = {
       video: base64Video,
     };
-    console.log(JSON.stringify(payload))
+    // console.log(JSON.stringify(payload))
 
     const response = await fetch(VIDEO_API_URL, {
       method: "POST",
@@ -25,12 +25,15 @@ export async function sendVideoToServer(videoUri: string) {
       throw new Error("Upload failed: " + response.statusText);
     }
 
-
     const result = await response.json();
-    Alert.alert("Success", "Smile authenticity: " + result.result + "%");
+    console.log(result)
+    if (result.result === "Smile was not detected!")
+      return { success: false }
+    return { result: result.result, success: true}
   } catch (error) {
 
     Alert.alert("Error", "Failed to upload video. Please try again.");
     console.error(error);
+    return { success: false }
   }
 }

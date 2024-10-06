@@ -13,6 +13,7 @@ interface IconButtonProps {
   containerStyle?: StyleProp<ViewStyle>;
   onPress?: () => void;
   color: string
+  bgColor?: string
 }
 
 export default function IconButton({
@@ -24,6 +25,7 @@ export default function IconButton({
   iosName,
   containerStyle,
   color,
+  bgColor
 }: IconButtonProps) {
   return (
     <TouchableOpacity
@@ -31,7 +33,7 @@ export default function IconButton({
       activeOpacity={0.5}
       style={[
         {
-          backgroundColor: "#00000050",
+          backgroundColor: bgColor ? bgColor : "#00000050",
           padding: containerPadding,
           borderRadius: (containerWidth + containerPadding * 2) / 2,
           width: containerWidth,
