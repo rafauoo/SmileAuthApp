@@ -1,33 +1,22 @@
 import { View, StyleSheet } from "react-native";
 import IconButton from "./IconButton";
-import { FlashMode } from "expo-camera";
+import React from 'react'
 
 interface CameraToolsProps {
-  cameraZoom: number;
-  cameraFlash: FlashMode;
-  cameraTorch: boolean;
-  setCameraZoom: React.Dispatch<React.SetStateAction<number>>;
+  cameraFlash: boolean;
   setCameraFacing: React.Dispatch<React.SetStateAction<"front" | "back">>;
-  setCameraTorch: React.Dispatch<React.SetStateAction<boolean>>;
-  setCameraFlash: React.Dispatch<React.SetStateAction<FlashMode>>;
+  setCameraFlash: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export default function CameraTools({
   cameraFlash,
-  cameraTorch,
   setCameraFacing,
-  setCameraTorch,
   setCameraFlash,
 }: CameraToolsProps) {
   return (
     <View style={styles.container}>
       <IconButton
-        onPress={() => setCameraTorch((prevValue) => !prevValue)}
-        iosName={
-          cameraTorch ? "flashlight.off.circle" : "flashlight.slash.circle"
-        }
-        androidName="flash"
-      />
-      <IconButton
+        containerPadding={10} containerWidth={50} iconSize={30}
+        color="white"
         onPress={() =>
           setCameraFacing((prevValue) =>
             prevValue === "back" ? "front" : "back"
@@ -35,14 +24,14 @@ export default function CameraTools({
         }
         iosName={"arrow.triangle.2.circlepath.camera"}
         androidName="close"
-        width={25}
-        height={21}
       />
       <IconButton
+        containerPadding={10} containerWidth={50} iconSize={30}
+        color="white"
         onPress={() =>
-          setCameraFlash((prevValue) => (prevValue === "off" ? "on" : "off"))
+          setCameraFlash((prevValue) => (prevValue === false ? true : false))
         }
-        iosName={cameraFlash === "on" ? "bolt.circle" : "bolt.slash.circle"}
+        iosName={cameraFlash === true ? "bolt.circle" : "bolt.slash.circle"}
         androidName="close"
       />
     </View>

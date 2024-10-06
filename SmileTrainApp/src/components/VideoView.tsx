@@ -1,90 +1,83 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { View, StyleSheet } from "react-native";
-import { useVideoPlayer, VideoView } from "expo-video";
-import { Alert, Button } from "react-native";
-import IconButton from "./IconButton";
-import { TapGestureHandler, State } from "react-native-gesture-handler";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { shareAsync } from "expo-sharing";
-import { saveToLibraryAsync } from "expo-media-library";
+import { ResizeMode, Video } from "expo-av";
+import IconButton from "./IconButton"; // Importuj swój komponent przycisku
 import { sendVideoToServer } from "../hooks/sendToServer";
-import Animated, {
-  FadeIn,
-  FadeOut,
-  LinearTransition,
-  StretchOutX,
-} from "react-native-reanimated";
 
 interface VideoViewProps {
   video: string;
   setVideo: React.Dispatch<React.SetStateAction<string>>;
 }
-export default function VideoViewComponent({
-  video,
-  setVideo,
-}: VideoViewProps) {
-  const ref = useRef<VideoView>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const player = useVideoPlayer(video, (player) => {
-    player.loop = true;
-    player.muted = true;
-    player.play();
-  });
+
+export default function VideoViewComponent({ video, setVideo }: VideoViewProps) {
+  const videoRef = useRef<Video>(null);
 
   useEffect(() => {
-    console.log(video)
-    const subscription = player.addListener("playingChange", (isPlaying) => {
-      setIsPlaying(isPlaying);
-    });
+    if (videoRef.current) {
+      videoRef.current.playAsync();
+    }
+  }, [video]);
 
-    return () => {
-      subscription.remove();
-    };
-  }, [player]);
+  const handleCancel = () => {
+    setVideo(""); // Anuluj wideo
+  };
+
+  const handleSend = async () => {
+    await sendVideoToServer(video); // Wyślij wideo do serwera
+  };
 
   return (
-    <Animated.View
-      layout={LinearTransition}
-      entering={FadeIn.duration(50)}
-      exiting={StretchOutX}
-    >
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <Video
+        ref={videoRef}
+        source={{ uri: video }}
+        style={styles.video}
+        isLooping
+        resizeMode={ResizeMode.COVER}// Możesz zmienić na 'cover', jeśli chcesz inne zachowanie
+      />
+      <View style={styles.buttonContainer}>
         <IconButton
-          onPress={() => setVideo("")}
-          iosName={"xmark"}
-          androidName="close"
+          onPress={handleCancel}
+          iosName={"xmark"} // Ikona dla iOS
+          androidName="close" // Ikona dla Android
+          color="white" // Ustaw kolor
+          containerPadding={15} containerWidth={75} iconSize={45}
         />
         <IconButton
-          onPress={async () => await sendVideoToServer(video)}
-          iosName={"square.and.arrow.up"}
-          androidName="close"
+          onPress={handleSend}
+          iosName={"square.and.arrow.up"} // Ikona dla iOS
+          androidName="upload" // Ikona dla Android
+          color="white" // Ustaw kolor
+          containerPadding={15} containerWidth={75} iconSize={45}
         />
       </View>
-
-      <VideoView
-        ref={ref}
-        style={{
-          width: "100%",
-          height: "100%",
-        }}
-        player={player}
-        allowsFullscreen
-        nativeControls={true}
-      />
-    </Animated.View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    bottom: 50,
-    position: "absolute",
-    alignSelf: "center",
+    flex: 1,
     justifyContent: "center",
-    zIndex: 1,
-    flexDirection: "row", // Ustawia ikony poziomo
-    alignItems: "center", // Centruje ikony w pionie
-    gap: 200, // Odstęp między ikonami
+    alignItems: "center",
+    position: "relative",
+    backgroundColor: "gray", // Ustaw tło na czarne
+  },
+  video: {
+    width: "100%",
+    height: "100%",
+    position: "absolute",
+    top: 0
+  },
+  buttonContainer: {
+    flexDirection: "row", // Ustawia przyciski w linii
+    justifyContent: "space-between", // Rozdziela przyciski na lewą i prawą stronę
+    marginTop: 20, // Odstęp nad przyciskami
+    position: "absolute", // Użyj 'absolute', aby umieścić na dole
+    bottom: 20, // Ustaw położenie w dół
+    left: 0,
+    right: 0,
+    paddingHorizontal: 20, // Odstęp wewnętrzny
+    borderRadius: 10, // Dodaj zaokrąglone krawędzie
   },
 });

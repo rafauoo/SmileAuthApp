@@ -1,51 +1,35 @@
-import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import { useRouter } from "expo-router";
+import * as React from "react";
+import { View, Text } from "react-native";
+import { PanGestureHandler, GestureHandlerRootView } from "react-native-gesture-handler";
+import { useRouter, useFocusEffect } from "expo-router";
+import Animated from "react-native-reanimated";
 
-export default function App() {
+export default function MenuScreen() {
   const router = useRouter();
+  const [isNavigating, setIsNavigating] = React.useState<boolean>(false); // Kontrola nawigacji
 
-  const goToPhotoMode = async () => {
-    router.replace("/PhotoMode");
-  };
-  const goToVideoMode = async () => {
-    router.replace("/VideoMode");
-  };
+  // Obsługa gestu przesunięcia w prawo, aby przejść do ekranu głównego
+  function handleSwipeRight(event) {
+    console.log(event.nativeEvent.translationX)
+    if (event.nativeEvent.translationX < -100 && !isNavigating) {
+      setIsNavigating(true); // Blokujemy ponowną nawigację
+      router.push("/main"); // Przechodzimy do ekranu głównego po przesunięciu
+    }
+  }
+
+  useFocusEffect(
+    React.useCallback(() => {
+      setIsNavigating(false); // Resetujemy isNavigating, gdy ekran HomeScreen znowu jest w focusie
+    }, [])
+  );
+
   return (
-    <View style={styles.container}>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={goToPhotoMode}>
-          <Text style={styles.buttonText}>Photo Mode</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={goToVideoMode}>
-          <Text style={styles.buttonText}>Video Mode</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+        <PanGestureHandler onGestureEvent={handleSwipeRight}>
+          <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+            <Text style={{ fontSize: 24 }}>Menu Screen</Text>
+          </View>
+        </PanGestureHandler>
+    </GestureHandlerRootView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#f8f8f8",
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    width: "80%",
-  },
-  button: {
-    backgroundColor: "#4CAF50",
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    borderRadius: 5,
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-});

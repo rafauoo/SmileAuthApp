@@ -135,7 +135,7 @@ def mouth_edges_distances(
 
 
 def smile_data_from_beg_to_end(
-    video_bytes,
+    video_bytes: bytes
 ) -> Generator[dlib.full_object_detection, None, None]:
     """Generator yielding landmarks of found smile frames.
 

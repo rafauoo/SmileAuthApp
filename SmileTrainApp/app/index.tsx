@@ -4,7 +4,6 @@ import usePermissionsGranted from "@/src/hooks/usePermissionsGranted";
 import Animated, {
   FadeIn,
   FadeOut,
-  LinearTransition,
 } from "react-native-reanimated";
 import * as SplashScreen from "expo-splash-screen";
 import { useRouter } from "expo-router";

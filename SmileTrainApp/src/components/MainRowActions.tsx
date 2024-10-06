@@ -2,16 +2,13 @@ import * as React from "react";
 import { SymbolView } from "expo-symbols";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Colors } from "@/src/constants/Colors";
-import { CameraMode } from "expo-camera";
 
 interface MainRowActionsProps {
   handleTakePicture: () => void;
-  cameraMode: CameraMode;
   isRecording: boolean;
 }
 
 export default function MainRowActions({
-  cameraMode,
   handleTakePicture,
   isRecording,
 }: MainRowActionsProps) {
@@ -20,9 +17,7 @@ export default function MainRowActions({
       <TouchableOpacity onPress={handleTakePicture} style={styles.button}>
         <SymbolView
           name={
-            cameraMode === "picture"
-              ? "circle"
-              : isRecording
+              isRecording
               ? "record.circle"
               : "circle.circle"
           }

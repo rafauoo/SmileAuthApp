@@ -1,4 +1,3 @@
-import { Slot } from "expo-router";
 import { Stack } from "expo-router";
 
 export default function AppLayout() {
@@ -7,17 +6,21 @@ export default function AppLayout() {
       <Stack.Screen
         name="menu"
         options={{
-          presentation: "fullScreenModal",
+          presentation: "card", // Obsługa typu "card" dla animacji
           headerShown: false,
-          animationTypeForReplace: "pop",
+          animation: "slide_from_left", // Animacja przesuwania z lewej strony
+          gestureEnabled: true, // Włączenie obsługi gestów
+          gestureDirection: "horizontal", // Ustawiamy gest w poziomie
         }}
       />
       <Stack.Screen
         name="main"
         options={{
-          presentation: "fullScreenModal",
+          presentation: "card", // Można zostawić 'fullScreenModal' jeśli to potrzebne
           headerShown: false,
-          animation: "fade",
+          gestureEnabled: true,
+          gestureDirection: "horizontal", // Ustawiamy gest w poziomie
+          animation: "slide_from_right"
         }}
       />
     </Stack>
