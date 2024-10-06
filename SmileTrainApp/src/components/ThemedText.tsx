@@ -1,5 +1,5 @@
 import { Text, type TextProps, StyleSheet } from "react-native";
-
+import React from "react";
 import { useThemeColor } from "@/src/hooks/useThemeColor";
 
 export type ThemedTextProps = TextProps & {

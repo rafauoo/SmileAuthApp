@@ -7,7 +7,7 @@ export default function BottomRowTools() {
   const router = useRouter();
 
   const goToMenu = () => {
-    router.push("/menu"); // Przejście do nowego ekranu z domyślną animacją z lewej strony
+    router.push("/menu");
   };
 
   return (

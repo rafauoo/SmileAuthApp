@@ -1,25 +1,25 @@
-import * as React from "react";
+import React from "react";
 import { View, Text } from "react-native";
 import { PanGestureHandler, GestureHandlerRootView } from "react-native-gesture-handler";
 import { useRouter, useFocusEffect } from "expo-router";
-import Animated from "react-native-reanimated";
+import { PanGestureHandlerGestureEvent } from "react-native-gesture-handler";
 
 export default function MenuScreen() {
   const router = useRouter();
-  const [isNavigating, setIsNavigating] = React.useState<boolean>(false); // Kontrola nawigacji
+  const [isNavigating, setIsNavigating] = React.useState<boolean>(false);
 
-  // Obsługa gestu przesunięcia w prawo, aby przejść do ekranu głównego
-  function handleSwipeRight(event) {
+
+  function handleSwipeRight(event: PanGestureHandlerGestureEvent) {
     console.log(event.nativeEvent.translationX)
     if (event.nativeEvent.translationX < -100 && !isNavigating) {
-      setIsNavigating(true); // Blokujemy ponowną nawigację
-      router.push("/main"); // Przechodzimy do ekranu głównego po przesunięciu
+      setIsNavigating(true);
+      router.push("/main");
     }
   }
 
   useFocusEffect(
     React.useCallback(() => {
-      setIsNavigating(false); // Resetujemy isNavigating, gdy ekran HomeScreen znowu jest w focusie
+      setIsNavigating(false);
     }, [])
   );
 

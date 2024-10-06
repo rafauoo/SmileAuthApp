@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { View, StyleSheet } from "react-native";
 import { ResizeMode, Video } from "expo-av";
-import IconButton from "./IconButton"; // Importuj swój komponent przycisku
+import IconButton from "./IconButton";
 import { sendVideoToServer } from "../hooks/sendToServer";
 
 interface VideoViewProps {
@@ -19,11 +19,11 @@ export default function VideoViewComponent({ video, setVideo }: VideoViewProps) 
   }, [video]);
 
   const handleCancel = () => {
-    setVideo(""); // Anuluj wideo
+    setVideo("");
   };
 
   const handleSend = async () => {
-    await sendVideoToServer(video); // Wyślij wideo do serwera
+    await sendVideoToServer(video);
   };
 
   return (
@@ -33,21 +33,21 @@ export default function VideoViewComponent({ video, setVideo }: VideoViewProps) 
         source={{ uri: video }}
         style={styles.video}
         isLooping
-        resizeMode={ResizeMode.COVER}// Możesz zmienić na 'cover', jeśli chcesz inne zachowanie
+        resizeMode={ResizeMode.COVER}
       />
       <View style={styles.buttonContainer}>
         <IconButton
           onPress={handleCancel}
-          iosName={"xmark"} // Ikona dla iOS
-          androidName="close" // Ikona dla Android
-          color="white" // Ustaw kolor
+          iosName={"xmark"}
+          androidName="close"
+          color="white"
           containerPadding={15} containerWidth={75} iconSize={45}
         />
         <IconButton
           onPress={handleSend}
-          iosName={"square.and.arrow.up"} // Ikona dla iOS
-          androidName="upload" // Ikona dla Android
-          color="white" // Ustaw kolor
+          iosName={"square.and.arrow.up"}
+          androidName="cloud-upload"
+          color="white"
           containerPadding={15} containerWidth={75} iconSize={45}
         />
       </View>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     position: "relative",
-    backgroundColor: "gray", // Ustaw tło na czarne
+    backgroundColor: "gray",
   },
   video: {
     width: "100%",
@@ -70,14 +70,13 @@ const styles = StyleSheet.create({
     top: 0
   },
   buttonContainer: {
-    flexDirection: "row", // Ustawia przyciski w linii
-    justifyContent: "space-between", // Rozdziela przyciski na lewą i prawą stronę
-    marginTop: 20, // Odstęp nad przyciskami
-    position: "absolute", // Użyj 'absolute', aby umieścić na dole
-    bottom: 20, // Ustaw położenie w dół
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 20,
+    position: "absolute",
+    bottom: 20,
     left: 0,
     right: 0,
-    paddingHorizontal: 20, // Odstęp wewnętrzny
-    borderRadius: 10, // Dodaj zaokrąglone krawędzie
+    paddingHorizontal: 20,
   },
 });

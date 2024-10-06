@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import useAppLoading from "@/src/hooks/useAppLoading";
 import usePermissionsGranted from "@/src/hooks/usePermissionsGranted";
 import Animated, {

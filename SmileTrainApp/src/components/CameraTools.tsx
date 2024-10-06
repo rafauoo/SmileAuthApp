@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignSelf: "center",
     zIndex: 1,
-    flexDirection: "row", // Ustawia ikony poziomo
-    alignItems: "center", // Centruje ikony w pionie
-    gap: 100, // Odstęp między ikonami
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 100,
   },
 });

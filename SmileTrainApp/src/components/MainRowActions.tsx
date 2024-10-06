@@ -40,14 +40,14 @@ export default function MainRowActions({
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 100, // Ensure the height is defined for centering in vertical direction
+    height: 100,
     position: "absolute",
     bottom: 50,
-    alignItems: "center", // Centers child elements horizontally
-    justifyContent: "center", // Centers child elements vertically
+    alignItems: "center",
+    justifyContent: "center",
   },
   button: {
-    alignItems: "center", // Centers icon within TouchableOpacity
-    justifyContent: "center", // Centers icon within TouchableOpacity
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

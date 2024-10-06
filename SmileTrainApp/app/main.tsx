@@ -1,9 +1,9 @@
-import * as React from "react";
-import { NativeTouchEvent, SafeAreaView, View } from "react-native";
+import React from "react";
+import { SafeAreaView, View } from "react-native";
 import { TapGestureHandler, State, PanGestureHandler, GestureEvent } from "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { PanGestureHandlerGestureEvent } from "react-native-gesture-handler";
-import { CameraView, FlashMode } from "expo-camera";
+import { CameraView } from "expo-camera";
 import MainRowActions from "@/src/components/MainRowActions";
 import CameraTools from "@/src/components/CameraTools";
 import VideoViewComponent from "@/src/components/VideoView";
@@ -20,16 +20,14 @@ export default function HomeScreen() {
   const [video, setVideo] = React.useState<string>("");
   const [isRecording, setIsRecording] = React.useState<boolean>(false);
   const router = useRouter();
-  const [isNavigating, setIsNavigating] = React.useState<boolean>(false); // Kontrolujemy nawigację
+  const [isNavigating, setIsNavigating] = React.useState<boolean>(false);
 
-  // Reset stanu isNavigating przy powrocie do ekranu HomeScreen
   useFocusEffect(
     React.useCallback(() => {
-      setIsNavigating(false); // Resetujemy isNavigating, gdy ekran HomeScreen znowu jest w focusie
+      setIsNavigating(false);
     }, [])
   );
 
-  // Funkcja do rozpoczęcia/zatrzymania nagrywania
   async function toggleRecord() {
     if (isRecording) {
       cameraRef.current?.stopRecording();
@@ -40,7 +38,7 @@ export default function HomeScreen() {
     else {
       setIsRecording(true);
       if (cameraFacing === "front") {
-        setIsScreenFlash(cameraFlash); // Użyj ekranowego flesza
+        setIsScreenFlash(cameraFlash);
       }
       if (cameraFacing === "back") {
         setCameraTorch(cameraFlash);

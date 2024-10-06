@@ -1,9 +1,5 @@
-import { dimensions, height, width } from 'src/utils/dimensions'
+import { dimensions, height, width } from '../utils/dimensions'
 
-/**
- * Theme For Styled Components
- * -
- */
 export const appTheme = {
   background: '#222',
   primary: '#FFF',
@@ -14,10 +10,7 @@ export const appTheme = {
   windowWidth: `${width}px`
 }
 
-/**
- * Theme For Expo Navigation Header
- * -
- */
+
 export const navTheme = {
   dark: false,
   colors: {

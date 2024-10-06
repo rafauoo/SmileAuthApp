@@ -31,8 +31,6 @@ export default function usePermissionsGranted() {
       return false;
     }
 
-    // only set to true once user provides permissions
-    // this prevents taking user to home screen without permissions
     await AsyncStorage.setItem("hasOpened", "true");
     return true;
   }

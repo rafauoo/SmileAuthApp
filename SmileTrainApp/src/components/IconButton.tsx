@@ -35,7 +35,7 @@ export default function IconButton({
           padding: containerPadding,
           borderRadius: (containerWidth + containerPadding * 2) / 2,
           width: containerWidth,
-          height: containerWidth, // Ustalona wysokość kontenera
+          height: containerWidth,
         },
         containerStyle,
       ]}
