@@ -4,12 +4,14 @@ import { LineChart } from 'react-native-chart-kit';
 
 const screenWidth = Dimensions.get("window").width;
 
+type Period = "week" | "month" | "year";
+
 export default function EvaluationChart() {
     const [chartData, setChartData] = React.useState({
         labels: [],
         datasets: [{ data: [] }],
     });
-    const [selectedPeriod, setSelectedPeriod] = React.useState<string>("week");
+    const [selectedPeriod, setSelectedPeriod] = React.useState<Period>("week");
     
     const periodData = {
         week: {
@@ -33,8 +35,6 @@ export default function EvaluationChart() {
           datasets: [
             {
               data,
-              color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`,
-              strokeWidth: 2,
             },
           ],
         });
