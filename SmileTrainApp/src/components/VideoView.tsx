@@ -35,7 +35,7 @@ export default function VideoViewComponent({ video, setVideo }: VideoViewProps) 
       const score = result.result;
       const comment = "Komentarz"
       const scoreNum = Number(score)
-      const date = await saveEvaluation(scoreNum, comment);
+      const date = await saveEvaluation(scoreNum, comment, video);
       setLoading(false);
       router.push({ pathname: "/score", params: { score, comment, date } });
     } else {

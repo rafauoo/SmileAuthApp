@@ -8,12 +8,8 @@ import { useState, useEffect } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { deleteEvaluation } from "@/src/hooks/deleteEvaluation";
 import { format } from 'date-fns';
+import Evaluation from "../interfaces/Evaluation";
 
-interface Evaluation {
-    score: number;
-    comment: string;
-    date: string; // Assuming this is a string in a standard date format
-}
 
 export default function EvaluationList() {
     const router = useRouter();
@@ -25,7 +21,6 @@ export default function EvaluationList() {
                 const storedHistory = await AsyncStorage.getItem('evaluationHistory');
                 if (storedHistory) {
                     const evaluations: Evaluation[] = JSON.parse(storedHistory);
-                    // Sort evaluations by date, newest first
                     evaluations.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
                     setHistory(evaluations);
                 }
@@ -41,9 +36,10 @@ export default function EvaluationList() {
         const score = Number(item.score);
         const comment = item.comment;
         const date = item.date;
+        const video = item.video;
         router.push({
             pathname: "/score",
-            params: { score: score.toString(), comment, date }
+            params: { score: score.toString(), comment, date, video }
         });
     };
 
