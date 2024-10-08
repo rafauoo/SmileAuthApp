@@ -5,10 +5,10 @@ import { useRouter } from "expo-router";
 import { Alert } from "react-native";
 import { TouchableOpacity, FlatList, Text } from "react-native";
 import { useState, useEffect } from "react";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { deleteEvaluation } from "@/src/hooks/deleteEvaluation";
 import { format } from 'date-fns';
 import Evaluation from "../interfaces/Evaluation";
+import { fetchHistory } from "../hooks/fetchHistory";
 
 
 export default function EvaluationList() {
@@ -16,20 +16,11 @@ export default function EvaluationList() {
     const [history, setHistory] = useState<Evaluation[]>([]);
 
     useEffect(() => {
-        const fetchHistory = async () => {
-            try {
-                const storedHistory = await AsyncStorage.getItem('evaluationHistory');
-                if (storedHistory) {
-                    const evaluations: Evaluation[] = JSON.parse(storedHistory);
-                    evaluations.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-                    setHistory(evaluations);
-                }
-            } catch (error) {
-                console.error("Failed to fetch evaluation history: ", error);
-            }
+        const loadHistory = async () => {
+            const history = await fetchHistory();
+            setHistory(history);
         };
-
-        fetchHistory();
+        loadHistory();
     }, []);
 
     const handleItemPress = (item: Evaluation) => {

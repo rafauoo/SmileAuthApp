@@ -1,45 +1,34 @@
-import React from "react"
-import { View, TouchableOpacity, StyleSheet, Text, Dimensions } from "react-native"
+import React, { useEffect, useState } from "react";
+import { View, TouchableOpacity, StyleSheet, Text, Dimensions } from "react-native";
 import { LineChart } from 'react-native-chart-kit'; 
+import { fetchHistory } from "../hooks/fetchHistory";
+import Evaluation from "../interfaces/Evaluation";
+import processChartData from "../functions/processChartData";
+import { Period } from "../types/Period";
 
 const screenWidth = Dimensions.get("window").width;
 
-type Period = "week" | "month" | "year";
-
 export default function EvaluationChart() {
-    const [chartData, setChartData] = React.useState({
+    const [chartData, setChartData] = useState({
         labels: [],
         datasets: [{ data: [] }],
     });
-    const [selectedPeriod, setSelectedPeriod] = React.useState<Period>("week");
-    
-    const periodData = {
-        week: {
-            labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-            data: [80, 85, 90, 78, 88, 94, 70],
-        },
-        month: {
-            labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
-            data: [75, 82, 88, 90],
-        },
-        year: {
-            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-            data: [70, 75, 80, 85, 90, 95, 100, 80, 85, 90, 92, 88],
-        },
-    };
+    const [selectedPeriod, setSelectedPeriod] = useState<Period>("week");
+    const [history, setHistory] = useState<Evaluation[]>([]);
+    const [rangeText, setRangeText] = useState<string>("");  // To display date range under chart
 
-    React.useEffect(() => {
-        const { labels, data } = periodData[selectedPeriod];
-        setChartData({
-          labels,
-          datasets: [
-            {
-              data,
-            },
-          ],
-        });
-      }, [selectedPeriod]);
-    
+    useEffect(() => {
+        setChartData(processChartData(history, selectedPeriod));
+    }, [selectedPeriod, history]);
+
+    useEffect(() => {
+        const loadHistory = async () => {
+            const history = await fetchHistory();
+            setHistory(history);
+        };
+        loadHistory();
+    }, []);
+
     return (
     <View>
         <View style={styles.buttonContainer}>
@@ -50,7 +39,7 @@ export default function EvaluationChart() {
                 styles.periodButton,
                 selectedPeriod === period && styles.activeButton,
                 ]}
-                onPress={() => setSelectedPeriod(period)}
+                onPress={() => setSelectedPeriod(period as Period)}
             >
                 <Text style={styles.buttonText}>{period.charAt(0).toUpperCase() + period.slice(1)}</Text>
             </TouchableOpacity>
@@ -80,6 +69,8 @@ export default function EvaluationChart() {
             bezier
             style={styles.chart}
         />
+
+        <Text style={styles.rangeText}>{rangeText}</Text>
       </View>
     );
 }
@@ -106,5 +97,10 @@ const styles = StyleSheet.create({
       marginVertical: 10,
       borderRadius: 16,
     },
+    rangeText: {
+      textAlign: 'center',
+      marginTop: 10,
+      fontSize: 14,
+      color: '#666',
+    },
   });
-  
