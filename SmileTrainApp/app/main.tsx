@@ -56,18 +56,23 @@ export default function HomeScreen() {
     }
   }
 
-  function handleSwipeRight(event: PanGestureHandlerGestureEvent) {
+  function handleSwipe(event: PanGestureHandlerGestureEvent) {
     if (event.nativeEvent.translationX > 100 && !isNavigating) {
       setIsNavigating(true);
       router.push("/menu");
     }
+    if (event.nativeEvent.translationX < -100 && !isNavigating) {
+      setIsNavigating(true);
+      router.push("/settings");
+    }
   }
+
 
   if (video) return <VideoViewComponent video={video} setVideo={setVideo} />;
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <PanGestureHandler onGestureEvent={handleSwipeRight}>
+      <PanGestureHandler onGestureEvent={handleSwipe}>
         <TapGestureHandler onHandlerStateChange={handleDoubleTap} numberOfTaps={2}>
           <CameraView
             ref={cameraRef}

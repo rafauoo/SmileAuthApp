@@ -10,18 +10,13 @@ import { format } from 'date-fns';
 import Evaluation from "../interfaces/Evaluation";
 import { fetchHistory } from "../hooks/fetchHistory";
 
+interface Props {
+    history: Evaluation[];
+    onDelete: (date: string) => void;
+  }
 
-export default function EvaluationList() {
+export default function EvaluationList({ history, onDelete }: Props) {
     const router = useRouter();
-    const [history, setHistory] = useState<Evaluation[]>([]);
-
-    useEffect(() => {
-        const loadHistory = async () => {
-            const history = await fetchHistory();
-            setHistory(history);
-        };
-        loadHistory();
-    }, []);
 
     const handleItemPress = (item: Evaluation) => {
         const score = Number(item.score);
@@ -33,26 +28,6 @@ export default function EvaluationList() {
             params: { score: score.toString(), comment, date, video }
         });
     };
-
-    async function handleDelete(date: string) {
-        Alert.alert(
-            "Are you sure?",
-            "This action will permanently delete the evaluation from the history.",
-            [
-                {
-                    text: "Cancel",
-                    style: "cancel"
-                },
-                {
-                    text: "OK",
-                    onPress: async () => {
-                        const newHistory = await deleteEvaluation(history, date);
-                        setHistory(newHistory);
-                    }
-                }
-            ]
-        );
-    }
 
     return (
         <FlatList
@@ -69,7 +44,7 @@ export default function EvaluationList() {
                         <Text style={styles.dateText}>{format(new Date(item.date), 'dd/MM/yyyy, H:mm:ss')}</Text>
                     </View>
                     <IconButton
-                        onPress={() => handleDelete(item.date)}
+                        onPress={() => onDelete(item.date)}
                         iosName={"trash"}
                         androidName="trash"
                         bgColor="white"
