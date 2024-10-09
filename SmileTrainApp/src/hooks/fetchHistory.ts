@@ -1,9 +1,8 @@
 import Evaluation from "../interfaces/Evaluation";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { saveEvaluation } from "./saveEvaluation";
+
 export async function fetchHistory() {
   try {
-    saveEvaluation(90, "koment", "");
     const storedHistory = await AsyncStorage.getItem("evaluationHistory");
     console.log(storedHistory);
     if (storedHistory) {

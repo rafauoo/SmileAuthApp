@@ -1,17 +1,17 @@
 import Evaluation from "../interfaces/Evaluation";
-import { Period } from "../types/Period";
 import moment from "moment"
-import { LineChart } from 'react-native-chart-kit'; 
 import ChartData from "../interfaces/ChartData";
+import Labels from "../interfaces/Labels";
 
-export default function processChartData(history: Evaluation[], period: Period): ChartData {
+export default function processChartData(history: Evaluation[], period: string, periodList: string[], labelsXaxis: Labels): ChartData {
     let labels: string[] = [];
     let data: number[] = [];
     const today = moment();
     switch (period) {
-        case "week":
+        case periodList[0]:
             // labels
-            labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+            labels = labelsXaxis.week;
+            console.log(labels)
             
             data = Array(7).fill(0);
             let countPerDay = Array(7).fill(0);
@@ -34,7 +34,7 @@ export default function processChartData(history: Evaluation[], period: Period):
             labels = labels.slice(today.isoWeekday()).concat(labels.slice(0, today.isoWeekday()));
             console.log(data)
             break;
-        case "month":
+        case periodList[1]:
             // labels
             for (let i = 0; i < 4; i++) {
                 const startOfWeek = today.clone().subtract((i + 1) * 7, 'days').format('DD/MM');
@@ -59,9 +59,9 @@ export default function processChartData(history: Evaluation[], period: Period):
     
             data = data.map((score, index) => (countPerWeek[index] > 0 ? score / countPerWeek[index] : 0));
             break;
-        case "year":
+        case periodList[2]:
             // labels
-            labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            labels = labelsXaxis.year;
 
             data = Array(12).fill(0);
             let countPerMonth = Array(12).fill(0);
@@ -76,6 +76,10 @@ export default function processChartData(history: Evaluation[], period: Period):
             });
     
             data = data.map((score, index) => (countPerMonth[index] > 0 ? score / countPerMonth[index] : 0));
+            
+            data = data.slice(today.month() + 1).concat(data.slice(0, today.month() + 1));
+            labels = labels.slice(today.month() + 1).concat(labels.slice(0, today.month() + 1));
+            console.log(data)
             break;
         default:
             break;

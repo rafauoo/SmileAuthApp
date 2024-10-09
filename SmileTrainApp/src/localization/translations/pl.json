@@ -13,7 +13,32 @@
         "title": "Średnia Autentyczność Uśmiechu (%)",
         "week": "Tydzień",
         "month": "Miesiąc",
-        "year": "Rok"
+        "year": "Rok",
+        "xaxis": {
+          "week": {
+            "mon": "Pon",
+            "tue": "Wt",
+            "wed": "Śr",
+            "thu": "Czw",
+            "fri": "Pt",
+            "sat": "Sb",
+            "sun": "Nd"
+          },
+          "year": {
+            "jan": "Sty",
+            "feb": "Lut",
+            "mar": "Mar",
+            "apr": "Kwi",
+            "may": "Maj",
+            "jun": "Cze",
+            "jul": "Lip",
+            "aug": "Sie",
+            "sep": "Wrz",
+            "oct": "Paź",
+            "nov": "Lis",
+            "dec": "Gru"
+          }
+        }
       },
       "list": {
         "title": "Historia Ewaluacji"

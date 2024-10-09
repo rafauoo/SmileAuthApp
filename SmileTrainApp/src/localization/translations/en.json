@@ -13,7 +13,32 @@
         "title": "Average Smile Authenticity (%)",
         "week": "Week",
         "month": "Month",
-        "year": "Year"
+        "year": "Year",
+        "xaxis": {
+          "week": {
+            "mon": "Mon",
+            "tue": "Tue",
+            "wed": "Wed",
+            "thu": "Thu",
+            "fri": "Fri",
+            "sat": "Sat",
+            "sun": "Sun"
+          },
+          "year": {
+            "jan": "Jan",
+            "feb": "Feb",
+            "mar": "Mar",
+            "apr": "Apr",
+            "may": "May",
+            "jun": "Jun",
+            "jul": "Jul",
+            "aug": "Aug",
+            "sep": "Sep",
+            "oct": "Oct",
+            "nov": "Nov",
+            "dec": "Dec"
+          }
+        }
       },
       "list": {
         "title": "Evaluation History"

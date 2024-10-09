@@ -9,9 +9,10 @@ import {
 import { LineChart } from "react-native-chart-kit";
 import Evaluation from "../interfaces/Evaluation";
 import processChartData from "../functions/processChartData";
-import { Period } from "../types/Period";
 import ChartData from "../interfaces/ChartData";
 import { useTranslation } from "react-i18next";
+import Labels from "../interfaces/Labels";
+
 const screenWidth = Dimensions.get("window").width;
 
 interface Props {
@@ -25,27 +26,51 @@ export default function EvaluationChart({ history, isHistoryLoaded }: Props) {
     datasets: [{ data: [] }],
   });
   const { t, i18n } = useTranslation();
-  const [selectedPeriod, setSelectedPeriod] = useState<Period>("week");
+  const labels: Labels = {
+    week: [t("screens.menu.chart.xaxis.week.mon"),
+      t("screens.menu.chart.xaxis.week.tue"),
+      t("screens.menu.chart.xaxis.week.wed"),
+      t("screens.menu.chart.xaxis.week.thu"),
+      t("screens.menu.chart.xaxis.week.fri"),
+      t("screens.menu.chart.xaxis.week.sat"),
+      t("screens.menu.chart.xaxis.week.sun"),
+    ],
+    year: [t("screens.menu.chart.xaxis.year.jan"),
+      t("screens.menu.chart.xaxis.year.feb"),
+      t("screens.menu.chart.xaxis.year.mar"),
+      t("screens.menu.chart.xaxis.year.apr"),
+      t("screens.menu.chart.xaxis.year.may"),
+      t("screens.menu.chart.xaxis.year.jun"),
+      t("screens.menu.chart.xaxis.year.jul"),
+      t("screens.menu.chart.xaxis.year.aug"),
+      t("screens.menu.chart.xaxis.year.sep"),
+      t("screens.menu.chart.xaxis.year.oct"),
+      t("screens.menu.chart.xaxis.year.nov"),
+      t("screens.menu.chart.xaxis.year.dec"),
+    ],
+  }
+  const periodList = [
+    t("screens.menu.chart.week"),
+    t("screens.menu.chart.month"),
+    t("screens.menu.chart.year"),
+  ]
+  const [selectedPeriod, setSelectedPeriod] = useState<string>(periodList[0]);
 
   useEffect(() => {
-    setChartData(processChartData(history, selectedPeriod));
+    setChartData(processChartData(history, selectedPeriod, periodList, labels));
   }, [selectedPeriod, history]);
 
   return (
     <View>
       <View style={styles.buttonContainer}>
-        {[
-          t("screens.menu.chart.week"),
-          t("screens.menu.chart.month"),
-          t("screens.menu.chart.year"),
-        ].map((period) => (
+        {periodList.map((period) => (
           <TouchableOpacity
             key={period}
             style={[
               styles.periodButton,
               selectedPeriod === period && styles.activeButton,
             ]}
-            onPress={() => setSelectedPeriod(period as Period)}
+            onPress={() => setSelectedPeriod(period)}
           >
             <Text style={styles.buttonText}>
               {period.charAt(0).toUpperCase() + period.slice(1)}
