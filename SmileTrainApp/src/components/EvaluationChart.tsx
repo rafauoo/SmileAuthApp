@@ -58,7 +58,9 @@ export default function EvaluationChart({ history, isHistoryLoaded }: Props) {
 
   useEffect(() => {
     setChartData(processChartData(history, selectedPeriod, periodList, labels));
+    console.log(chartData)
   }, [selectedPeriod, history]);
+
 
   return (
     <View>
@@ -84,21 +86,23 @@ export default function EvaluationChart({ history, isHistoryLoaded }: Props) {
           width={screenWidth - 40}
           height={220}
           yAxisSuffix="%"
+          fromZero={true}
           chartConfig={{
             backgroundColor: "#e26a00",
             backgroundGradientFrom: "#fb8c00",
             backgroundGradientTo: "#ffa726",
-            decimalPlaces: 2,
+            decimalPlaces: 0,
             color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
             labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            style: {
-              borderRadius: 16,
-            },
             propsForDots: {
               r: "6",
               strokeWidth: "2",
               stroke: "#ffa726",
             },
+            propsForVerticalLabels: {
+              fontSize: 10,
+
+            }
           }}
           bezier
           style={styles.chart}

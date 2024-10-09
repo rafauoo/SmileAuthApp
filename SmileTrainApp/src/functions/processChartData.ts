@@ -39,7 +39,7 @@ export default function processChartData(history: Evaluation[], period: string, 
             for (let i = 0; i < 4; i++) {
                 const startOfWeek = today.clone().subtract((i + 1) * 7, 'days').format('DD/MM');
                 const endOfWeek = today.clone().subtract(i * 7, 'days').format('DD/MM');
-                labels.push(`${startOfWeek} - ${endOfWeek}`);
+                labels.push(`${startOfWeek}-${endOfWeek}`);
             }
             labels.reverse()
 
@@ -84,9 +84,13 @@ export default function processChartData(history: Evaluation[], period: string, 
         default:
             break;
     }
-    console.log(data)
+    const newData = data.map(value => value === 0 ? 0 : value)
+    console.log(newData)
     return ({
         labels,
-        datasets: [{ data }]
+        datasets: [{ data: newData },         {
+            data: [100],
+            withDots: false,
+          }]
     });
 };

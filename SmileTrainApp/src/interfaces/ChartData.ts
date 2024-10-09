@@ -1,4 +1,4 @@
 export default interface ChartData {
     labels: string[];
-    datasets: { data: number[] }[];
+    datasets: { data: number[] }[] | any;
   }
