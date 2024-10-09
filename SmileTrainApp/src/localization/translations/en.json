@@ -19,7 +19,16 @@
         "title": "Evaluation History"
       }
     },
-    "score": {},
-    "settings": {}
+    "score": {
+      "title": "Your score"
+    },
+    "settings": {
+      "title": "Settings"
+    }
+  },
+  "components": {
+    "videoView": {
+      "evaluating": "Evaluating the video..."
+    }
   }
 }

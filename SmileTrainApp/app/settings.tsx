@@ -22,7 +22,7 @@ export default function Settings() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <PanGestureHandler onGestureEvent={handleSwipe}>
         <View style={styles.container}>
-          <Text style={styles.title}>Settings</Text>
+          <Text style={styles.title}>{t("screens.settings.title")}</Text>
           <TouchableOpacity onPress={() => i18n.changeLanguage("pl")}>
             <Text>Polski</Text>
           </TouchableOpacity>

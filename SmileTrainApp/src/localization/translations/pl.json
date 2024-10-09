@@ -19,7 +19,16 @@
         "title": "Historia Ewaluacji"
       }
     },
-    "score": {},
-    "settings": {}
+    "score": {
+      "title": "Twój wynik"
+    },
+    "settings": {
+      "title": "Ustawienia"
+    }
+  },
+  "components": {
+    "videoView": {
+      "evaluating": "Przetwarzanie wideo..."
+    }
   }
 }

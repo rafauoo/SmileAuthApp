@@ -5,16 +5,21 @@ import IconButton from "./IconButton";
 import { sendVideoToServer } from "../hooks/sendToServer";
 import { useRouter } from "expo-router";
 import { saveEvaluation } from "../hooks/saveEvaluation";
+import { useTranslation } from "react-i18next";
 
 interface VideoViewProps {
   video: string;
   setVideo: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function VideoViewComponent({ video, setVideo }: VideoViewProps) {
+export default function VideoViewComponent({
+  video,
+  setVideo,
+}: VideoViewProps) {
   const videoRef = useRef<Video>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     if (videoRef.current) {
@@ -29,12 +34,12 @@ export default function VideoViewComponent({ video, setVideo }: VideoViewProps) 
   const handleSend = async () => {
     setLoading(true);
     const result = await sendVideoToServer(video);
-    console.log(result)
+    console.log(result);
 
     if (result.success) {
       const score = result.result;
-      const comment = "Komentarz"
-      const scoreNum = Number(score)
+      const comment = "Komentarz";
+      const scoreNum = Number(score);
       const date = await saveEvaluation(scoreNum, comment, video);
       setLoading(false);
       router.push({ pathname: "/score", params: { score, comment, date } });
@@ -48,7 +53,9 @@ export default function VideoViewComponent({ video, setVideo }: VideoViewProps) 
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color="white" />
-        <Text style={styles.loadingText}>Evaluating the video...</Text>
+        <Text style={styles.loadingText}>
+          {t("components.videoView.evaluating")}
+        </Text>
       </View>
     );
   }
@@ -68,14 +75,18 @@ export default function VideoViewComponent({ video, setVideo }: VideoViewProps) 
           iosName={"xmark"}
           androidName="close"
           color="white"
-          containerPadding={15} containerWidth={75} iconSize={45}
+          containerPadding={15}
+          containerWidth={75}
+          iconSize={45}
         />
         <IconButton
           onPress={handleSend}
           iosName={"square.and.arrow.up"}
           androidName="cloud-upload"
           color="white"
-          containerPadding={15} containerWidth={75} iconSize={45}
+          containerPadding={15}
+          containerWidth={75}
+          iconSize={45}
         />
       </View>
     </View>
@@ -94,7 +105,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     position: "absolute",
-    top: 0
+    top: 0,
   },
   buttonContainer: {
     flexDirection: "row",
