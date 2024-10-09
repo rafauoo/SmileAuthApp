@@ -1,0 +1,25 @@
+{
+  "language": "Polish",
+  "screens": {
+    "main": {},
+    "menu": {
+      "deleteAlert": {
+        "title": "Czy jesteś pewien?",
+        "desc": "Ewaluacja zostanie usunięta z historii na zawsze.",
+        "cancel": "Anuluj",
+        "ok": "Tak"
+      },
+      "chart": {
+        "title": "Średnia Autentyczność Uśmiechu (%)",
+        "week": "Tydzień",
+        "month": "Miesiąc",
+        "year": "Rok"
+      },
+      "list": {
+        "title": "Historia Ewaluacji"
+      }
+    },
+    "score": {},
+    "settings": {}
+  }
+}

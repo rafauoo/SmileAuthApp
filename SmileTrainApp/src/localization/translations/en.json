@@ -1,0 +1,25 @@
+{
+  "language": "English",
+  "screens": {
+    "main": {},
+    "menu": {
+      "deleteAlert": {
+        "title": "Are you sure?",
+        "desc": "Evaluation will be permanenly removed from the history.",
+        "cancel": "Cancel",
+        "ok": "Yes"
+      },
+      "chart": {
+        "title": "Average Smile Authenticity (%)",
+        "week": "Week",
+        "month": "Month",
+        "year": "Year"
+      },
+      "list": {
+        "title": "Evaluation History"
+      }
+    },
+    "score": {},
+    "settings": {}
+  }
+}

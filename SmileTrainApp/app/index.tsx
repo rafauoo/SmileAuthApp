@@ -1,12 +1,10 @@
 import React, { useCallback, useEffect } from "react";
 import useAppLoading from "@/src/hooks/useAppLoading";
 import usePermissionsGranted from "@/src/hooks/usePermissionsGranted";
-import Animated, {
-  FadeIn,
-  FadeOut,
-} from "react-native-reanimated";
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import * as SplashScreen from "expo-splash-screen";
 import { useRouter } from "expo-router";
+import "../src/localization/i18n";
 
 SplashScreen.preventAutoHideAsync();
 

@@ -1,8 +1,11 @@
-import * as FileSystem from 'expo-file-system';
+import * as FileSystem from "expo-file-system";
 
-export default async function saveVideoLocally(videoUri: string) {
+export default async function saveVideoLocally(videoUri: string | null) {
   try {
-    const fileName = videoUri.split('/').pop();
+    if (!videoUri) {
+      return null;
+    }
+    const fileName = videoUri.split("/").pop();
     const localUri = `${FileSystem.documentDirectory}${fileName}`;
 
     await FileSystem.copyAsync({
@@ -12,7 +15,7 @@ export default async function saveVideoLocally(videoUri: string) {
 
     return localUri;
   } catch (error) {
-    console.error('Error saving video locally:', error);
+    console.error("Error saving video locally:", error);
     return null;
   }
 }
