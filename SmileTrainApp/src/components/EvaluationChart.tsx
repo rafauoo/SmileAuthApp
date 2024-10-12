@@ -74,7 +74,10 @@ export default function EvaluationChart({ history, isHistoryLoaded }: Props) {
             ]}
             onPress={() => setSelectedPeriod(period)}
           >
-            <Text style={styles.buttonText}>
+            <Text style={[
+              styles.buttonText,
+              selectedPeriod === period && styles.activeButtonText,
+            ]}>
               {period.charAt(0).toUpperCase() + period.slice(1)}
             </Text>
           </TouchableOpacity>
@@ -88,16 +91,16 @@ export default function EvaluationChart({ history, isHistoryLoaded }: Props) {
           yAxisSuffix="%"
           fromZero={true}
           chartConfig={{
-            backgroundColor: "#e26a00",
-            backgroundGradientFrom: "#fb8c00",
-            backgroundGradientTo: "#ffa726",
+            backgroundColor: "#ffffff",
+            backgroundGradientFrom: "#FF8940",
+            backgroundGradientTo: "#FA8F2B",
             decimalPlaces: 0,
             color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
             labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
             propsForDots: {
               r: "6",
               strokeWidth: "2",
-              stroke: "#ffa726",
+              stroke: "#FF8940",
             },
             propsForVerticalLabels: {
               fontSize: 10,
@@ -121,12 +124,27 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   periodButton: {
-    padding: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 12,
+    marginVertical: 2,
     borderRadius: 10,
-    backgroundColor: "#ccc",
+    backgroundColor: '#ffffff',
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: {
+        width: 0,
+        height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
   },
   activeButton: {
-    backgroundColor: "#ffa726",
+    backgroundColor: "#FF8940",
+  },
+  activeButtonText: {
+    color: "#FFFFFF"
   },
   buttonText: {
     fontSize: 16,

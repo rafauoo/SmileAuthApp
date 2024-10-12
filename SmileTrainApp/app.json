@@ -5,10 +5,10 @@
     "version": "1.3.0",
     "orientation": "portrait",
     "scheme": "SmileTrainApp",
-    "icon": "./src/assets/images/logo.png",
+    "icon": "./src/assets/images/smiley_logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./src/assets/images/logo.png",
+      "image": "./src/assets/images/smiley_entry.gif",
       "backgroundColor": "#ffffff"
     },
     "ios": {
@@ -16,12 +16,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/images/smiley_logo.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./src/assets/favicon.png"
+      "favicon": "./src/assets/images/smiley_logo.png"
     },
     "plugins": [
       "expo-router",

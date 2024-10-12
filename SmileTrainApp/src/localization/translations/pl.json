@@ -1,5 +1,5 @@
 {
-  "language": "Polish",
+  "language": "Polski",
   "screens": {
     "main": {},
     "menu": {
@@ -48,7 +48,8 @@
       "title": "Twój wynik"
     },
     "settings": {
-      "title": "Ustawienia"
+      "title": "Ustawienia",
+      "lang": "Język"
     }
   },
   "components": {

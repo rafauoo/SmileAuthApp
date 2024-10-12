@@ -48,7 +48,8 @@
       "title": "Your score"
     },
     "settings": {
-      "title": "Settings"
+      "title": "Settings",
+      "lang": "Language"
     }
   },
   "components": {

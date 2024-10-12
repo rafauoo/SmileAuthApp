@@ -1,9 +1,9 @@
 import { dimensions, height, width } from '../utils/dimensions'
 
 export const appTheme = {
-  background: '#222',
-  primary: '#FFF',
-  secondary: '#CCC',
+  background: '#FFFFFF',
+  primary: '#FFF859',
+  secondary: '#FF8940',
   highlight: '#FF2353',
   size: dimensions,
   windowHeight: `${height}px`,

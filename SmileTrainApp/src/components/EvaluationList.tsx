@@ -47,8 +47,8 @@ export default function EvaluationList({ history, onDelete }: Props) {
                         onPress={() => onDelete(item.date)}
                         iosName={"trash"}
                         androidName="trash"
-                        bgColor="white"
-                        color="red"
+                        bgColor="#FF8940"
+                        color="white"
                         containerPadding={10} 
                         containerWidth={50} 
                         iconSize={30}
