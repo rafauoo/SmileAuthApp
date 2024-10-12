@@ -22,8 +22,8 @@ export default function CameraTools({
             prevValue === "back" ? "front" : "back"
           )
         }
-        iosName={"arrow.triangle.2.circlepath.camera"}
-        androidName="close"
+        iosName={"arrow.2.circlepath"}
+        androidName="camera-reverse-outline"
       />
       <IconButton
         containerPadding={10} containerWidth={50} iconSize={30}
@@ -32,7 +32,7 @@ export default function CameraTools({
           setCameraFlash((prevValue) => (prevValue === false ? true : false))
         }
         iosName={cameraFlash === true ? "bolt.circle" : "bolt.slash.circle"}
-        androidName="close"
+        androidName={cameraFlash === true ? "flash" : "flash-off"}
       />
     </View>
   );

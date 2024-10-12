@@ -8,7 +8,7 @@
     "icon": "./src/assets/images/smiley_logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./src/assets/images/smiley_entry.gif",
+      "image": "./src/assets/images/entry_logo.gif",
       "backgroundColor": "#ffffff"
     },
     "ios": {
