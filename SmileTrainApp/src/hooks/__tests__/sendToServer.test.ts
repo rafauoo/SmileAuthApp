@@ -1,13 +1,12 @@
-import { sendVideoToServer } from '../sendToServer'; // Adjust the import path as needed
+import { sendVideoToServer } from '../sendToServer';
 import * as FileSystem from 'expo-file-system';
 import VIDEO_API_URL from "../../config/config";
-// Mock the fetch API
 global.fetch = jest.fn();
 
 jest.mock('expo-file-system', () => ({
   readAsStringAsync: jest.fn(),
   EncodingType: {
-    Base64: 'base64', // Mock the EncodingType with a sample value
+    Base64: 'base64',
   },
 }));
 
@@ -15,12 +14,12 @@ describe('sendVideoToServer', () => {
     const mockVideoUri = 'mockVideoUri';
     
     afterEach(() => {
-      jest.clearAllMocks(); // Clear mocks after each test
+      jest.clearAllMocks();
     });
   
     it('should send the video to the server and return success response', async () => {
-      const mockResponse = { result: 75 }; // Mock the server response with a number
-      (FileSystem.readAsStringAsync as jest.Mock).mockResolvedValue('mockBase64String'); // Mock reading the video as base64
+      const mockResponse = { result: 75 };
+      (FileSystem.readAsStringAsync as jest.Mock).mockResolvedValue('mockBase64String');
       (global.fetch as jest.Mock).mockResolvedValue({
         ok: true,
         json: async () => mockResponse,

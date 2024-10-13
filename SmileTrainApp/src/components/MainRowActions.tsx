@@ -1,7 +1,6 @@
 import * as React from "react";
 import { SymbolView } from "expo-symbols";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { Colors } from "@/src/constants/Colors";
 
 interface MainRowActionsProps {
   handleTakePicture: () => void;
@@ -20,7 +19,7 @@ export default function MainRowActions({
           size={90}
           type="hierarchical"
           style={{ marginLeft: 13 }}
-          tintColor={isRecording ? Colors.light.snapPrimary : "white"}
+          tintColor={isRecording ? "#FFFC00" : "white"}
           animationSpec={{
             effect: {
               type: isRecording ? "pulse" : "bounce",

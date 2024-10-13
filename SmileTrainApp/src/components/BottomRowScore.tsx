@@ -6,7 +6,7 @@ import { Alert } from "react-native";
 import { deleteEvaluation } from "../hooks/deleteEvaluation";
 import { useTranslation } from "react-i18next";
 
-export default function BottomRowScore(date: any) {
+export default function BottomRowScore({ date }: { date: string | undefined }) {
   const router = useRouter();
   const { t, i18n } = useTranslation();
 
@@ -41,6 +41,7 @@ export default function BottomRowScore(date: any) {
     <View style={styles.bottomRow}>
       <View style={styles.bottomRowLeft}>
         <IconButton
+          testID="iconButton-back" // Add testID for back button
           onPress={handleGoBack}
           iosName={"list.bullet"}
           androidName="home"
@@ -53,6 +54,7 @@ export default function BottomRowScore(date: any) {
       </View>
       <View style={styles.bottomRowRight}>
         <IconButton
+          testID="iconButton-delete" // Add testID for delete button
           onPress={() => handleDelete(date)}
           iosName={"trash"}
           androidName="trash"

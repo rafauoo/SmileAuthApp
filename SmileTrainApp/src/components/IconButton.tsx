@@ -14,6 +14,7 @@ interface IconButtonProps {
   onPress?: (...args: any[]) => void;
   color: string;
   bgColor?: string;
+  testID?: string;
 }
 
 export default function IconButton({
@@ -26,11 +27,14 @@ export default function IconButton({
   containerStyle,
   color,
   bgColor,
+  testID,
 }: IconButtonProps) {
   return (
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={0.5}
+      testID={testID}
+      accessibilityRole="button"
       style={[
         {
           backgroundColor: bgColor ? bgColor : "#00000050",

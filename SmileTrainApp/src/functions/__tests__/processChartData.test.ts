@@ -9,44 +9,40 @@ describe('processChartData', () => {
         year: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     };
 
-    // Set a fixed date for the tests
-    const fixedDate = moment('2024-12-31'); // Example fixed date (YYYY-MM-DD)
+    const fixedDate = moment('2024-12-31');
     
     beforeAll(() => {
-        // Mock the current date
         jest.spyOn(Date, 'now').mockImplementation(() => fixedDate.valueOf());
     });
 
     afterAll(() => {
-        // Restore the original Date function
         jest.restoreAllMocks();
     });
 
-    // Full Evaluation objects with required properties: score, date, comment, video
     const evaluations: Evaluation[] = [
-        { score: 80, date: fixedDate.clone().subtract(1, 'days').toISOString(), comment: 'Great job', video: 'video1.mp4' },  // 2024-10-09
-        { score: 90, date: fixedDate.clone().subtract(2, 'days').toISOString(), comment: 'Well done', video: 'video2.mp4' },  // 2024-10-08
-        { score: 70, date: fixedDate.clone().subtract(7, 'days').toISOString(), comment: 'Needs improvement', video: 'video3.mp4' },  // 2024-10-03
-        { score: 100, date: fixedDate.clone().subtract(14, 'days').toISOString(), comment: 'Perfect', video: 'video4.mp4' }, // 2024-09-26
-        { score: 60, date: fixedDate.clone().subtract(8, 'days').toISOString(), comment: 'Keep practicing', video: 'video5.mp4' },  // 2024-10-02
+        { score: 80, date: fixedDate.clone().subtract(1, 'days').toISOString(), comment: 'Great job', video: 'video1.mp4' },
+        { score: 90, date: fixedDate.clone().subtract(2, 'days').toISOString(), comment: 'Well done', video: 'video2.mp4' },
+        { score: 70, date: fixedDate.clone().subtract(7, 'days').toISOString(), comment: 'Needs improvement', video: 'video3.mp4' },
+        { score: 100, date: fixedDate.clone().subtract(14, 'days').toISOString(), comment: 'Perfect', video: 'video4.mp4' },
+        { score: 60, date: fixedDate.clone().subtract(8, 'days').toISOString(), comment: 'Keep practicing', video: 'video5.mp4' },
     ];
 
     it('should process data correctly for weekly period', () => {
         const result = processChartData(evaluations, periodList[0], periodList, labelsXaxis);
         expect(result.labels).toEqual(['Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue']);
-        expect(result.datasets[0].data).toEqual([80, 90, 0, 0, 0, 0, 0]); // Adjust based on actual calculations
+        expect(result.datasets[0].data).toEqual([0, 0, 0, 0, 90, 80, 0]); // Adjust based on actual calculations
     });
 
     it('should process data correctly for monthly period', () => {
         const result = processChartData(evaluations, periodList[1], periodList, labelsXaxis);
         expect(result.labels).toEqual(["03/12-10/12","10/12-17/12","17/12-24/12","24/12-31/12"]);
-        expect(result.datasets[0].data).toEqual([0, 80, 90, 0]); // Adjust based on actual calculations
+        expect(result.datasets[0].data).toEqual([0, 100, 65, 85]);
     });
 
     it('should process data correctly for yearly period', () => {
         const result = processChartData(evaluations, periodList[2], periodList, labelsXaxis);
         expect(result.labels).toEqual(labelsXaxis.year);
-        expect(result.datasets[0].data).toEqual([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 80]); // Adjust based on actual calculations
+        expect(result.datasets[0].data).toEqual([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 80]);
     });
 
     it('should return empty data when no evaluations are provided', () => {

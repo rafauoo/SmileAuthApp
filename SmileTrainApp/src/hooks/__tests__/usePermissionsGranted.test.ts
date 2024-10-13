@@ -5,7 +5,6 @@ import { usePermissions } from 'expo-media-library';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert } from 'react-native';
 
-// Mocking the necessary modules
 jest.mock('expo-camera', () => ({
   useCameraPermissions: jest.fn(),
   useMicrophonePermissions: jest.fn(),

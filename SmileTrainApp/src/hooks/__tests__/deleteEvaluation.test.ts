@@ -16,7 +16,6 @@ describe('deleteEvaluation', () => {
     ];
 
     beforeEach(() => {
-        // Reset mocks before each test
         jest.clearAllMocks();
     });
 
@@ -58,7 +57,7 @@ describe('deleteEvaluation', () => {
     });
 
     it('should not find a matching evaluation if date does not exist', async () => {
-        const newDate = '2024-10-12'; // Date that does not exist in mockHistory
+        const newDate = '2024-10-12';
         (fetchHistory as jest.Mock).mockResolvedValue(mockHistory);
 
         const updatedHistory = await deleteEvaluation(newDate);

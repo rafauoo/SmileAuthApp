@@ -23,6 +23,7 @@ export default function BottomRowTools() {
           iosName="list.bullet"
           onPress={goToMenu}
           color="white"
+          testID="menu-button" // Add testID here
         />
       </View>
       <View style={[styles.bottomContainerRight]}>
@@ -34,6 +35,7 @@ export default function BottomRowTools() {
           iosName="gear"
           onPress={goToSettings}
           color="white"
+          testID="settings-button" // Add testID here
         />
       </View>
     </View>
