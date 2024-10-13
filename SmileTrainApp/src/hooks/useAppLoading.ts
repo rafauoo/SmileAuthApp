@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import * as SplashScreen from "expo-splash-screen";
+import { preventAutoHideAsync } from "expo-splash-screen";
 import {
   useFonts,
   Roboto_100Thin,
@@ -16,7 +16,7 @@ import {
   Roboto_900Black_Italic,
 } from "@expo-google-fonts/roboto";
 
-SplashScreen.preventAutoHideAsync();
+preventAutoHideAsync();
 
 export default function useAppLoading() {
   const [appIsReady, setAppIsReady] = useState(false);

@@ -1,5 +1,4 @@
-import { Alert } from "react-native";
-import { VIDEO_API_URL } from "../config/config";
+import VIDEO_API_URL from "../config/config";
 import * as FileSystem from "expo-file-system";
 export async function sendVideoToServer(videoUri: string) {
   try {
@@ -31,8 +30,6 @@ export async function sendVideoToServer(videoUri: string) {
       return { success: false }
     return { result: result.result, success: true}
   } catch (error) {
-
-    Alert.alert("Error", "Failed to upload video. Please try again.");
     console.error(error);
     return { success: false }
   }
