@@ -29,11 +29,11 @@ export default function Settings() {
   const changeLanguage = (lang: string) => {
     i18n.changeLanguage(lang);
     setCurrentLang(lang);
-    setDropdownVisible(false); // Ukryj dropdown po wybraniu języka
+    setDropdownVisible(false);
   };
 
   const toggleDropdown = () => {
-    setDropdownVisible(!dropdownVisible); // Przełącz widoczność dropdownu
+    setDropdownVisible(!dropdownVisible);
   };
 
   return (
@@ -44,7 +44,6 @@ export default function Settings() {
           <View style={styles.optionsCard}>
             <Text style={styles.optionsTitle}>{t("screens.settings.lang")}</Text>
             <View style={styles.dropdownContainer}>
-              {/* Przycisk do wyświetlania obecnego języka i rozwijania listy */}
               <TouchableOpacity style={styles.dropdownButton} onPress={toggleDropdown}>
                 <Text style={styles.dropdownButtonText}>{languageNames[currentLang]}</Text>
                 <MaterialIcons
@@ -54,7 +53,6 @@ export default function Settings() {
                 />
               </TouchableOpacity>
 
-              {/* Rozwijane menu do wyboru języka */}
               {dropdownVisible && (
                 <View style={styles.dropdownMenu}>
                   <TouchableOpacity

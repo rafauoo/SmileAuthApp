@@ -42,7 +42,7 @@ export default function VideoViewComponent({
       const scoreNum = Number(score);
       const date = await saveEvaluation(scoreNum, comment, video);
       setLoading(false);
-      router.push({ pathname: "/score", params: { score, comment, date } });
+      router.push({ pathname: "/score", params: { score, comment, date, video } });
     } else {
       setLoading(false);
       Alert.alert("Evaluation failed. Please try again.");
@@ -67,6 +67,7 @@ export default function VideoViewComponent({
         source={{ uri: video }}
         style={styles.video}
         isLooping
+        isMuted
         resizeMode={ResizeMode.COVER}
       />
       <View style={styles.buttonContainer}>

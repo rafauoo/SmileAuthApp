@@ -11,7 +11,7 @@ interface IconButtonProps {
   containerWidth: number;
   iconSize: number;
   containerStyle?: StyleProp<ViewStyle>;
-  onPress?: () => void;
+  onPress?: (...args: any[]) => void;
   color: string
   bgColor?: string
 }

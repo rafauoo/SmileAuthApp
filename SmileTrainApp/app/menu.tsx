@@ -27,7 +27,6 @@ export default function MenuScreen() {
     const loadHistory = async () => {
       setIsHistoryLoaded(false);
       const fetchedHistory = await fetchHistory();
-      console.log(fetchedHistory);
       setHistory(fetchedHistory);
       setIsHistoryLoaded(true);
     };
@@ -97,31 +96,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: "center",
   },
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginBottom: 10,
-  },
-  periodButton: {
-    padding: 10,
-    borderRadius: 10,
-    backgroundColor: "#ccc",
-  },
-  activeButton: {
-    backgroundColor: "#ffa726",
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
   subTitle: {
     fontSize: 22,
     fontWeight: "bold",
     marginTop: 40,
     marginBottom: 10,
-  },
-  chart: {
-    marginVertical: 10,
-    borderRadius: 16,
   },
 });

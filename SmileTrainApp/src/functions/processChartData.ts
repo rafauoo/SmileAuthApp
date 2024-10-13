@@ -11,14 +11,11 @@ export default function processChartData(history: Evaluation[], period: string, 
         case periodList[0]:
             // labels
             labels = labelsXaxis.week;
-            console.log(labels)
             
             data = Array(7).fill(0);
             let countPerDay = Array(7).fill(0);
-            console.log(history)
             history.forEach(evaluation => {
                 const evaluationDate = moment((new Date(evaluation.date)));
-                console.log(evaluationDate)
                 const diffInDays = today.diff(evaluationDate, 'days');
     
                 if (diffInDays >= 0 && diffInDays < 7) {
@@ -32,7 +29,6 @@ export default function processChartData(history: Evaluation[], period: string, 
     
             data = data.slice(today.isoWeekday()).concat(data.slice(0, today.isoWeekday()));
             labels = labels.slice(today.isoWeekday()).concat(labels.slice(0, today.isoWeekday()));
-            console.log(data)
             break;
         case periodList[1]:
             // labels
@@ -79,13 +75,11 @@ export default function processChartData(history: Evaluation[], period: string, 
             
             data = data.slice(today.month() + 1).concat(data.slice(0, today.month() + 1));
             labels = labels.slice(today.month() + 1).concat(labels.slice(0, today.month() + 1));
-            console.log(data)
             break;
         default:
             break;
     }
     const newData = data.map(value => value === 0 ? 0 : value)
-    console.log(newData)
     return ({
         labels,
         datasets: [{ data: newData },         {

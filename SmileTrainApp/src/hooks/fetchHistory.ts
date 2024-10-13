@@ -4,7 +4,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export async function fetchHistory() {
   try {
     const storedHistory = await AsyncStorage.getItem("evaluationHistory");
-    console.log(storedHistory);
     if (storedHistory) {
       const evaluations: Evaluation[] = JSON.parse(storedHistory);
       evaluations.sort(

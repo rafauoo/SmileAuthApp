@@ -2,13 +2,9 @@ import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import IconButton from "./IconButton";
 import { useRouter } from "expo-router";
-import { Alert } from "react-native";
 import { TouchableOpacity, FlatList, Text } from "react-native";
-import { useState, useEffect } from "react";
-import { deleteEvaluation } from "@/src/hooks/deleteEvaluation";
 import { format } from 'date-fns';
 import Evaluation from "../interfaces/Evaluation";
-import { fetchHistory } from "../hooks/fetchHistory";
 
 interface Props {
     history: Evaluation[];
@@ -68,8 +64,8 @@ const styles = StyleSheet.create({
         marginVertical: 8,
         borderRadius: 10,
         backgroundColor: '#ffffff',
-        elevation: 3, // Android shadow
-        shadowColor: '#000', // iOS shadow
+        elevation: 3,
+        shadowColor: '#000',
         shadowOffset: {
             width: 0,
             height: 1,

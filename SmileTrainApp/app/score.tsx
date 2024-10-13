@@ -6,6 +6,9 @@ import IconButton from "../src/components/IconButton";
 import { Video, ResizeMode } from "expo-av";
 import { format } from "date-fns";
 import { useEffect } from "react";
+import { fetchHistory } from "@/src/hooks/fetchHistory";
+import { deleteEvaluation } from "@/src/hooks/deleteEvaluation";
+import { Alert } from "react-native";
 import { PanGestureHandlerGestureEvent } from "react-native-gesture-handler";
 import {
   PanGestureHandler,
@@ -43,8 +46,32 @@ export default function ScoreScreen() {
     }
   }
 
+  async function handleDelete(date: string | undefined) {
+    if (date) {
+      console.log(date)
+      Alert.alert(
+        t("screens.menu.deleteAlert.title"),
+        t("screens.menu.deleteAlert.desc"),
+        [
+          {
+            text: t("screens.menu.deleteAlert.cancel"),
+            style: "cancel",
+          },
+          {
+            text: t("screens.menu.deleteAlert.ok"),
+            onPress: async () => {
+              const history = await fetchHistory();
+              const newHistory = await deleteEvaluation(history, date);
+              router.push('/menu');
+            },
+          },
+        ]
+      );
+    }
+  }
+
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    <GestureHandlerRootView style={styles.root}>
       <PanGestureHandler onGestureEvent={handleSwipeRight}>
         <View style={styles.container}>
           {video && (
@@ -59,33 +86,51 @@ export default function ScoreScreen() {
           )}
 
           <View style={styles.content}>
-            <Text style={styles.title}>{t("screens.score.title")}</Text>
-            <ProgressBar
-              progress={scoreNum / 100}
-              color={
-                scoreNum > 70
-                  ? "#4CAF50"
-                  : scoreNum > 40
-                  ? "#FFEB3B"
-                  : "#F44336"
-              }
-              style={styles.progressBar}
-            />
-            <Text style={styles.scoreText}>{scoreNum.toFixed(2)}%</Text>
-            <Text style={styles.comment}>{comment}</Text>
-            <Text style={styles.comment}>
+            <Text style={styles.date}>
               {date ? format(new Date(date), "dd/MM/yyyy, H:mm:ss") : date}
             </Text>
-
-            <IconButton
-              onPress={handleGoBack}
-              iosName={"list.bullet"}
-              androidName="home"
-              color="white"
-              containerPadding={15}
-              containerWidth={75}
-              iconSize={45}
-            />
+            <View style={styles.scoreBoard}>
+              <Text style={styles.scoreText}>{scoreNum.toFixed(2)}%</Text>
+              <ProgressBar
+                progress={scoreNum / 100}
+                color={
+                  scoreNum > 70
+                    ? "#4CAF50"
+                    : scoreNum > 40
+                    ? "#FFEB3B"
+                    : "#F44336"
+                }
+                style={styles.progressBar}
+              />
+            </View>
+            <Text style={styles.commentTitle}>Komentarz</Text>
+            <Text style={styles.comment}>{comment}</Text>
+            <View style={styles.bottomRow}>
+              <View style={styles.bottomRowLeft}>
+                <IconButton
+                  onPress={handleGoBack}
+                  iosName={"list.bullet"}
+                  androidName="home"
+                  color="white"
+                  bgColor="#FF8940"
+                  containerPadding={15}
+                  containerWidth={70}
+                  iconSize={40}
+                />
+              </View>
+              <View style={styles.bottomRowRight}>
+                <IconButton
+                onPress={() => handleDelete(date)}
+                iosName={"trash"}
+                androidName="trash"
+                bgColor="#FF8940"
+                color="white"
+                containerPadding={15}
+                containerWidth={70}
+                iconSize={40}
+                />
+              </View>
+            </View>
           </View>
         </View>
       </PanGestureHandler>
@@ -94,50 +139,87 @@ export default function ScoreScreen() {
 }
 
 const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    backgroundColor: "#ECEFF1",
+  },
   container: {
     flex: 1,
-    backgroundColor: "#F0F4F8",
+    justifyContent: "center",
+    backgroundColor: "#ECEFF1",
+  },
+  scoreBoard: {
+    flexDirection: 'row',
+    width: "100%",
+    alignSelf: "center",
+    alignItems: "center",
   },
   video: {
     width: "100%",
-    height: "45%",
-    backgroundColor: "#F0F4F8",
+    height: "40%",
+    backgroundColor: "#ECEFF1",
+    borderRadius: 15,
   },
   content: {
     flex: 1,
     padding: 20,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: "bold",
-    color: "#2E86C1",
-    marginBottom: 30,
+    backgroundColor: "#FFFFFF",
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
+    elevation: 5,
   },
   progressBar: {
-    height: 15,
-    width: "90%",
-    borderRadius: 8,
+    alignSelf: "center",
+    alignItems: "flex-end",
+    marginTop: 8,
+    height: 20,
+    width: 160,
+    borderRadius: 10,
     marginBottom: 20,
-    backgroundColor: "#E0E0E0",
+    backgroundColor: "#CCCCCC",
   },
   scoreText: {
-    fontSize: 34,
+    width: '50%',
+    fontSize: 50,
     fontWeight: "bold",
     color: "#424242",
-    marginBottom: 15,
+    marginBottom: 10,
   },
   comment: {
     fontSize: 18,
-    textAlign: "center",
-    color: "#555",
-    marginBottom: 30,
-    paddingHorizontal: 10,
+    color: "#757575",
+    marginBottom: 20,
+    paddingHorizontal: 20,
   },
-  iconButton: {
-    backgroundColor: "#2E86C1",
-    borderRadius: 50,
-    marginTop: 10,
+  date: {
+    marginTop: -5,
+    alignSelf: 'center',
+    fontSize: 16,
+    fontWeight: '600',
+    marginBottom: 20,
   },
+  commentTitle: {
+    alignSelf: 'center',
+    fontSize: 20,
+    fontWeight: '600',
+    marginBottom: 20,
+  },
+  bottomRow: {
+    position: 'absolute',
+    flexDirection: 'row',
+    width: "100%",
+    alignSelf: 'center',
+    bottom: 30,
+  },
+  bottomRowLeft: {
+    width: "50%",
+    alignItems: 'flex-start'
+  },
+  bottomRowRight: {
+    width: "50%",
+    alignItems: 'flex-end'
+  }
 });

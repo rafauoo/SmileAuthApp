@@ -8,6 +8,7 @@ import MainRowActions from "@/src/components/MainRowActions";
 import CameraTools from "@/src/components/CameraTools";
 import VideoViewComponent from "@/src/components/VideoView";
 import BottomRowTools from "@/src/components/BottomRowTools";
+import { CameraRecordingOptions } from "expo-camera";
 import { useRouter, useFocusEffect } from "expo-router";
 
 export default function HomeScreen() {
@@ -28,6 +29,11 @@ export default function HomeScreen() {
     }, [])
   );
 
+  const recordingOptions: CameraRecordingOptions = {
+    maxDuration: 6,
+    maxFileSize: 10 * 1024 * 1024, // maksymalny rozmiar pliku w bajtach (50 MB)
+  };
+
   async function toggleRecord() {
     if (isRecording) {
       cameraRef.current?.stopRecording();
@@ -43,12 +49,17 @@ export default function HomeScreen() {
       if (cameraFacing === "back") {
         setCameraTorch(cameraFlash);
       }
-      const response = await cameraRef.current?.recordAsync();
+      const response = await cameraRef.current?.recordAsync(recordingOptions);
       if (response) {
+        setCameraTorch(false);
+        setIsScreenFlash(false);
+        setIsRecording(false);
         setVideo(response.uri);
       }
     }
   }
+
+
 
   function handleDoubleTap(event: GestureEvent) {
     if (event.nativeEvent.state === State.ACTIVE) {
@@ -78,6 +89,7 @@ export default function HomeScreen() {
             ref={cameraRef}
             style={{ flex: 1 }}
             facing={cameraFacing}
+            videoQuality="720p"
             mode="video"
             zoom={cameraZoom}
             enableTorch={cameraTorch}

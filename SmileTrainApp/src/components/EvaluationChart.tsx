@@ -58,7 +58,6 @@ export default function EvaluationChart({ history, isHistoryLoaded }: Props) {
 
   useEffect(() => {
     setChartData(processChartData(history, selectedPeriod, periodList, labels));
-    console.log(chartData)
   }, [selectedPeriod, history]);
 
 
