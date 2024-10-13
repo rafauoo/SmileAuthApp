@@ -1,46 +1,56 @@
 import { Stack } from "expo-router";
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Text } from "react-native";
+import { useSegments } from "expo-router";
+import { useState } from "react";
 
 export default function AppLayout() {
+  const segments = useSegments()
+  const [prevSegment, setPrevSegment] = useState<string|null>(null);
+  const [currSegment, setCurrSegment] = useState<string|null>(null);
+  useEffect(() => {
+    setPrevSegment(currSegment)
+    setCurrSegment(segments[0])
+   }, [segments])
   return (
     <Stack>
       <Stack.Screen
         name="score"
         options={{
-          presentation: "card", // Można zostawić 'fullScreenModal' jeśli to potrzebne
+          presentation: "card",
           headerShown: false,
           gestureEnabled: true,
-          gestureDirection: "horizontal", // Ustawiamy gest w poziomie
-          animation: "slide_from_right"
+          gestureDirection: "horizontal",
+          animation: "slide_from_right",
         }}
       />
       <Stack.Screen
         name="menu"
         options={{
-          presentation: "card", // Obsługa typu "card" dla animacji
+          presentation: "card",
           headerShown: false,
-          animation: "slide_from_left", // Animacja przesuwania z lewej strony
-          gestureEnabled: true, // Włączenie obsługi gestów
-          gestureDirection: "horizontal", // Ustawiamy gest w poziomie
+          gestureEnabled: true,
+          gestureDirection: "horizontal",
+          animation: "slide_from_left"
         }}
       />
       <Stack.Screen
         name="main"
         options={{
-          presentation: "card", // Można zostawić 'fullScreenModal' jeśli to potrzebne
+          presentation: "card",
           headerShown: false,
           gestureEnabled: true,
-          gestureDirection: "horizontal", // Ustawiamy gest w poziomie
-          animation: "slide_from_right"
+          gestureDirection: "horizontal",
+          animation: prevSegment === "settings" ? "slide_from_left" : "slide_from_right"
         }}
       />
       <Stack.Screen
         name="settings"
         options={{
-          presentation: "card", // Można zostawić 'fullScreenModal' jeśli to potrzebne
+          presentation: "card",
           headerShown: false,
           gestureEnabled: true,
-          gestureDirection: "horizontal", // Ustawiamy gest w poziomie
+          gestureDirection: "horizontal",
           animation: "slide_from_right"
         }}
       />

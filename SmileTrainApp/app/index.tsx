@@ -16,6 +16,7 @@ export default function LoadingPage() {
   const navigateToHome = useCallback(async () => {
     if (appLoaded && permissionsGranted) {
       await SplashScreen.hideAsync();
+      console.log("Navigating to main screen");
       router.push("/main");
     }
   }, [appLoaded, permissionsGranted, router]);
