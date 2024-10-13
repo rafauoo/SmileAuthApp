@@ -45,7 +45,8 @@
       }
     },
     "score": {
-      "title": "Twój wynik"
+      "commentTitle": "Komentarz",
+      "videoNotAv": "Nie znaleziono wideo."
     },
     "settings": {
       "title": "Ustawienia",

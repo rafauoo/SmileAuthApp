@@ -118,9 +118,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: "#ddd",
+    borderRadius: 20,
     backgroundColor: "#FF8940",
   },
   dropdownButtonText: {
@@ -130,14 +128,14 @@ const styles = StyleSheet.create({
   },
   dropdownMenu: {
     position: "absolute",
-    top: 45, // Adjust according to the button height
+    top: 45,
     right: 0,
     backgroundColor: "#FF8940",
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "#ddd",
-    width: 180, // Adjusted to accommodate language names
-    zIndex: 10, // Ensure the dropdown is above other elements
+    width: 180,
+    zIndex: 10,
   },
   dropdownItem: {
     paddingVertical: 15,

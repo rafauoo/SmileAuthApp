@@ -74,7 +74,7 @@ export default function ScoreScreen() {
     <GestureHandlerRootView style={styles.root}>
       <PanGestureHandler onGestureEvent={handleSwipeRight}>
         <View style={styles.container}>
-          {video && (
+          {video ? (
             <Video
               ref={videoRef}
               source={{ uri: video }}
@@ -83,7 +83,10 @@ export default function ScoreScreen() {
               isMuted
               resizeMode={ResizeMode.CONTAIN}
             />
-          )}
+          ) : (<Text style={styles.notFoundText}>
+            {t("screens.score.videoNotAv")}
+          </Text>)
+        }
 
           <View style={styles.content}>
             <Text style={styles.date}>
@@ -103,7 +106,7 @@ export default function ScoreScreen() {
                 style={styles.progressBar}
               />
             </View>
-            <Text style={styles.commentTitle}>Komentarz</Text>
+            <Text style={styles.commentTitle}>{t("screens.score.commentTitle")}</Text>
             <Text style={styles.comment}>{comment}</Text>
             <View style={styles.bottomRow}>
               <View style={styles.bottomRowLeft}>
@@ -139,6 +142,14 @@ export default function ScoreScreen() {
 }
 
 const styles = StyleSheet.create({
+  notFoundText: {
+    fontSize: 40,
+    fontWeight: "bold",
+    color: "#424242",
+    marginTop: 100,
+    marginBottom: 100,
+    alignSelf: 'center'
+  },
   root: {
     flex: 1,
     backgroundColor: "#ECEFF1",
