@@ -1,8 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Evaluation from '../interfaces/Evaluation';
 import * as FileSystem from "expo-file-system";
+import { fetchHistory } from './fetchHistory';
 
-export async function deleteEvaluation(history: Evaluation[], date: string) {
+export async function deleteEvaluation(date: string) {
+    const history = await fetchHistory();
     const updatedHistory = history.filter(item => item.date.toString() !== date);
     const itemToDelete = history.filter(item => item.date.toString() === date)[0];
     if (itemToDelete?.video) {

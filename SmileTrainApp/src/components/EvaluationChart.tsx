@@ -27,7 +27,8 @@ export default function EvaluationChart({ history, isHistoryLoaded }: Props) {
   });
   const { t, i18n } = useTranslation();
   const labels: Labels = {
-    week: [t("screens.menu.chart.xaxis.week.mon"),
+    week: [
+      t("screens.menu.chart.xaxis.week.mon"),
       t("screens.menu.chart.xaxis.week.tue"),
       t("screens.menu.chart.xaxis.week.wed"),
       t("screens.menu.chart.xaxis.week.thu"),
@@ -35,7 +36,8 @@ export default function EvaluationChart({ history, isHistoryLoaded }: Props) {
       t("screens.menu.chart.xaxis.week.sat"),
       t("screens.menu.chart.xaxis.week.sun"),
     ],
-    year: [t("screens.menu.chart.xaxis.year.jan"),
+    year: [
+      t("screens.menu.chart.xaxis.year.jan"),
       t("screens.menu.chart.xaxis.year.feb"),
       t("screens.menu.chart.xaxis.year.mar"),
       t("screens.menu.chart.xaxis.year.apr"),
@@ -48,18 +50,17 @@ export default function EvaluationChart({ history, isHistoryLoaded }: Props) {
       t("screens.menu.chart.xaxis.year.nov"),
       t("screens.menu.chart.xaxis.year.dec"),
     ],
-  }
+  };
   const periodList = [
     t("screens.menu.chart.week"),
     t("screens.menu.chart.month"),
     t("screens.menu.chart.year"),
-  ]
+  ];
   const [selectedPeriod, setSelectedPeriod] = useState<string>(periodList[0]);
 
   useEffect(() => {
     setChartData(processChartData(history, selectedPeriod, periodList, labels));
   }, [selectedPeriod, history]);
-
 
   return (
     <View>
@@ -73,10 +74,12 @@ export default function EvaluationChart({ history, isHistoryLoaded }: Props) {
             ]}
             onPress={() => setSelectedPeriod(period)}
           >
-            <Text style={[
-              styles.buttonText,
-              selectedPeriod === period && styles.activeButtonText,
-            ]}>
+            <Text
+              style={[
+                styles.buttonText,
+                selectedPeriod === period && styles.activeButtonText,
+              ]}
+            >
               {period.charAt(0).toUpperCase() + period.slice(1)}
             </Text>
           </TouchableOpacity>
@@ -103,8 +106,7 @@ export default function EvaluationChart({ history, isHistoryLoaded }: Props) {
             },
             propsForVerticalLabels: {
               fontSize: 10,
-
-            }
+            },
           }}
           bezier
           style={styles.chart}
@@ -123,18 +125,18 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   periodButton: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     padding: 12,
     marginVertical: 2,
     borderRadius: 10,
-    backgroundColor: '#ffffff',
+    backgroundColor: "#ffffff",
     elevation: 3,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
-        width: 0,
-        height: 1,
+      width: 0,
+      height: 1,
     },
     shadowOpacity: 0.2,
     shadowRadius: 1.41,
@@ -143,7 +145,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FF8940",
   },
   activeButtonText: {
-    color: "#FFFFFF"
+    color: "#FFFFFF",
   },
   buttonText: {
     fontSize: 16,

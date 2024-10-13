@@ -42,12 +42,23 @@ export default function Settings() {
         <View style={styles.container}>
           <Text style={styles.title}>{t("screens.settings.title")}</Text>
           <View style={styles.optionsCard}>
-            <Text style={styles.optionsTitle}>{t("screens.settings.lang")}</Text>
+            <Text style={styles.optionsTitle}>
+              {t("screens.settings.lang")}
+            </Text>
             <View style={styles.dropdownContainer}>
-              <TouchableOpacity style={styles.dropdownButton} onPress={toggleDropdown}>
-                <Text style={styles.dropdownButtonText}>{languageNames[currentLang]}</Text>
+              <TouchableOpacity
+                style={styles.dropdownButton}
+                onPress={toggleDropdown}
+              >
+                <Text style={styles.dropdownButtonText}>
+                  {languageNames[currentLang]}
+                </Text>
                 <MaterialIcons
-                  name={dropdownVisible ? "keyboard-arrow-up" : "keyboard-arrow-down"}
+                  name={
+                    dropdownVisible
+                      ? "keyboard-arrow-up"
+                      : "keyboard-arrow-down"
+                  }
                   size={24}
                   color="#FFFFFF"
                 />
@@ -123,8 +134,8 @@ const styles = StyleSheet.create({
   },
   dropdownButtonText: {
     fontSize: 20,
-    fontWeight: 'bold',
-    color: '#FFFFFF'
+    fontWeight: "bold",
+    color: "#FFFFFF",
   },
   dropdownMenu: {
     position: "absolute",
@@ -145,6 +156,6 @@ const styles = StyleSheet.create({
   },
   dropdownItemText: {
     fontSize: 20,
-    color: "#FFFFFF"
+    color: "#FFFFFF",
   },
 });

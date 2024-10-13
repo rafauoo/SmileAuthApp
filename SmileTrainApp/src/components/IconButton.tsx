@@ -1,7 +1,7 @@
 import { ComponentProps } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { SFSymbol, SymbolView } from "expo-symbols";
-import React from 'react'
+import React from "react";
 import { StyleProp, TouchableOpacity, ViewStyle } from "react-native";
 
 interface IconButtonProps {
@@ -12,8 +12,8 @@ interface IconButtonProps {
   iconSize: number;
   containerStyle?: StyleProp<ViewStyle>;
   onPress?: (...args: any[]) => void;
-  color: string
-  bgColor?: string
+  color: string;
+  bgColor?: string;
 }
 
 export default function IconButton({
@@ -25,7 +25,7 @@ export default function IconButton({
   iosName,
   containerStyle,
   color,
-  bgColor
+  bgColor,
 }: IconButtonProps) {
   return (
     <TouchableOpacity

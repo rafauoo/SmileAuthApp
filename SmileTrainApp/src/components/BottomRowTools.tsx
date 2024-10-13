@@ -15,10 +15,26 @@ export default function BottomRowTools() {
   return (
     <View style={[styles.bottomContainer]}>
       <View style={[styles.bottomContainerLeft]}>
-        <IconButton containerPadding={10} containerWidth={50} iconSize={30} androidName="menu" iosName="list.bullet" onPress={goToMenu} color="white"/>
+        <IconButton
+          containerPadding={10}
+          containerWidth={50}
+          iconSize={30}
+          androidName="menu"
+          iosName="list.bullet"
+          onPress={goToMenu}
+          color="white"
+        />
       </View>
       <View style={[styles.bottomContainerRight]}>
-        <IconButton containerPadding={10} containerWidth={50} iconSize={30} androidName="settings-sharp" iosName="gear" onPress={goToSettings} color="white"/>
+        <IconButton
+          containerPadding={10}
+          containerWidth={50}
+          iconSize={30}
+          androidName="settings-sharp"
+          iosName="gear"
+          onPress={goToSettings}
+          color="white"
+        />
       </View>
     </View>
   );
@@ -26,7 +42,7 @@ export default function BottomRowTools() {
 
 const styles = StyleSheet.create({
   bottomContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     width: "100%",
     position: "absolute",
     alignSelf: "center",

@@ -16,11 +16,7 @@ export default function MainRowActions({
     <View style={styles.container}>
       <TouchableOpacity onPress={handleTakePicture} style={styles.button}>
         <SymbolView
-          name={
-              isRecording
-              ? "record.circle"
-              : "circle.circle"
-          }
+          name={isRecording ? "record.circle" : "circle.circle"}
           size={90}
           type="hierarchical"
           style={{ marginLeft: 13 }}

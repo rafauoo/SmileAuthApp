@@ -42,7 +42,10 @@ export default function VideoViewComponent({
       const scoreNum = Number(score);
       const date = await saveEvaluation(scoreNum, comment, video);
       setLoading(false);
-      router.push({ pathname: "/score", params: { score, comment, date, video } });
+      router.push({
+        pathname: "/score",
+        params: { score, comment, date, video },
+      });
     } else {
       setLoading(false);
       Alert.alert("Evaluation failed. Please try again.");

@@ -2,13 +2,10 @@ import React, { useRef } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { ProgressBar } from "react-native-paper";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import IconButton from "../src/components/IconButton";
 import { Video, ResizeMode } from "expo-av";
 import { format } from "date-fns";
 import { useEffect } from "react";
-import { fetchHistory } from "@/src/hooks/fetchHistory";
-import { deleteEvaluation } from "@/src/hooks/deleteEvaluation";
-import { Alert } from "react-native";
+import BottomRowScore from "@/src/components/BottomRowScore";
 import { PanGestureHandlerGestureEvent } from "react-native-gesture-handler";
 import {
   PanGestureHandler,
@@ -29,10 +26,6 @@ export default function ScoreScreen() {
   const router = useRouter();
   const [isNavigating, setIsNavigating] = React.useState<boolean>(false);
 
-  const handleGoBack = () => {
-    router.push("/menu");
-  };
-
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.playAsync();
@@ -43,30 +36,6 @@ export default function ScoreScreen() {
     if (event.nativeEvent.translationX > 100 && !isNavigating) {
       setIsNavigating(true);
       router.push("/menu");
-    }
-  }
-
-  async function handleDelete(date: string | undefined) {
-    if (date) {
-      console.log(date)
-      Alert.alert(
-        t("screens.menu.deleteAlert.title"),
-        t("screens.menu.deleteAlert.desc"),
-        [
-          {
-            text: t("screens.menu.deleteAlert.cancel"),
-            style: "cancel",
-          },
-          {
-            text: t("screens.menu.deleteAlert.ok"),
-            onPress: async () => {
-              const history = await fetchHistory();
-              const newHistory = await deleteEvaluation(history, date);
-              router.push('/menu');
-            },
-          },
-        ]
-      );
     }
   }
 
@@ -83,10 +52,11 @@ export default function ScoreScreen() {
               isMuted
               resizeMode={ResizeMode.CONTAIN}
             />
-          ) : (<Text style={styles.notFoundText}>
-            {t("screens.score.videoNotAv")}
-          </Text>)
-        }
+          ) : (
+            <Text style={styles.notFoundText}>
+              {t("screens.score.videoNotAv")}
+            </Text>
+          )}
 
           <View style={styles.content}>
             <Text style={styles.date}>
@@ -106,34 +76,11 @@ export default function ScoreScreen() {
                 style={styles.progressBar}
               />
             </View>
-            <Text style={styles.commentTitle}>{t("screens.score.commentTitle")}</Text>
+            <Text style={styles.commentTitle}>
+              {t("screens.score.commentTitle")}
+            </Text>
             <Text style={styles.comment}>{comment}</Text>
-            <View style={styles.bottomRow}>
-              <View style={styles.bottomRowLeft}>
-                <IconButton
-                  onPress={handleGoBack}
-                  iosName={"list.bullet"}
-                  androidName="home"
-                  color="white"
-                  bgColor="#FF8940"
-                  containerPadding={15}
-                  containerWidth={70}
-                  iconSize={40}
-                />
-              </View>
-              <View style={styles.bottomRowRight}>
-                <IconButton
-                onPress={() => handleDelete(date)}
-                iosName={"trash"}
-                androidName="trash"
-                bgColor="#FF8940"
-                color="white"
-                containerPadding={15}
-                containerWidth={70}
-                iconSize={40}
-                />
-              </View>
-            </View>
+            <BottomRowScore date={date} />
           </View>
         </View>
       </PanGestureHandler>
@@ -148,7 +95,7 @@ const styles = StyleSheet.create({
     color: "#424242",
     marginTop: 100,
     marginBottom: 100,
-    alignSelf: 'center'
+    alignSelf: "center",
   },
   root: {
     flex: 1,
@@ -160,7 +107,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#ECEFF1",
   },
   scoreBoard: {
-    flexDirection: 'row',
+    flexDirection: "row",
     width: "100%",
     alignSelf: "center",
     alignItems: "center",
@@ -193,7 +140,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#CCCCCC",
   },
   scoreText: {
-    width: '50%',
+    width: "50%",
     fontSize: 50,
     fontWeight: "bold",
     color: "#424242",
@@ -207,30 +154,30 @@ const styles = StyleSheet.create({
   },
   date: {
     marginTop: -5,
-    alignSelf: 'center',
+    alignSelf: "center",
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
     marginBottom: 20,
   },
   commentTitle: {
-    alignSelf: 'center',
+    alignSelf: "center",
     fontSize: 20,
-    fontWeight: '600',
+    fontWeight: "600",
     marginBottom: 20,
   },
   bottomRow: {
-    position: 'absolute',
-    flexDirection: 'row',
+    position: "absolute",
+    flexDirection: "row",
     width: "100%",
-    alignSelf: 'center',
+    alignSelf: "center",
     bottom: 30,
   },
   bottomRowLeft: {
     width: "50%",
-    alignItems: 'flex-start'
+    alignItems: "flex-start",
   },
   bottomRowRight: {
     width: "50%",
-    alignItems: 'flex-end'
-  }
+    alignItems: "flex-end",
+  },
 });

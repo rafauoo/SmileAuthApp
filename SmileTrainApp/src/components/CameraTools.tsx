@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native";
 import IconButton from "./IconButton";
-import React from 'react'
+import React from "react";
 
 interface CameraToolsProps {
   cameraFlash: boolean;
@@ -15,7 +15,9 @@ export default function CameraTools({
   return (
     <View style={styles.container}>
       <IconButton
-        containerPadding={10} containerWidth={50} iconSize={30}
+        containerPadding={10}
+        containerWidth={50}
+        iconSize={30}
         color="white"
         onPress={() =>
           setCameraFacing((prevValue) =>
@@ -26,7 +28,9 @@ export default function CameraTools({
         androidName="camera-reverse-outline"
       />
       <IconButton
-        containerPadding={10} containerWidth={50} iconSize={30}
+        containerPadding={10}
+        containerWidth={50}
+        iconSize={30}
         color="white"
         onPress={() =>
           setCameraFlash((prevValue) => (prevValue === false ? true : false))

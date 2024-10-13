@@ -52,7 +52,7 @@ export default function MenuScreen() {
         {
           text: t("screens.menu.deleteAlert.ok"),
           onPress: async () => {
-            const newHistory = await deleteEvaluation(history, date);
+            const newHistory = await deleteEvaluation(date);
             setHistory(newHistory);
           },
         },
