@@ -1,5 +1,6 @@
 import uvicorn
 import base64
+import random
 import torch
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -7,12 +8,13 @@ from model.lstm import SmileAuthenticityPredictor
 from model.evaluate import evaluate_data
 from DataScripts.process.flow import flow
 from DataScripts.exceptions import SmileNotDetectedException
-from API.config import API_CKPT_PATH
+from API.config import API_CKPT_PATH, COMMENTS_PATH
 from API.definitions import VideoData
 from API.exceptions import VideoTooLongException
 from API.validate import validate_video
+from API.comment import CommentList
 
-
+CommentList().from_file(COMMENTS_PATH)
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -45,11 +47,12 @@ async def upload_video(data: VideoData) -> dict:
             validate_video(video_bytes)
             angles = flow(video_bytes)
         except SmileNotDetectedException:
-            return {"result": "Smile was not detected!"}
+            return {"exception": "Smile was not detected!"}
         except VideoTooLongException:
-            return {"result": "Video was too long!"}
+            return {"exception": "Video was too long!"}
         result = evaluate_data(model, device, angles)
-        return {"result": result}
+        comment = (random.choice(CommentList.available_comments(result)))
+        return {"result": result, "comment": comment.get_content()}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

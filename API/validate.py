@@ -11,6 +11,7 @@ def get_video_length(video_bytes: bytes) -> tuple[int, int]:
     :type video_bytes: bytes
     :return: (duration, fps)
     :rtype: tuple[int, int]
+    :raises ValueError: when not valid video bytes
     """
     video_buffer = io.BytesIO(video_bytes)
     with av.open(video_buffer) as container:
@@ -25,6 +26,7 @@ def validate_video(video_bytes: bytes) -> None:
     :param video_bytes: video bytes
     :type video_bytes: bytes
     :raises VideoTooLongException: when video duration > VIDEO_LENGTH_LIMIT_MS
+    :raises ValueError: when not valid video bytes
     """
     duration, fps = get_video_length(video_bytes)
     if duration > VIDEO_LENGTH_LIMIT_MS:

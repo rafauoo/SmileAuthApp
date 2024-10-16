@@ -1,9 +1,6 @@
 import base64
 from DataScripts.process.video_rotation import detect_rotation
-from DataScripts.process.flow import flow
-import time
 import requests
-from API.validate import validate_video
 
 if __name__ == "__main__":
     with open("./API/movie.mp4", "rb") as video_file:

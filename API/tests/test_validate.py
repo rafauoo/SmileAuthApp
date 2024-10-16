@@ -1,5 +1,6 @@
-from API.validate import get_video_length, validate_video, VideoTooLongException
+from API.validate import get_video_length, validate_video
 import cv2
+from API.exceptions import VideoTooLongException
 import numpy as np
 import os
 import tempfile
@@ -62,7 +63,7 @@ def test_validate_video_valid():
     try:
         validate_video(video_bytes)
     except VideoTooLongException:
-        pytest.fail("validate_video() raised VideoTooLongException unexpectedly")
+        pytest.fail("validate_video() raised VideoTooLongException")
 
 
 def test_validate_video_too_long():
