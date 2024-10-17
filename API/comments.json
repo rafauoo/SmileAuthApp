@@ -1,23 +1,23 @@
 [
   {
     "min": 0,
-    "max": 2,
+    "max": 33,
     "content": {
       "pl": "Polski komentarz",
       "en": "English comment"
     }
   },
   {
-    "min": 0,
-    "max": 2,
+    "min": 33,
+    "max": 66,
     "content": {
       "pl": "Inny polski komentarz",
       "en": "Another English comment"
     }
   },
   {
-    "min": 0,
-    "max": 2,
+    "min": 66,
+    "max": 100,
     "content": {
       "pl": "Jeszcze jeden polski komentarz",
       "en": "Yet another English comment"

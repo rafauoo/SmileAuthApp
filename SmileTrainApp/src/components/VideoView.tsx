@@ -34,11 +34,10 @@ export default function VideoViewComponent({
   const handleSend = async () => {
     setLoading(true);
     const result = await sendVideoToServer(video);
-    console.log(result);
 
     if (result.success) {
       const score = result.result;
-      const comment = "Komentarz";
+      const comment = result.comment;
       const scoreNum = Number(score);
       const date = await saveEvaluation(scoreNum, comment, video);
       setLoading(false);

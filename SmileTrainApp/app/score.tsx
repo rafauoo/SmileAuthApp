@@ -25,7 +25,7 @@ export default function ScoreScreen() {
   const videoRef = useRef<Video>(null);
   const router = useRouter();
   const [isNavigating, setIsNavigating] = React.useState<boolean>(false);
-
+  console.log(comment);
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.playAsync();

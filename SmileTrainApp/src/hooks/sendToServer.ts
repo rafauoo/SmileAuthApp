@@ -28,7 +28,7 @@ export async function sendVideoToServer(videoUri: string) {
     console.log(result)
     if (result.result === "Smile was not detected!")
       return { success: false }
-    return { result: result.result, success: true}
+    return { result: result.result, success: true, comment: result.comment}
   } catch (error) {
     console.error(error);
     return { success: false }
