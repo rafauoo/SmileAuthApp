@@ -20,6 +20,7 @@ export default function HomeScreen() {
   const cameraRef = React.useRef<CameraView>(null);
   const [cameraTorch, setCameraTorch] = React.useState<boolean>(false);
   const [cameraFlash, setCameraFlash] = React.useState<boolean>(false);
+  const [cameraReady, setCameraReady] = React.useState<boolean>(false);
   const [cameraFacing, setCameraFacing] = React.useState<"front" | "back">(
     "back"
   );
@@ -41,25 +42,28 @@ export default function HomeScreen() {
   };
 
   async function toggleRecord() {
-    if (isRecording) {
-      cameraRef.current?.stopRecording();
-      setCameraTorch(false);
-      setIsScreenFlash(false);
-      setIsRecording(false);
-    } else {
-      setIsRecording(true);
-      if (cameraFacing === "front") {
-        setIsScreenFlash(cameraFlash);
-      }
-      if (cameraFacing === "back") {
-        setCameraTorch(cameraFlash);
-      }
-      const response = await cameraRef.current?.recordAsync(recordingOptions);
-      if (response) {
+    if (cameraReady) {
+      if (isRecording) {
+        cameraRef.current?.stopRecording();
         setCameraTorch(false);
         setIsScreenFlash(false);
         setIsRecording(false);
-        setVideo(response.uri);
+      } else {
+        setIsRecording(true);
+        if (cameraFacing === "front") {
+          setIsScreenFlash(cameraFlash);
+        }
+        if (cameraFacing === "back") {
+          setCameraTorch(cameraFlash);
+        }
+        const response = await cameraRef.current?.recordAsync(recordingOptions);
+        if (response) {
+          setCameraTorch(false);
+          setIsScreenFlash(false);
+          setIsRecording(false);
+          setVideo(response.uri);
+          setCameraReady(false);
+        }
       }
     }
   }
@@ -81,7 +85,9 @@ export default function HomeScreen() {
     }
   }
 
-  if (video) return <VideoViewComponent video={video} setVideo={setVideo} />;
+  if (video) {
+    return <VideoViewComponent video={video} setVideo={setVideo} />;
+  }
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
@@ -98,7 +104,7 @@ export default function HomeScreen() {
             mode="video"
             zoom={0}
             enableTorch={cameraTorch}
-            onCameraReady={() => console.log("camera is ready")}
+            onCameraReady={() => setCameraReady(true)}
           >
             <SafeAreaView
               style={{
@@ -115,6 +121,7 @@ export default function HomeScreen() {
                 <MainRowActions
                   isRecording={isRecording}
                   handleTakePicture={toggleRecord}
+                  disabled={!cameraReady}
                 />
                 <BottomRowTools />
               </View>

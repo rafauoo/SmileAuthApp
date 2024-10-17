@@ -60,6 +60,7 @@ export default function EvaluationList({ history, onDelete }: Props) {
             androidName="trash"
             bgColor="#FF8940"
             color="white"
+            testID={`trash-${item.date}`}
             containerPadding={10}
             containerWidth={50}
             iconSize={30}

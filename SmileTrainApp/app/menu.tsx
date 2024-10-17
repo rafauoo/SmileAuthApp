@@ -22,13 +22,14 @@ export default function MenuScreen() {
   const [isNavigating, setIsNavigating] = useState<boolean>(false);
   const [history, setHistory] = useState<Evaluation[]>([]);
   const [isHistoryLoaded, setIsHistoryLoaded] = useState(false);
-
   useEffect(() => {
     const loadHistory = async () => {
       setIsHistoryLoaded(false);
-      const fetchedHistory = await fetchHistory();
-      setHistory(fetchedHistory);
-      setIsHistoryLoaded(true);
+      const result = await fetchHistory();
+      if (result.success && result.evaluations) {
+        setHistory(result.evaluations);
+        setIsHistoryLoaded(true);
+      }
     };
     loadHistory();
   }, []);
@@ -52,8 +53,21 @@ export default function MenuScreen() {
         {
           text: t("screens.menu.deleteAlert.ok"),
           onPress: async () => {
-            const newHistory = await deleteEvaluation(date);
-            setHistory(newHistory);
+            const result = await deleteEvaluation(date);
+            if (result.success && result.updatedHistory) {
+              setHistory(result.updatedHistory);
+            }
+            if (!result.success) {
+              Alert.alert(
+                t("exceptions.title"),
+                t("exceptions.deleteEvaluation"),
+                [
+                  {
+                    text: t("screens.menu.deleteAlert.okay"),
+                  },
+                ]
+              );
+            }
           },
         },
       ]

@@ -1,4 +1,4 @@
-import { CommentData } from "./Comment";
+import { CommentData } from "./CommentData";
 
 export default interface SendVideoResult {
     result?: string;

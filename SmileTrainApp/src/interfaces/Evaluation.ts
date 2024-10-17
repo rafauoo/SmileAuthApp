@@ -1,4 +1,4 @@
-import { CommentData } from "./Comment";
+import { CommentData } from "./CommentData";
 
 export default interface Evaluation {
     score: number;

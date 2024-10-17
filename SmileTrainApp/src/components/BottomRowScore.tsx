@@ -16,7 +16,6 @@ export default function BottomRowScore({ date }: { date: string | undefined }) {
 
   async function handleDelete(date: string | undefined) {
     if (date) {
-      console.log(date);
       Alert.alert(
         t("screens.menu.deleteAlert.title"),
         t("screens.menu.deleteAlert.desc"),
@@ -28,7 +27,19 @@ export default function BottomRowScore({ date }: { date: string | undefined }) {
           {
             text: t("screens.menu.deleteAlert.ok"),
             onPress: async () => {
-              const newHistory = await deleteEvaluation(date);
+              const result = await deleteEvaluation(date);
+              if (!result.success) {
+                Alert.alert(
+                  t("exceptions.title"),
+                  t("exceptions.deleteEvaluation"),
+                  [
+                    {
+                      text: t("screens.menu.deleteAlert.okay"),
+                    },
+                  ]
+                );
+                return;
+              }
               router.push("/menu");
             },
           },
@@ -41,7 +52,7 @@ export default function BottomRowScore({ date }: { date: string | undefined }) {
     <View style={styles.bottomRow}>
       <View style={styles.bottomRowLeft}>
         <IconButton
-          testID="iconButton-back" // Add testID for back button
+          testID="iconButton-back"
           onPress={handleGoBack}
           iosName={"list.bullet"}
           androidName="home"
@@ -54,7 +65,7 @@ export default function BottomRowScore({ date }: { date: string | undefined }) {
       </View>
       <View style={styles.bottomRowRight}>
         <IconButton
-          testID="iconButton-delete" // Add testID for delete button
+          testID="iconButton-delete"
           onPress={() => handleDelete(date)}
           iosName={"trash"}
           androidName="trash"

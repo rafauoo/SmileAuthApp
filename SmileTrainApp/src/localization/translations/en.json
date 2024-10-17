@@ -61,7 +61,11 @@
   },
   "exceptions": {
     "title": "Error has occured",
+    "deleteEvaluation": "Failed to delete the evaluation. Please try again.",
     "SmileNotDetected": "Smile was not found. Please try again.",
-    "VideoTooLong": "Video was too long. Please try again."
+    "VideoTooLong": "Video was too long. Please try again.",
+    "apiNotAvailable": "Could not connect to the server. Please try again later.",
+    "saveEvaluationFail": "Failed to save the evaluation. Shown results will not be saved.",
+    "saveEvaluationFailVideo": "Failed to save evaluation's video. The evaluation will be shown without the video."
   }
 }

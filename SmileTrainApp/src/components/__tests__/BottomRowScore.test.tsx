@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, waitFor } from "@testing-library/react-native";
+import { render, fireEvent } from "@testing-library/react-native";
 import BottomRowScore from "../BottomRowScore";
 import { Alert } from "react-native";
 import { useRouter } from "expo-router";
@@ -41,7 +41,9 @@ describe("BottomRowScore Component", () => {
       t: (key: string) => key,
     });
 
-    (deleteEvaluation as jest.Mock).mockImplementation(mockDeleteEvaluation);
+    (deleteEvaluation as jest.Mock).mockImplementation(async (date) => {
+      return { success: true };
+    });
   });
 
   it("should navigate to the menu when the back button is pressed", () => {
@@ -86,7 +88,7 @@ describe("BottomRowScore Component", () => {
       await okButton.onPress();
     }
 
-    expect(mockDeleteEvaluation).toHaveBeenCalledWith("2024-10-10");
+    expect(deleteEvaluation).toHaveBeenCalledWith("2024-10-10");
     expect(mockPush).toHaveBeenCalledWith("/menu");
   });
 
@@ -99,6 +101,40 @@ describe("BottomRowScore Component", () => {
     fireEvent.press(deleteButton);
 
     expect(alertSpy).not.toHaveBeenCalled();
-    expect(mockDeleteEvaluation).not.toHaveBeenCalled();
+    expect(deleteEvaluation).not.toHaveBeenCalled();
+  });
+
+  it("should show an alert when deleteEvaluation fails", async () => {
+    (deleteEvaluation as jest.Mock).mockImplementation(async () => {
+      return { success: false };
+    });
+
+    const alertSpy = jest.spyOn(Alert, "alert");
+
+    const { getByTestId } = render(<BottomRowScore date="2024-10-10" />);
+
+    const deleteButton = getByTestId("iconButton-delete");
+    fireEvent.press(deleteButton);
+
+    expect(alertSpy).toHaveBeenCalledWith(
+      "screens.menu.deleteAlert.title",
+      "screens.menu.deleteAlert.desc",
+      expect.any(Array)
+    );
+
+    const alertButtons = alertSpy.mock.calls[0][2];
+    const okButton = alertButtons && alertButtons[1];
+
+    if (okButton && okButton.onPress) {
+      await okButton.onPress();
+    }
+
+    expect(alertSpy).toHaveBeenCalledWith(
+      "exceptions.title",
+      "exceptions.deleteEvaluation",
+      expect.any(Array)
+    );
+
+    expect(mockPush).not.toHaveBeenCalled();
   });
 });

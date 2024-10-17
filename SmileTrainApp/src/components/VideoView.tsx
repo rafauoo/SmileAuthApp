@@ -40,22 +40,75 @@ export default function VideoViewComponent({
       const scoreNum = Number(score);
       if (result.comment) {
         const comment = result.comment;
-        const date = await saveEvaluation(scoreNum, comment, video);
+        const save_res = await saveEvaluation(scoreNum, comment, video);
         setLoading(false);
-        router.push({
-          pathname: "/score",
-          params: { score, comment: comment[commentKey], date, video },
-        });
-      } else {
-        const comment = { pl: "Brak komentarza.", en: "There is no comment." };
-        const date = await saveEvaluation(scoreNum, comment, video);
-        setLoading(false);
+        if (!save_res.success || !save_res.date) {
+          Alert.alert(
+            t("exceptions.title"),
+            t("exceptions.saveEvaluationFail"),
+            [
+              {
+                text: t("screens.menu.deleteAlert.okay"),
+                onPress: handleCancel,
+              },
+            ]
+          );
+        }
+        if (save_res.success && !save_res.videoSaveSuccess) {
+          Alert.alert(
+            t("exceptions.title"),
+            t("exceptions.saveEvaluationFailVideo"),
+            [
+              {
+                text: t("screens.menu.deleteAlert.okay"),
+                onPress: handleCancel,
+              },
+            ]
+          );
+        }
         router.push({
           pathname: "/score",
           params: {
             score,
             comment: comment[commentKey],
-            date,
+            date: save_res.date,
+            video,
+          },
+        });
+      } else {
+        const comment = { pl: "Brak komentarza.", en: "There is no comment." };
+        const save_res = await saveEvaluation(scoreNum, comment, video);
+        setLoading(false);
+        if (!save_res.success || !save_res.date) {
+          Alert.alert(
+            t("exceptions.title"),
+            t("exceptions.saveEvaluationFail"),
+            [
+              {
+                text: t("screens.menu.deleteAlert.okay"),
+                onPress: handleCancel,
+              },
+            ]
+          );
+        }
+        if (save_res.success && !save_res.videoSaveSuccess) {
+          Alert.alert(
+            t("exceptions.title"),
+            t("exceptions.saveEvaluationFailVideo"),
+            [
+              {
+                text: t("screens.menu.deleteAlert.okay"),
+                onPress: handleCancel,
+              },
+            ]
+          );
+        }
+        router.push({
+          pathname: "/score",
+          params: {
+            score,
+            comment: comment[commentKey],
+            date: save_res.date,
             video,
           },
         });

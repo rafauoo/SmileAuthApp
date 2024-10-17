@@ -17,6 +17,7 @@ export default function CameraTools({
       <IconButton
         containerPadding={10}
         containerWidth={50}
+        testID="iconButton-toggle-camera"
         iconSize={30}
         color="white"
         onPress={() =>
@@ -30,6 +31,7 @@ export default function CameraTools({
       <IconButton
         containerPadding={10}
         containerWidth={50}
+        testID="iconButton-toggle-flash"
         iconSize={30}
         color="white"
         onPress={() =>

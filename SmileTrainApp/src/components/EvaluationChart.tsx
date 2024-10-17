@@ -12,19 +12,30 @@ import processChartData from "../functions/processChartData";
 import ChartData from "../interfaces/ChartData";
 import { useTranslation } from "react-i18next";
 import Labels from "../interfaces/Labels";
+import { defaultChartConfig } from "../config/config";
 
 const screenWidth = Dimensions.get("window").width;
 
 interface Props {
   history: Evaluation[];
   isHistoryLoaded: boolean;
+  chartConfig?: {
+    color: (opacity: number) => string;
+    labelColor: (opacity: number) => string;
+  };
 }
 
-export default function EvaluationChart({ history, isHistoryLoaded }: Props) {
+export default function EvaluationChart({
+  history,
+  isHistoryLoaded,
+  chartConfig,
+}: Props) {
   const [chartData, setChartData] = useState<ChartData>({
     labels: [],
     datasets: [{ data: [] }],
   });
+
+  const config = { ...defaultChartConfig, ...chartConfig };
   const { t, i18n } = useTranslation();
   const labels: Labels = {
     week: [
@@ -68,6 +79,7 @@ export default function EvaluationChart({ history, isHistoryLoaded }: Props) {
         {periodList.map((period) => (
           <TouchableOpacity
             key={period}
+            testID={`${period}-button`}
             style={[
               styles.periodButton,
               selectedPeriod === period && styles.activeButton,
@@ -97,8 +109,8 @@ export default function EvaluationChart({ history, isHistoryLoaded }: Props) {
             backgroundGradientFrom: "#FF8940",
             backgroundGradientTo: "#FA8F2B",
             decimalPlaces: 0,
-            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            color: config.color,
+            labelColor: config.labelColor,
             propsForDots: {
               r: "6",
               strokeWidth: "2",
@@ -112,7 +124,7 @@ export default function EvaluationChart({ history, isHistoryLoaded }: Props) {
           style={styles.chart}
         />
       ) : (
-        <View></View>
+        <View testID="view_empty"></View>
       )}
     </View>
   );

@@ -61,7 +61,11 @@
   },
   "exceptions": {
     "title": "Wystąpił błąd",
+    "deleteEvaluation": "Nie udało się usunąć ewaluacji. Spróbuj ponownie.",
     "SmileNotDetected": "Nie udało się odnaleźć uśmiechu. Spróbuj ponownie.",
-    "VideoTooLong": "Wysłano zbyt długi plik wideo. Spróbuj ponownie."
+    "VideoTooLong": "Wysłano zbyt długi plik wideo. Spróbuj ponownie.",
+    "apiNotAvailable": "Nie udało się połączyć z serwerem. Spróbuj ponownie później.",
+    "saveEvaluationFail": "Nie udało się zapisać ewaluacji w historii. Wyświetlone wyniki nie będą zapisane.",
+    "saveEvaluationFailVideo": "Nie udało się zapisać wideo ewaluacji. Ewaluacja będzie wyświetlana bez wideo."
   }
 }

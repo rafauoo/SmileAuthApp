@@ -10,7 +10,7 @@ describe('processChartData', () => {
     };
 
     const fixedDate = moment('2024-12-31');
-    
+
     beforeAll(() => {
         jest.spyOn(Date, 'now').mockImplementation(() => fixedDate.valueOf());
     });
@@ -20,11 +20,11 @@ describe('processChartData', () => {
     });
 
     const evaluations: Evaluation[] = [
-        { score: 80, date: fixedDate.clone().subtract(1, 'days').toISOString(), comment: 'Great job', video: 'video1.mp4' },
-        { score: 90, date: fixedDate.clone().subtract(2, 'days').toISOString(), comment: 'Well done', video: 'video2.mp4' },
-        { score: 70, date: fixedDate.clone().subtract(7, 'days').toISOString(), comment: 'Needs improvement', video: 'video3.mp4' },
-        { score: 100, date: fixedDate.clone().subtract(14, 'days').toISOString(), comment: 'Perfect', video: 'video4.mp4' },
-        { score: 60, date: fixedDate.clone().subtract(8, 'days').toISOString(), comment: 'Keep practicing', video: 'video5.mp4' },
+        { score: 80, date: fixedDate.clone().subtract(1, 'days').toISOString(), comment: { pl: 'Dobrze', en: 'Great job' }, video: 'video1.mp4' },
+        { score: 90, date: fixedDate.clone().subtract(2, 'days').toISOString(), comment: { pl: 'Brawo', en: 'Well done' }, video: 'video2.mp4' },
+        { score: 70, date: fixedDate.clone().subtract(7, 'days').toISOString(), comment: { pl: 'Poćwicz', en: 'Needs improvement' }, video: 'video3.mp4' },
+        { score: 100, date: fixedDate.clone().subtract(14, 'days').toISOString(), comment: { pl: 'Perfekcyjnie', en: 'Perfect' }, video: 'video4.mp4' },
+        { score: 60, date: fixedDate.clone().subtract(8, 'days').toISOString(), comment: { pl: 'Postaraj się', en: 'Practice more' }, video: 'video5.mp4' },
     ];
 
     it('should process data correctly for weekly period', () => {

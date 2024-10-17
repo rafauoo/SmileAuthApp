@@ -4,11 +4,13 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 interface MainRowActionsProps {
   handleTakePicture: () => void;
+  disabled: boolean;
   isRecording: boolean;
 }
 
 export default function MainRowActions({
   handleTakePicture,
+  disabled,
   isRecording,
 }: MainRowActionsProps) {
   return (
@@ -18,7 +20,7 @@ export default function MainRowActions({
           name={isRecording ? "record.circle" : "circle.circle"}
           size={90}
           type="hierarchical"
-          style={{ marginLeft: 13 }}
+          style={{ marginLeft: 13, opacity: disabled ? 0.5 : 1 }}
           tintColor={isRecording ? "#FFFC00" : "white"}
           animationSpec={{
             effect: {

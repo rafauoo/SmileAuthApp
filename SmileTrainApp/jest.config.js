@@ -11,8 +11,9 @@ module.exports = {
         '\\.(jpg|jpeg|png|gif|css|scss)$': '<rootDir>/__mocks__/fileMock.js',
         "^@expo/vector-icons/(.*)$": "<rootDir>/node_modules/@expo/vector-icons/build/$1",
     },
-    "collectCoverage": true,
-    "collectCoverageFrom": [
+    setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
+    collectCoverage: true,
+    collectCoverageFrom: [
       "**/*.{ts,tsx,js,jsx}",
       "!**/coverage/**",
       "!**/node_modules/**",
