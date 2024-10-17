@@ -20,6 +20,7 @@ export default function MainRowActions({
           name={isRecording ? "record.circle" : "circle.circle"}
           size={90}
           type="hierarchical"
+          testID="main-row-actions-icon"
           style={{ marginLeft: 13, opacity: disabled ? 0.5 : 1 }}
           tintColor={isRecording ? "#FFFC00" : "white"}
           animationSpec={{

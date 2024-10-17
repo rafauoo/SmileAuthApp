@@ -116,7 +116,7 @@ export default function VideoViewComponent({
     } else {
       setLoading(false);
       if (result.nonStandard && result.error) {
-        Alert.alert(t("exceptions.title"), t(result.error), [
+        Alert.alert(t("exceptions.title"), result.error, [
           {
             text: t("screens.menu.deleteAlert.okay"),
             onPress: handleCancel,
@@ -158,6 +158,7 @@ export default function VideoViewComponent({
         <IconButton
           onPress={handleCancel}
           iosName={"xmark"}
+          testID="cancel-button"
           androidName="close"
           color="white"
           containerPadding={15}
@@ -166,6 +167,7 @@ export default function VideoViewComponent({
         />
         <IconButton
           onPress={handleSend}
+          testID="send-button"
           iosName={"square.and.arrow.up"}
           androidName="cloud-upload"
           color="white"
