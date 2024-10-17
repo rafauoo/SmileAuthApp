@@ -1,6 +1,8 @@
+import { CommentData } from "./Comment";
+
 export default interface Evaluation {
     score: number;
-    comment: string;
+    comment: CommentData;
     date: string;
     video: null | string;
 }

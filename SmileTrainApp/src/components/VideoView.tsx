@@ -20,7 +20,7 @@ export default function VideoViewComponent({
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
   const { t, i18n } = useTranslation();
-
+  const commentKey = i18n.language as "pl" | "en";
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.playAsync();
@@ -37,17 +37,46 @@ export default function VideoViewComponent({
 
     if (result.success) {
       const score = result.result;
-      const comment = result.comment;
       const scoreNum = Number(score);
-      const date = await saveEvaluation(scoreNum, comment, video);
-      setLoading(false);
-      router.push({
-        pathname: "/score",
-        params: { score, comment, date, video },
-      });
+      if (result.comment) {
+        const comment = result.comment;
+        const date = await saveEvaluation(scoreNum, comment, video);
+        setLoading(false);
+        router.push({
+          pathname: "/score",
+          params: { score, comment: comment[commentKey], date, video },
+        });
+      } else {
+        const comment = { pl: "Brak komentarza.", en: "There is no comment." };
+        const date = await saveEvaluation(scoreNum, comment, video);
+        setLoading(false);
+        router.push({
+          pathname: "/score",
+          params: {
+            score,
+            comment: comment[commentKey],
+            date,
+            video,
+          },
+        });
+      }
     } else {
       setLoading(false);
-      Alert.alert("Evaluation failed. Please try again.");
+      if (result.nonStandard && result.error) {
+        Alert.alert(t("exceptions.title"), t(result.error), [
+          {
+            text: t("screens.menu.deleteAlert.okay"),
+            onPress: handleCancel,
+          },
+        ]);
+      } else {
+        Alert.alert(t("exceptions.title"), t("exceptions." + result.error), [
+          {
+            text: t("screens.menu.deleteAlert.okay"),
+            onPress: handleCancel,
+          },
+        ]);
+      }
     }
   };
 

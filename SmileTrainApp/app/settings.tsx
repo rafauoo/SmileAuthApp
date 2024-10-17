@@ -6,6 +6,7 @@ import { PanGestureHandlerGestureEvent } from "react-native-gesture-handler";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { MaterialIcons } from "@expo/vector-icons";
+import { languageNames } from "@/src/localization/localizationNames";
 
 export default function Settings() {
   const router = useRouter();
@@ -13,11 +14,6 @@ export default function Settings() {
   const [isNavigating, setIsNavigating] = useState<boolean>(false);
   const [currentLang, setCurrentLang] = useState<string>(i18n.language);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
-
-  const languageNames: { [key: string]: string } = {
-    en: "English",
-    pl: "Polski",
-  };
 
   function handleSwipe(event: PanGestureHandlerGestureEvent) {
     if (event.nativeEvent.translationX > 100 && !isNavigating) {

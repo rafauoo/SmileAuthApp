@@ -2,9 +2,9 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    "jsx": "react",
+    "jsx": "react-jsx",  // Update this to use automatic JSX runtime
     "baseUrl": ".",
-    "lib": [ "es2015" ],
+    "lib": ["es2015"],
     "paths": {
       "@/*": [
         "./*"

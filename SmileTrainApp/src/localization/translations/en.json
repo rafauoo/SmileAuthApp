@@ -7,7 +7,8 @@
         "title": "Are you sure?",
         "desc": "Evaluation will be permanenly removed from the history.",
         "cancel": "Cancel",
-        "ok": "Yes"
+        "ok": "Yes",
+        "okay": "Ok"
       },
       "chart": {
         "title": "Average Authenticity (%)",
@@ -57,5 +58,10 @@
     "videoView": {
       "evaluating": "Evaluating the video..."
     }
+  },
+  "exceptions": {
+    "title": "Error has occured",
+    "SmileNotDetected": "Smile was not found. Please try again.",
+    "VideoTooLong": "Video was too long. Please try again."
   }
 }

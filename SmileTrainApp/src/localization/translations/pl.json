@@ -7,7 +7,8 @@
         "title": "Czy jesteś pewien?",
         "desc": "Ewaluacja zostanie usunięta z historii na zawsze.",
         "cancel": "Anuluj",
-        "ok": "Tak"
+        "ok": "Tak",
+        "okay": "Ok"
       },
       "chart": {
         "title": "Średnia Autentyczność (%)",
@@ -57,5 +58,10 @@
     "videoView": {
       "evaluating": "Przetwarzanie wideo..."
     }
+  },
+  "exceptions": {
+    "title": "Wystąpił błąd",
+    "SmileNotDetected": "Nie udało się odnaleźć uśmiechu. Spróbuj ponownie.",
+    "VideoTooLong": "Wysłano zbyt długi plik wideo. Spróbuj ponownie."
   }
 }

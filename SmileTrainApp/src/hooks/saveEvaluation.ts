@@ -1,10 +1,11 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import saveVideoLocally from "./saveVideoLocally";
 import Evaluation from "../interfaces/Evaluation";
+import { CommentData } from "../interfaces/Comment";
 
 export async function saveEvaluation(
   score: number,
-  comment: string,
+  comment: CommentData,
   videoPath: string | null
 ) {
   try {

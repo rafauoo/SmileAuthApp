@@ -12,6 +12,7 @@ import {
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
 import { useTranslation } from "react-i18next";
+import getColor from "@/src/functions/getColor";
 
 export default function ScoreScreen() {
   const { score, comment, date, video } = useLocalSearchParams<{
@@ -25,7 +26,6 @@ export default function ScoreScreen() {
   const videoRef = useRef<Video>(null);
   const router = useRouter();
   const [isNavigating, setIsNavigating] = React.useState<boolean>(false);
-  console.log(comment);
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.playAsync();
@@ -64,17 +64,13 @@ export default function ScoreScreen() {
             </Text>
             <View style={styles.scoreBoard}>
               <Text style={styles.scoreText}>{scoreNum.toFixed(2)}%</Text>
-              <ProgressBar
-                progress={scoreNum / 100}
-                color={
-                  scoreNum > 70
-                    ? "#4CAF50"
-                    : scoreNum > 40
-                    ? "#FFEB3B"
-                    : "#F44336"
-                }
-                style={styles.progressBar}
-              />
+              <View style={styles.progressBarContainer}>
+                <ProgressBar
+                  progress={scoreNum / 100}
+                  color={getColor(scoreNum)}
+                  style={styles.progressBar}
+                />
+              </View>
             </View>
             <Text style={styles.commentTitle}>
               {t("screens.score.commentTitle")}
@@ -129,19 +125,21 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 5,
   },
-  progressBar: {
-    alignSelf: "center",
-    alignItems: "flex-end",
-    marginTop: 8,
-    height: 20,
-    width: 160,
+  progressBarContainer: {
+    marginBottom: 8,
+    marginLeft: 10,
+    width: "45%",
     borderRadius: 10,
-    marginBottom: 20,
+    overflow: "hidden",
+  },
+  progressBar: {
+    height: 20,
+    borderRadius: 5,
     backgroundColor: "#CCCCCC",
   },
   scoreText: {
     width: "50%",
-    fontSize: 50,
+    fontSize: 45,
     fontWeight: "bold",
     color: "#424242",
     marginBottom: 10,

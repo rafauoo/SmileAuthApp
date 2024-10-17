@@ -14,7 +14,7 @@ from API.exceptions import VideoTooLongException
 from API.validate import validate_video
 from API.comment import CommentList
 
-CommentList().from_file(COMMENTS_PATH)
+CommentList.from_file(COMMENTS_PATH)
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -43,18 +43,19 @@ async def upload_video(data: VideoData) -> dict:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model.to(device)
         video_bytes = base64.b64decode(data.video)
-        try:
-            validate_video(video_bytes)
-            angles = flow(video_bytes)
-        except SmileNotDetectedException:
-            return {"exception": "Smile was not detected!"}
-        except VideoTooLongException:
-            return {"exception": "Video was too long!"}
+        validate_video(video_bytes)
+        angles = flow(video_bytes)
         result = evaluate_data(model, device, angles)
         comment = (random.choice(CommentList.available_comments(result)))
         return {"result": result, "comment": comment.get_content()}
+    except SmileNotDetectedException as e:
+        raise HTTPException(status_code=400, detail={"statusText": str(e), "error": "SmileNotDetected"})
+    
+    except VideoTooLongException:
+        raise HTTPException(status_code=400, detail={"statusText": str(e), "error": "VideoTooLong"})
+    
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail={"statusText": str(e), "error": "Exception"})
 
 
 if __name__ == "__main__":

@@ -1,10 +1,13 @@
-import * as React from "react";
+import react from "react";
 import { StyleSheet, View } from "react-native";
 import IconButton from "./IconButton";
 import { useRouter } from "expo-router";
 import { TouchableOpacity, FlatList, Text } from "react-native";
 import { format } from "date-fns";
 import Evaluation from "../interfaces/Evaluation";
+import { ProgressBar } from "react-native-paper";
+import { useTranslation } from "react-i18next";
+import getColor from "../functions/getColor";
 
 interface Props {
   history: Evaluation[];
@@ -13,10 +16,12 @@ interface Props {
 
 export default function EvaluationList({ history, onDelete }: Props) {
   const router = useRouter();
+  const { t, i18n } = useTranslation();
+  const commentKey = i18n.language as "pl" | "en";
 
   const handleItemPress = (item: Evaluation) => {
     const score = Number(item.score);
-    const comment = item.comment;
+    const comment = item.comment[commentKey];
     const date = item.date;
     const video = item.video;
     router.push({
@@ -38,7 +43,13 @@ export default function EvaluationList({ history, onDelete }: Props) {
             <Text style={styles.scoreText}>
               {(Math.round(item.score * 100) / 100).toFixed(2)}%
             </Text>
-            <Text style={styles.commentText}>{item.comment}</Text>
+            <View style={styles.progressBarContainer}>
+              <ProgressBar
+                progress={Number(item.score) / 100}
+                color={getColor(Number(item.score))}
+                style={styles.progressBar}
+              />
+            </View>
             <Text style={styles.dateText}>
               {format(new Date(item.date), "dd/MM/yyyy, H:mm:ss")}
             </Text>
@@ -80,6 +91,19 @@ const styles = StyleSheet.create({
   itemContent: {
     flex: 1,
     paddingRight: 10,
+  },
+  progressBarContainer: {
+    alignSelf: "flex-start",
+    marginTop: 8,
+    marginBottom: 8,
+    width: 100,
+    borderRadius: 10,
+    overflow: "hidden",
+  },
+  progressBar: {
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: "#CCCCCC",
   },
   scoreText: {
     fontSize: 18,
