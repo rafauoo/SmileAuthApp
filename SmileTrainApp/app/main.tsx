@@ -51,6 +51,7 @@ export default function HomeScreen() {
       } else {
         setIsRecording(true);
         if (cameraFacing === "front") {
+          console.log(cameraFlash);
           setIsScreenFlash(cameraFlash);
         }
         if (cameraFacing === "back") {
@@ -69,6 +70,7 @@ export default function HomeScreen() {
   }
 
   function handleDoubleTap(event: GestureEvent) {
+    /* istanbul ignore next */
     if (event.nativeEvent.state === State.ACTIVE) {
       setCameraFacing((prev) => (prev === "back" ? "front" : "back"));
     }

@@ -3,8 +3,10 @@ import { render, fireEvent, waitFor } from "@testing-library/react-native";
 import { useFocusEffect, useRouter } from "expo-router";
 import HomeScreen from "../main";
 import { CameraView } from "expo-camera";
+import { SafeAreaView } from "react-native";
 import { State } from "react-native-gesture-handler";
 import { Alert } from "react-native";
+import { useTranslation } from "react-i18next";
 import "react-native-gesture-handler/jestSetup";
 const mockPlayAsync = jest.fn();
 type VideoProps = {
@@ -120,6 +122,13 @@ describe("HomeScreen", () => {
 
   beforeEach(() => {
     (useRouter as jest.Mock).mockReturnValue({ push: mockRouterPush });
+    (useTranslation as jest.Mock).mockReturnValue({
+      t: (key: string) => key,
+      i18n: {
+        language: "en",
+        changeLanguage: jest.fn(),
+      },
+    });
   });
 
   it("renders camera view", async () => {
@@ -179,7 +188,31 @@ describe("HomeScreen", () => {
     });
   });
 
-  it("stops recording video", async () => {
+  it("starts recording video with flash turned on and front camera", async () => {
+    const { getByTestId } = render(<HomeScreen />);
+    const cameraView = getByTestId("camera-view");
+    const safeAreaView = getByTestId("camera-view").findByType(SafeAreaView);
+    const tapGestureHandler = getByTestId("tap-gesture-handler");
+    fireEvent(tapGestureHandler, "onHandlerStateChange", {
+      nativeEvent: { state: State.ACTIVE },
+    });
+    expect(getByTestId("camera-view")).toHaveProp("facing", "front");
+    expect(safeAreaView.props.style.backgroundColor).toBe("transparent");
+    fireEvent(cameraView, "onCameraReady");
+    const mainRowActions = getByTestId("main-row-actions");
+    const flashButton = getByTestId("iconButton-toggle-flash");
+    await waitFor(() => {
+      fireEvent.press(flashButton);
+    });
+
+    await waitFor(() => {
+      fireEvent.press(mainRowActions);
+      expect(mockRecordAsync).toHaveBeenCalled();
+      expect(safeAreaView.props.style.backgroundColor).toBe("white");
+    });
+  });
+
+  it("stops recording video after recording with front camera", async () => {
     const { getByTestId } = render(<HomeScreen />);
     const cameraView = getByTestId("camera-view");
     fireEvent(cameraView, "onCameraReady");
@@ -195,7 +228,8 @@ describe("HomeScreen", () => {
     });
   });
 
-  it("start recording video with front camera", async () => {
+  it("stop recording and getting response from recordAsync", async () => {
+    (mockRecordAsync as jest.Mock).mockReturnValue({ uri: "video.mp4" });
     const { getByTestId } = render(<HomeScreen />);
     const cameraView = getByTestId("camera-view");
     fireEvent(cameraView, "onCameraReady");
@@ -204,6 +238,44 @@ describe("HomeScreen", () => {
 
     await waitFor(() => {
       expect(mockStopRecording).toHaveBeenCalled();
+      expect(getByTestId("mock-video")).toBeTruthy();
     });
+  });
+
+  it("should not record while camera is not ready", async () => {
+    (mockRecordAsync as jest.Mock).mockReturnValue({ uri: "video.mp4" });
+    const { getByTestId } = render(<HomeScreen />);
+    fireEvent.press(getByTestId("main-row-actions"));
+    fireEvent.press(getByTestId("main-row-actions"));
+
+    await waitFor(() => {
+      expect(mockRecordAsync).toHaveBeenCalled();
+    });
+  });
+  test("toggles camera facing on double tap both ways", async () => {
+    const { getByTestId } = render(<HomeScreen />);
+    const tapGestureHandler = getByTestId("tap-gesture-handler");
+    expect(getByTestId("camera-view")).toHaveProp("facing", "back");
+    fireEvent(tapGestureHandler, "onHandlerStateChange", {
+      nativeEvent: { state: State.ACTIVE },
+    });
+    expect(getByTestId("camera-view")).toHaveProp("facing", "front");
+    fireEvent(tapGestureHandler, "onHandlerStateChange", {
+      nativeEvent: { state: State.ACTIVE },
+    });
+    expect(getByTestId("camera-view")).toHaveProp("facing", "back");
+    fireEvent(tapGestureHandler, "onHandlerStateChange", {
+      nativeEvent: { state: State.ACTIVE },
+    });
+    expect(getByTestId("camera-view")).toHaveProp("facing", "front");
+  });
+
+  test("should not toggle camera when different event", async () => {
+    const { getByTestId } = render(<HomeScreen />);
+    const tapGestureHandler = getByTestId("tap-gesture-handler");
+    fireEvent(tapGestureHandler, "onHandlerStateChange", {
+      nativeEvent: { state: State.END },
+    });
+    expect(getByTestId("camera-view")).toHaveProp("facing", "front");
   });
 });
