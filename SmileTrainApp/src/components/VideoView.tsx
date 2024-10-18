@@ -22,9 +22,7 @@ export default function VideoViewComponent({
   const { t, i18n } = useTranslation();
   const commentKey = i18n.language as "pl" | "en";
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playAsync();
-    }
+    videoRef.current?.playAsync();
   }, [video]);
 
   const handleCancel = () => {

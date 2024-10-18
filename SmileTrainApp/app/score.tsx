@@ -12,7 +12,7 @@ import {
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
 import { useTranslation } from "react-i18next";
-import getColor from "@/src/functions/getColor";
+import getProgressBarColor from "@/src/functions/getProgressBarColor";
 
 export default function ScoreScreen() {
   const { score, comment, date, video } = useLocalSearchParams<{
@@ -67,7 +67,7 @@ export default function ScoreScreen() {
               <View style={styles.progressBarContainer}>
                 <ProgressBar
                   progress={scoreNum / 100}
-                  color={getColor(scoreNum)}
+                  color={getProgressBarColor(scoreNum)}
                   style={styles.progressBar}
                 />
               </View>

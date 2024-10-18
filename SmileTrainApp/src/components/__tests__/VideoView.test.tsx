@@ -1,5 +1,5 @@
-import React from "react";
-import { render, fireEvent, waitFor } from "@testing-library/react-native";
+import React, { createRef } from "react";
+import { render, fireEvent, waitFor, act } from "@testing-library/react-native";
 import VideoViewComponent from "../VideoView";
 import { sendVideoToServer } from "../../hooks/sendToServer";
 import { saveEvaluation } from "../../hooks/saveEvaluation";
@@ -7,7 +7,7 @@ import { Video } from "expo-av";
 import { useRouter } from "expo-router";
 import { Alert } from "react-native";
 import { useTranslation } from "react-i18next";
-
+const mockPlayAsync = jest.fn();
 type VideoProps = {
   ref?: React.Ref<any>;
   source: { uri: string };
@@ -23,9 +23,8 @@ jest.mock("expo-av", () => {
 
   return {
     Video: React.forwardRef((props: VideoProps, ref: any) => {
-      const playAsync = jest.fn();
       React.useImperativeHandle(ref, () => ({
-        playAsync,
+        playAsync: mockPlayAsync,
       }));
       return (
         <View
@@ -377,6 +376,18 @@ describe("VideoViewComponent", () => {
         "non-standard-error",
         expect.any(Array)
       );
+    });
+  });
+
+  it("should call playAsync when the component mounts", async () => {
+    render(
+      <VideoViewComponent
+        video="https://example.com/video.mp4"
+        setVideo={mockSetVideo}
+      />
+    );
+    await waitFor(() => {
+      expect(mockPlayAsync).toHaveBeenCalledTimes(1);
     });
   });
 });

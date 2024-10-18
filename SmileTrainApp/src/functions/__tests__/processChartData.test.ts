@@ -56,4 +56,20 @@ describe('processChartData', () => {
         expect(result.labels).toEqual([]);
         expect(result.datasets[0].data).toEqual([]);
     });
+
+    it('should process data correctly for monthly period when some evaluations are in different year', () => {
+        const fixedDate = moment('2025-10-31');
+        jest.spyOn(Date, 'now').mockImplementation(() => fixedDate.valueOf());
+        const result = processChartData(evaluations, periodList[1], periodList, labelsXaxis);
+        expect(result.labels).toEqual(["03/10-10/10","10/10-17/10","17/10-24/10","24/10-31/10"]);
+        expect(result.datasets[0].data).toEqual([0, 0, 0, 0]);
+    });
+
+    it('should process data correctly for yearly period when some evaluations are in different year', () => {
+        const fixedDate = moment('2025-10-31');
+        jest.spyOn(Date, 'now').mockImplementation(() => fixedDate.valueOf());
+        const result = processChartData(evaluations, periodList[2], periodList, labelsXaxis);
+        expect(result.labels).toEqual(['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct']);
+        expect(result.datasets[0].data).toEqual([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    });
 });

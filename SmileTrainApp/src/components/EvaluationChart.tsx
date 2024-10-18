@@ -12,7 +12,7 @@ import processChartData from "../functions/processChartData";
 import ChartData from "../interfaces/ChartData";
 import { useTranslation } from "react-i18next";
 import Labels from "../interfaces/Labels";
-import { defaultChartConfig } from "../config/config";
+import { getColor, getLabelColor } from "../config/config";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -34,7 +34,10 @@ export default function EvaluationChart({
     labels: [],
     datasets: [{ data: [] }],
   });
-
+  const defaultChartConfig = {
+    color: getColor,
+    labelColor: getLabelColor,
+  };
   const config = { ...defaultChartConfig, ...chartConfig };
   const { t, i18n } = useTranslation();
   const labels: Labels = {

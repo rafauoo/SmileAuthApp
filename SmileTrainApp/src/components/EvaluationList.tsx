@@ -7,7 +7,7 @@ import { format } from "date-fns";
 import Evaluation from "../interfaces/Evaluation";
 import { ProgressBar } from "react-native-paper";
 import { useTranslation } from "react-i18next";
-import getColor from "../functions/getColor";
+import getProgressBarColor from "../functions/getProgressBarColor";
 
 interface Props {
   history: Evaluation[];
@@ -46,7 +46,7 @@ export default function EvaluationList({ history, onDelete }: Props) {
             <View style={styles.progressBarContainer}>
               <ProgressBar
                 progress={Number(item.score) / 100}
-                color={getColor(Number(item.score))}
+                color={getProgressBarColor(Number(item.score))}
                 style={styles.progressBar}
               />
             </View>
