@@ -5,17 +5,23 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 interface MainRowActionsProps {
   handleTakePicture: () => void;
   disabled: boolean;
+  testID?: string;
   isRecording: boolean;
 }
 
 export default function MainRowActions({
   handleTakePicture,
   disabled,
+  testID,
   isRecording,
 }: MainRowActionsProps) {
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={handleTakePicture} style={styles.button}>
+      <TouchableOpacity
+        onPress={handleTakePicture}
+        style={styles.button}
+        testID={testID}
+      >
         <SymbolView
           name={isRecording ? "record.circle" : "circle.circle"}
           size={90}

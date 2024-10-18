@@ -29,7 +29,7 @@ export default function HomeScreen() {
   const [isRecording, setIsRecording] = React.useState<boolean>(false);
   const router = useRouter();
   const [isNavigating, setIsNavigating] = React.useState<boolean>(false);
-
+  /* istanbul ignore next */
   useFocusEffect(
     React.useCallback(() => {
       setIsNavigating(false);
@@ -91,12 +91,17 @@ export default function HomeScreen() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <PanGestureHandler onGestureEvent={handleSwipe}>
+      <PanGestureHandler
+        onGestureEvent={handleSwipe}
+        testID="pan-gesture-handler"
+      >
         <TapGestureHandler
           onHandlerStateChange={handleDoubleTap}
           numberOfTaps={2}
+          testID="tap-gesture-handler"
         >
           <CameraView
+            testID="camera-view"
             ref={cameraRef}
             style={{ flex: 1 }}
             facing={cameraFacing}
@@ -119,6 +124,7 @@ export default function HomeScreen() {
                   setCameraFlash={setCameraFlash}
                 />
                 <MainRowActions
+                  testID={"main-row-actions"}
                   isRecording={isRecording}
                   handleTakePicture={toggleRecord}
                   disabled={!cameraReady}

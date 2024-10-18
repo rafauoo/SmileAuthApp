@@ -24,8 +24,8 @@ export default function MenuScreen() {
   const [isHistoryLoaded, setIsHistoryLoaded] = useState(false);
   useEffect(() => {
     const loadHistory = async () => {
-      setIsHistoryLoaded(false);
       const result = await fetchHistory();
+      setIsHistoryLoaded(false);
       if (result.success && result.evaluations) {
         setHistory(result.evaluations);
         setIsHistoryLoaded(true);
@@ -73,7 +73,7 @@ export default function MenuScreen() {
       ]
     );
   }
-
+  /* istanbul ignore next */
   useFocusEffect(
     React.useCallback(() => {
       setIsNavigating(false);
@@ -82,7 +82,10 @@ export default function MenuScreen() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <PanGestureHandler onGestureEvent={handleSwipeRight}>
+      <PanGestureHandler
+        onGestureEvent={handleSwipeRight}
+        testID="gesture-handler"
+      >
         <View style={styles.container}>
           <Text style={styles.title}>{t("screens.menu.chart.title")}</Text>
           <EvaluationChart

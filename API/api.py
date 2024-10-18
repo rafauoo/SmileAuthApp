@@ -50,13 +50,13 @@ async def upload_video(data: VideoData) -> dict:
         return {"result": result, "comment": comment.get_content()}
     except SmileNotDetectedException as e:
         raise HTTPException(status_code=400, detail={"statusText": str(e), "error": "SmileNotDetected"})
-    
-    except VideoTooLongException:
+
+    except VideoTooLongException as e:
         raise HTTPException(status_code=400, detail={"statusText": str(e), "error": "VideoTooLong"})
-    
+
     except Exception as e:
         raise HTTPException(status_code=500, detail={"statusText": str(e), "error": "Exception"})
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="192.168.0.192", port=8000)
+    uvicorn.run(app, host="192.168.1.56", port=8000)

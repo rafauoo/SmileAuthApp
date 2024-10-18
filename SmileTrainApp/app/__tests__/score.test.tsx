@@ -96,37 +96,44 @@ describe("ScoreScreen", () => {
     });
   });
 
-  it("should render correctly", () => {
-    const { getByText } = render(<ScoreScreen />);
-    expect(getByText("Great job!")).toBeTruthy();
-    expect(getByText("85.00%")).toBeTruthy();
-    expect(getByText("18/10/2024, 14:00:00")).toBeTruthy();
+  it("should render correctly", async () => {
+    const { unmount, getByText } = render(<ScoreScreen />);
+    await waitFor(() => {
+      expect(getByText("Great job!")).toBeTruthy();
+      expect(getByText("85.00%")).toBeTruthy();
+      expect(getByText("18/10/2024, 14:00:00")).toBeTruthy();
+    });
+
+    await unmount();
   });
 
   it("should call video playAsync on mount", async () => {
-    render(<ScoreScreen />);
+    const { unmount } = render(<ScoreScreen />);
 
     await waitFor(() => {
       expect(mockPlayAsync).toHaveBeenCalled();
     });
+    await unmount();
   });
 
   it("should navigate to menu on swipe right", async () => {
-    const { getByTestId } = render(<ScoreScreen />);
+    const { unmount, getByTestId } = render(<ScoreScreen />);
     const gestureHandler = getByTestId("PanGestureHandler");
     fireEvent(gestureHandler, "onGestureEvent", {
       nativeEvent: { translationX: 150 },
     });
     await waitFor(() => expect(mockRouterPush).toHaveBeenCalledWith("/menu"));
+    await unmount();
   });
 
   it("should not navigate to menu on gentle swipe right", async () => {
-    const { getByTestId } = render(<ScoreScreen />);
+    const { unmount, getByTestId } = render(<ScoreScreen />);
     const gestureHandler = getByTestId("PanGestureHandler");
     fireEvent(gestureHandler, "onGestureEvent", {
       nativeEvent: { translationX: 50 },
     });
     await waitFor(() => expect(mockRouterPush).not.toHaveBeenCalled());
+    await unmount();
   });
 
   it("should not show video without video file", async () => {
@@ -135,8 +142,11 @@ describe("ScoreScreen", () => {
       comment: "Great job!",
       date: "2024-10-18T12:00:00Z",
     });
-    const { getByText } = render(<ScoreScreen />);
-    expect(getByText("screens.score.videoNotAv")).toBeTruthy();
+    const { unmount, getByText } = render(<ScoreScreen />);
+    await waitFor(() => {
+      expect(getByText("screens.score.videoNotAv")).toBeTruthy();
+    });
+    await unmount();
   });
   it("should not show date without date", async () => {
     (useLocalSearchParams as jest.Mock).mockReturnValue({
@@ -144,7 +154,10 @@ describe("ScoreScreen", () => {
       comment: "Great job!",
       video: "video.mp4",
     });
-    const { getByText } = render(<ScoreScreen />);
-    expect(getByText("screens.score.noDateAvailable")).toBeTruthy();
+    const { unmount, getByText } = render(<ScoreScreen />);
+    await waitFor(() => {
+      expect(getByText("screens.score.noDateAvailable")).toBeTruthy();
+    });
+    await unmount();
   });
 });

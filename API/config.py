@@ -7,4 +7,4 @@ API_CKPT_PATH = os.path.join(os.sep, API_CKPT, "checkpoint.ckpt")
 COMMENTS_PATH = os.path.join(os.sep, API_DIR, "comments.json")
 
 
-VIDEO_LENGTH_LIMIT_MS = 6000
+VIDEO_LENGTH_LIMIT_MS = 6500
