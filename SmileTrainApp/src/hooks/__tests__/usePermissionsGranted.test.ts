@@ -1,21 +1,21 @@
 import { renderHook, act, waitFor } from "@testing-library/react";
-import usePermissionsGranted from "../usePermissionsGranted"; // Upewnij się, że ścieżka jest poprawna
+import usePermissionsGranted from "../usePermissionsGranted";
 import { Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Camera from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 
-// Mockowanie AsyncStorage
 jest.mock("@react-native-async-storage/async-storage", () => ({
   setItem: jest.fn(),
 }));
 
-// Mockowanie useCameraPermissions, useMicrophonePermissions i usePermissions
 jest.mock("expo-camera", () => ({
-  useCameraPermissions: jest.fn().mockReturnValue([
-    { granted: true }, // Bieżący stan uprawnień
-    jest.fn().mockResolvedValue({ granted: true }), // Funkcja request zwracająca resolved promise
-  ]),
+  useCameraPermissions: jest
+    .fn()
+    .mockReturnValue([
+      { granted: true },
+      jest.fn().mockResolvedValue({ granted: true }),
+    ]),
   useMicrophonePermissions: jest
     .fn()
     .mockReturnValue([
@@ -35,13 +35,13 @@ jest.mock("expo-media-library", () => ({
 
 describe("usePermissionsGranted", () => {
   beforeEach(() => {
-    jest.clearAllMocks(); // Resetuje mocki przed każdym testem
+    jest.clearAllMocks();
   });
 
   it("should return false if camera permission is denied", async () => {
     (Camera.useCameraPermissions as jest.Mock).mockReturnValue([
       { granted: false },
-      jest.fn().mockResolvedValue({ granted: false }), // Symulacja odmowy uprawnień
+      jest.fn().mockResolvedValue({ granted: false }),
     ]);
 
     (Camera.useMicrophonePermissions as jest.Mock).mockReturnValue([
@@ -68,7 +68,7 @@ describe("usePermissionsGranted", () => {
   it("should return false if microphone permission is denied", async () => {
     (Camera.useCameraPermissions as jest.Mock).mockReturnValue([
       { granted: true },
-      jest.fn().mockResolvedValue({ granted: true }), // Symulacja odmowy uprawnień
+      jest.fn().mockResolvedValue({ granted: true }),
     ]);
 
     (Camera.useMicrophonePermissions as jest.Mock).mockReturnValue([
@@ -96,7 +96,7 @@ describe("usePermissionsGranted", () => {
   it("should return false if media library permission is denied", async () => {
     (Camera.useCameraPermissions as jest.Mock).mockReturnValue([
       { granted: true },
-      jest.fn().mockResolvedValue({ granted: true }), // Symulacja odmowy uprawnień
+      jest.fn().mockResolvedValue({ granted: true }),
     ]);
 
     (Camera.useMicrophonePermissions as jest.Mock).mockReturnValue([
@@ -124,7 +124,7 @@ describe("usePermissionsGranted", () => {
   it("should return true if all permissions are granted", async () => {
     (Camera.useCameraPermissions as jest.Mock).mockReturnValue([
       { granted: true },
-      jest.fn().mockResolvedValue({ granted: true }), // Symulacja odmowy uprawnień
+      jest.fn().mockResolvedValue({ granted: true }),
     ]);
 
     (Camera.useMicrophonePermissions as jest.Mock).mockReturnValue([
