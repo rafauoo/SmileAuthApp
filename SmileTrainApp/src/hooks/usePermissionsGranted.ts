@@ -6,12 +6,15 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function usePermissionsGranted() {
   const [cameraPermission, requestCameraPermission] = useCameraPermissions();
-  const [microphonePermission, requestMicrophonePermission] = useMicrophonePermissions();
-  const [mediaLibraryPermission, requestMediaLibraryPermission] = usePermissions();
+  const [microphonePermission, requestMicrophonePermission] =
+    useMicrophonePermissions();
+  const [mediaLibraryPermission, requestMediaLibraryPermission] =
+    usePermissions();
   const [permissionsGranted, setPermissionsGranted] = useState(false);
 
   async function requestAllPermissions() {
     const cameraStatus = await requestCameraPermission();
+    console.log(cameraStatus?.granted);
     if (!cameraStatus?.granted) {
       Alert.alert("Error", "Camera permission is required.");
       return false;
