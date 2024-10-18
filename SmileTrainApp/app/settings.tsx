@@ -34,7 +34,10 @@ export default function Settings() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <PanGestureHandler onGestureEvent={handleSwipe}>
+      <PanGestureHandler
+        onGestureEvent={handleSwipe}
+        testID="PanGestureHandler"
+      >
         <View style={styles.container}>
           <Text style={styles.title}>{t("screens.settings.title")}</Text>
           <View style={styles.optionsCard}>
@@ -64,6 +67,7 @@ export default function Settings() {
                 <View style={styles.dropdownMenu}>
                   <TouchableOpacity
                     style={styles.dropdownItem}
+                    testID="change-english"
                     onPress={() => changeLanguage("en")}
                   >
                     <Text style={styles.dropdownItemText}>English</Text>

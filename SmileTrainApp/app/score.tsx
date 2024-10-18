@@ -27,9 +27,7 @@ export default function ScoreScreen() {
   const router = useRouter();
   const [isNavigating, setIsNavigating] = React.useState<boolean>(false);
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playAsync();
-    }
+    videoRef.current?.playAsync();
   }, [video]);
 
   function handleSwipeRight(event: PanGestureHandlerGestureEvent) {
@@ -41,7 +39,10 @@ export default function ScoreScreen() {
 
   return (
     <GestureHandlerRootView style={styles.root}>
-      <PanGestureHandler onGestureEvent={handleSwipeRight}>
+      <PanGestureHandler
+        onGestureEvent={handleSwipeRight}
+        testID="PanGestureHandler"
+      >
         <View style={styles.container}>
           {video ? (
             <Video
@@ -60,7 +61,9 @@ export default function ScoreScreen() {
 
           <View style={styles.content}>
             <Text style={styles.date}>
-              {date ? format(new Date(date), "dd/MM/yyyy, H:mm:ss") : date}
+              {date
+                ? format(new Date(date), "dd/MM/yyyy, H:mm:ss")
+                : t("screens.score.noDateAvailable")}
             </Text>
             <View style={styles.scoreBoard}>
               <Text style={styles.scoreText}>{scoreNum.toFixed(2)}%</Text>

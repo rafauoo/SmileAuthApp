@@ -30,7 +30,7 @@ describe('processChartData', () => {
     it('should process data correctly for weekly period', () => {
         const result = processChartData(evaluations, periodList[0], periodList, labelsXaxis);
         expect(result.labels).toEqual(['Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue']);
-        expect(result.datasets[0].data).toEqual([0, 0, 0, 0, 90, 80, 0]); // Adjust based on actual calculations
+        expect(result.datasets[0].data).toEqual([0, 0, 0, 0, 90, 80, 0]);
     });
 
     it('should process data correctly for monthly period', () => {

@@ -23,10 +23,10 @@ const mockRouterPush = jest.fn();
 beforeEach(() => {
   (useRouter as jest.Mock).mockReturnValue({ push: mockRouterPush });
   (useTranslation as jest.Mock).mockReturnValue({
-    t: (key: string) => key, // Return the translation key itself
+    t: (key: string) => key,
     i18n: {
-      language: "en", // Default language
-      changeLanguage: jest.fn(), // Add a mock function for changeLanguage
+      language: "en",
+      changeLanguage: jest.fn(),
     },
   });
 });

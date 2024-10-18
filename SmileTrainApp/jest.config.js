@@ -10,6 +10,7 @@ module.exports = {
     moduleNameMapper: {
         '\\.(jpg|jpeg|png|gif|css|scss)$': '<rootDir>/__mocks__/fileMock.js',
         "^@expo/vector-icons/(.*)$": "<rootDir>/node_modules/@expo/vector-icons/build/$1",
+        '^@/(.*)$': '<rootDir>/$1',
     },
     setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
     collectCoverage: true,

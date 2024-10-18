@@ -18,7 +18,7 @@ jest.mock("../../functions/processChartData", () => {
 });
 
 jest.mock("react-native-chart-kit", () => ({
-  LineChart: jest.fn(() => null), // Mock implementation
+  LineChart: jest.fn(() => null),
 }));
 
 describe("EvaluationChart Component", () => {
@@ -47,7 +47,7 @@ describe("EvaluationChart Component", () => {
   });
 
   it("should render correctly when history is loaded", () => {
-    const { getByText, getByTestId } = render(
+    const { getByText } = render(
       <EvaluationChart history={mockHistory} isHistoryLoaded={true} />
     );
 

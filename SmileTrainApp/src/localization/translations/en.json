@@ -47,7 +47,8 @@
     },
     "score": {
       "commentTitle": "Comment",
-      "videoNotAv": "Video not found."
+      "videoNotAv": "Video not found.",
+      "noDateAvailable": "Date not available."
     },
     "settings": {
       "title": "Settings",

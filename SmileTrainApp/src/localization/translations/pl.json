@@ -47,7 +47,8 @@
     },
     "score": {
       "commentTitle": "Komentarz",
-      "videoNotAv": "Nie znaleziono wideo."
+      "videoNotAv": "Nie znaleziono wideo.",
+      "noDateAvailable": "Nie znaleziono daty."
     },
     "settings": {
       "title": "Ustawienia",

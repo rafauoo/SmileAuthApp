@@ -380,12 +380,7 @@ describe("VideoViewComponent", () => {
   });
 
   it("should call playAsync when the component mounts", async () => {
-    render(
-      <VideoViewComponent
-        video="https://example.com/video.mp4"
-        setVideo={mockSetVideo}
-      />
-    );
+    render(<VideoViewComponent video="video.mp4" setVideo={mockSetVideo} />);
     await waitFor(() => {
       expect(mockPlayAsync).toHaveBeenCalledTimes(1);
     });

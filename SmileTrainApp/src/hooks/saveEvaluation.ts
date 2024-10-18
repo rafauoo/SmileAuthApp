@@ -14,7 +14,8 @@ export async function saveEvaluation(
     const history: Evaluation[] = currentHistory
       ? JSON.parse(currentHistory)
       : [];
-    const date = new Date().toString();
+    const dateNow = new Date(Date.now())
+    const date = dateNow.toISOString();
     const newEvaluation: Evaluation = {
       score,
       comment,
@@ -23,7 +24,7 @@ export async function saveEvaluation(
     };
     history.push(newEvaluation);
     await AsyncStorage.setItem("evaluationHistory", JSON.stringify(history));
-    return { success: true, date: date.toString(), videoSaveSuccess: localVideoUri_res.success };
+    return { success: true, date: date, videoSaveSuccess: localVideoUri_res.success };
   } catch (error: unknown) {
     if (error instanceof Error) {
       console.error("Failed to save evaluation: ", error.message);
