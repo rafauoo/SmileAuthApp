@@ -25,8 +25,12 @@ def show_conf_matrix(conf_matrix: np.ndarray) -> None:
         xticklabels=CLASSES_STRS,
         yticklabels=CLASSES_STRS,
     )
-    hmap.yaxis.set_ticklabels(hmap.yaxis.get_ticklabels(), rotation=0, ha="right")
-    hmap.xaxis.set_ticklabels(hmap.xaxis.get_ticklabels(), rotation=0, ha="right")
+    hmap.yaxis.set_ticklabels(
+        hmap.yaxis.get_ticklabels(), rotation=0, ha="right"
+    )
+    hmap.xaxis.set_ticklabels(
+        hmap.xaxis.get_ticklabels(), rotation=0, ha="right"
+    )
     plt.title("Confusion Matrix")
     plt.ylabel("Actual Label")
     plt.xlabel("Predicted Label")

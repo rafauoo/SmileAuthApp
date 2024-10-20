@@ -21,7 +21,9 @@ def train():
     try:
         csv_directory = TRAIN_CSV_DIR
         data = load_data_from_csv(csv_directory)
-        train_data, test_data = train_test_split(data, test_size=0.3, random_state=694)
+        train_data, test_data = train_test_split(
+            data, test_size=0.3, random_state=694
+        )
         batch_size = 32
         data_module = FacesFeaturesDataModule(
             train_data, test_data, batch_size=batch_size
@@ -37,7 +39,9 @@ def train():
         trainer = get_trainer()
         trainer.fit(model, datamodule=data_module)
         trainer.test(datamodule=data_module, ckpt_path="best")
-        review_predictions(test_data, trainer.checkpoint_callback.best_model_path)
+        review_predictions(
+            test_data, trainer.checkpoint_callback.best_model_path
+        )
     except Exception as e:
         print(f"Error during training: {e}")
         raise

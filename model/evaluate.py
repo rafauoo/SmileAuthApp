@@ -7,7 +7,9 @@ from model.lstm import SmileAuthenticityPredictor
 
 
 def evaluate_data(
-    model: SmileAuthenticityPredictor, device: device, angles: pd.DataFrame | list
+    model: SmileAuthenticityPredictor,
+    device: device,
+    angles: pd.DataFrame | list,
 ) -> float:
     """Evaluates smile authenticity percentage of given angles data.
 

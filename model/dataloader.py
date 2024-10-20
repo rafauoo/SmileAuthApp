@@ -16,7 +16,8 @@ class FacesFeaturesDataset(Dataset):
     def __getitem__(self, idx: int) -> dict[torch.Tensor, torch.Tensor]:
         ffs, auth = self.data[idx]
         return dict(
-            faces_features=torch.Tensor(ffs), authenticity=torch.tensor(auth).long()
+            faces_features=torch.Tensor(ffs),
+            authenticity=torch.tensor(auth).long(),
         )
 
 
@@ -24,7 +25,10 @@ class FacesFeaturesDataModule(pl.LightningDataModule):
     """Faces features data module handler."""
 
     def __init__(
-        self, train_data: pd.DataFrame, test_data: pd.DataFrame, batch_size: int
+        self,
+        train_data: pd.DataFrame,
+        test_data: pd.DataFrame,
+        batch_size: int,
     ):
         super().__init__()
         self.train_data = train_data
@@ -43,7 +47,9 @@ class FacesFeaturesDataModule(pl.LightningDataModule):
         :return: train DataLoader
         :rtype: DataLoader
         """
-        return DataLoader(self.train_dataset, batch_size=self.batch_size, shuffle=True)
+        return DataLoader(
+            self.train_dataset, batch_size=self.batch_size, shuffle=True
+        )
 
     def val_dataloader(self) -> DataLoader:
         """Creates validation DataLoader.
@@ -51,7 +57,9 @@ class FacesFeaturesDataModule(pl.LightningDataModule):
         :return: validation DataLoader
         :rtype: DataLoader
         """
-        return DataLoader(self.test_dataset, batch_size=self.batch_size, shuffle=False)
+        return DataLoader(
+            self.test_dataset, batch_size=self.batch_size, shuffle=False
+        )
 
     def test_dataloader(self) -> DataLoader:
         """Creates test DataLoader.
@@ -59,4 +67,6 @@ class FacesFeaturesDataModule(pl.LightningDataModule):
         :return: test DataLoader
         :rtype: DataLoader
         """
-        return DataLoader(self.test_dataset, batch_size=self.batch_size, shuffle=False)
+        return DataLoader(
+            self.test_dataset, batch_size=self.batch_size, shuffle=False
+        )

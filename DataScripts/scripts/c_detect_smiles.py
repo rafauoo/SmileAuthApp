@@ -54,7 +54,9 @@ def detect_smiles(id: int, video_name: str) -> None:
     """
     detector = dlib.get_frontal_face_detector()
     predictor = dlib.shape_predictor(FACES_FEATURES_DET_FP)
-    faces_dir = os.path.abspath(os.path.join(os.sep, TMP_DIR, str(id), "faces"))
+    faces_dir = os.path.abspath(
+        os.path.join(os.sep, TMP_DIR, str(id), "faces")
+    )
     faces_names = get_filenames_sorted_by_frame_num(faces_dir)
 
     first_dist = None
@@ -94,7 +96,9 @@ def detect_smiles(id: int, video_name: str) -> None:
 
     # finding top of the chart (to be able to find the end of the smile - It has to be after the top of
     # the chart.)
-    filtered_diffs = [_dict for _dict in diffs_in_time if _dict["diff"] is not None]
+    filtered_diffs = [
+        _dict for _dict in diffs_in_time if _dict["diff"] is not None
+    ]
     sorted_diffs = sorted(filtered_diffs, key=lambda d: d["diff"])
     biggest_diff_frame = sorted_diffs[-1]["frame"]
 
@@ -123,7 +127,8 @@ def detect_smiles(id: int, video_name: str) -> None:
                 beg_found is False
                 and dY > BEG_SMILE_THRESHOLD
                 and all(
-                    rise_diff > (diffs_in_time[i]["diff"] + MIN_DIFF_IN_RISE_SMILE_BEG)
+                    rise_diff
+                    > (diffs_in_time[i]["diff"] + MIN_DIFF_IN_RISE_SMILE_BEG)
                     for rise_diff in rise_diffs
                 )
             ):
@@ -188,7 +193,9 @@ def detect_smiles(id: int, video_name: str) -> None:
     smiles_data.update(smile_data)
     with open(
         os.path.abspath(
-            os.path.abspath(os.path.join(os.sep, TMP_DIR, str(id), "smiles_data.json"))
+            os.path.abspath(
+                os.path.join(os.sep, TMP_DIR, str(id), "smiles_data.json")
+            )
         ),
         "w",
     ) as f:

@@ -16,7 +16,9 @@ def process_video(file: str) -> None:
     :param file: video file path
     :type file: str
     """
-    e_file = os.path.abspath(os.path.join(os.sep, ROOT_DIR, "videos_new", file))
+    e_file = os.path.abspath(
+        os.path.join(os.sep, ROOT_DIR, "videos_new", file)
+    )
     save_path = os.path.abspath(
         os.path.join(os.sep, ROOT_DIR, "outputs_new_flow", f"{file}.csv")
     )
@@ -41,4 +43,6 @@ def process_videos(path: str) -> None:
 
 
 if __name__ == "__main__":
-    process_videos(os.path.abspath(os.path.join(os.sep, ROOT_DIR, "videos_new")))
+    process_videos(
+        os.path.abspath(os.path.join(os.sep, ROOT_DIR, "videos_new"))
+    )

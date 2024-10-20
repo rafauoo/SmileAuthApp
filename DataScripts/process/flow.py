@@ -135,7 +135,7 @@ def mouth_edges_distances(
 
 
 def smile_data_from_beg_to_end(
-    video_bytes: bytes
+    video_bytes: bytes,
 ) -> Generator[dlib.full_object_detection, None, None]:
     """Generator yielding landmarks of found smile frames.
 
@@ -159,7 +159,9 @@ def smile_data_from_beg_to_end(
         if i > 1:  # if it is at least 2nd dist
             i = i - 1
             dY = curr_diff - last_diff
-            dist_deque.append(DotMap(curr_diff=curr_diff, landmarks=landmarks, dY=dY))
+            dist_deque.append(
+                DotMap(curr_diff=curr_diff, landmarks=landmarks, dY=dY)
+            )
             if not beg_found:
                 if not len(dist_deque) == dist_deque.maxlen:
                     continue  # waiting for collecting 20 values
@@ -219,10 +221,14 @@ def prepare_angle_data(data: pd.DataFrame) -> pd.DataFrame:
     :rtype: pd.DataFrame
     """
     left_lips_corner_x = data[f"{LIPS_CORNER1_IDX}x"]
-    left_lips_corner_y = DESIRED_FACE_PHOTO_WIDTH - data[f"{LIPS_CORNER1_IDX}y"]
+    left_lips_corner_y = (
+        DESIRED_FACE_PHOTO_WIDTH - data[f"{LIPS_CORNER1_IDX}y"]
+    )
 
     right_lips_corner_x = data[f"{LIPS_CORNER2_IDX}x"]
-    right_lips_corner_y = DESIRED_FACE_PHOTO_WIDTH - data[f"{LIPS_CORNER2_IDX}y"]
+    right_lips_corner_y = (
+        DESIRED_FACE_PHOTO_WIDTH - data[f"{LIPS_CORNER2_IDX}y"]
+    )
 
     nose_top_x = data[f"{NOSE_TOP_IDX}x"]
     nose_top_y = DESIRED_FACE_PHOTO_WIDTH - data[f"{NOSE_TOP_IDX}y"]

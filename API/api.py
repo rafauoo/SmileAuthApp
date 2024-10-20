@@ -46,16 +46,25 @@ async def upload_video(data: VideoData) -> dict:
         validate_video(video_bytes)
         angles = flow(video_bytes)
         result = evaluate_data(model, device, angles)
-        comment = (random.choice(CommentList.available_comments(result)))
+        comment = random.choice(CommentList.available_comments(result))
         return {"result": result, "comment": comment.get_content()}
     except SmileNotDetectedException as e:
-        raise HTTPException(status_code=400, detail={"statusText": str(e), "error": "SmileNotDetected"})
+        raise HTTPException(
+            status_code=400,
+            detail={"statusText": str(e), "error": "SmileNotDetected"},
+        )
 
     except VideoTooLongException as e:
-        raise HTTPException(status_code=400, detail={"statusText": str(e), "error": "VideoTooLong"})
+        raise HTTPException(
+            status_code=400,
+            detail={"statusText": str(e), "error": "VideoTooLong"},
+        )
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail={"statusText": str(e), "error": "Exception"})
+        raise HTTPException(
+            status_code=500,
+            detail={"statusText": str(e), "error": "Exception"},
+        )
 
 
 if __name__ == "__main__":

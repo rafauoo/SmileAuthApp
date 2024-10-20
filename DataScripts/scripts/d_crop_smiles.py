@@ -55,11 +55,15 @@ def crop_smiles(id: int, video_name: str) -> None:
     :param video_name: video name
     :type video_name: str
     """
-    with open(os.path.join(os.sep, TMP_DIR, str(id), "smiles_data.json"), "r") as fp:
+    with open(
+        os.path.join(os.sep, TMP_DIR, str(id), "smiles_data.json"), "r"
+    ) as fp:
         smiles_data = json.load(fp)
         num_smiles_frames = smiles_data["num_smiles_frames"]
         beg_frame = smiles_data["smile_beg_frame"]
-        _scaled_frames_nums = get_first_39_smile_frames(beg_frame, num_smiles_frames)
+        _scaled_frames_nums = get_first_39_smile_frames(
+            beg_frame, num_smiles_frames
+        )
     print(_scaled_frames_nums)
     print(f"**********************************************\n{video_name}\n")
     video_smile_dir = os.path.abspath(os.path.join(TMP_DIR, str(id), "smiles"))
@@ -71,6 +75,8 @@ def crop_smiles(id: int, video_name: str) -> None:
     chosen_frames = _scaled_frames_nums
     for frame_num in chosen_frames:
         img_title = f"frame{frame_num}.jpg"
-        img_path = os.path.abspath(os.path.join(os.sep, video_faces_dir, img_title))
+        img_path = os.path.abspath(
+            os.path.join(os.sep, video_faces_dir, img_title)
+        )
         img = cv2.imread(img_path)
         cv2.imwrite(img_title, img)

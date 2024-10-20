@@ -13,7 +13,8 @@ def generate_data():
                 values.append(next_value)
 
             with open(
-                f"DataScripts/outputs_test/{file+1:04}_spontaneous.mp4.csv", "w"
+                f"DataScripts/outputs_test/{file+1:04}_spontaneous.mp4.csv",
+                "w",
             ) as file:
                 file.write("lips_corners_from_nose_angle\n")
                 for value in values:

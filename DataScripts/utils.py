@@ -10,21 +10,31 @@ import dlib
 def rename_videos() -> None:
     """Rename videos from DATA_DIR/videos_new."""
     for num, file in enumerate(
-        os.listdir(os.path.abspath(os.path.join(os.sep, DATA_DIR, "videos_new")))
+        os.listdir(
+            os.path.abspath(os.path.join(os.sep, DATA_DIR, "videos_new"))
+        )
     ):
-        e_file = os.path.abspath(os.path.join(os.sep, DATA_DIR, "videos_new", file))
+        e_file = os.path.abspath(
+            os.path.join(os.sep, DATA_DIR, "videos_new", file)
+        )
         if "deliberate" in file:
             os.rename(
                 e_file,
                 os.path.join(
-                    os.sep, DATA_DIR, "videos_new", f"{num+1:04}_deliberate.mp4"
+                    os.sep,
+                    DATA_DIR,
+                    "videos_new",
+                    f"{num+1:04}_deliberate.mp4",
                 ),
             )
         if "spontaneous" in file:
             os.rename(
                 e_file,
                 os.path.join(
-                    os.sep, DATA_DIR, "videos_new", f"{num+1:04}_spontaneous.mp4"
+                    os.sep,
+                    DATA_DIR,
+                    "videos_new",
+                    f"{num+1:04}_spontaneous.mp4",
                 ),
             )
 
@@ -115,10 +125,15 @@ def save_dict_to_json_file(
     if time_str is None:
         time_str = get_current_time_str()
         with open(
-            os.path.abspath(os.path.join(os.sep, path, f"{title}-{time_str}.json")), "w"
+            os.path.abspath(
+                os.path.join(os.sep, path, f"{title}-{time_str}.json")
+            ),
+            "w",
         ) as f:
             json.dump(data, f, indent=4)
         print("\nData successfully saved into the json file.\n")
     else:
-        with open(os.path.abspath(os.path.join(os.sep, path, title)), "w") as f:
+        with open(
+            os.path.abspath(os.path.join(os.sep, path, title)), "w"
+        ) as f:
             json.dump(data, f, indent=4)

@@ -15,7 +15,9 @@ class Comment:
         return self.min <= value <= self.max
 
     def __repr__(self) -> str:
-        return f"Comment(min={self.min}, max={self.max}, content={self.content})"
+        return (
+            f"Comment(min={self.min}, max={self.max}, content={self.content})"
+        )
 
 
 class CommentList:
@@ -32,9 +34,10 @@ class CommentList:
         if cls._instance is None:
             with open(file_path) as fp:
                 comments_data = json.load(fp)
-                comments = [Comment(comment['min'], comment['max'],
-                                    comment['content'])
-                            for comment in comments_data]
+                comments = [
+                    Comment(comment["min"], comment["max"], comment["content"])
+                    for comment in comments_data
+                ]
                 cls._instance = cls(comments)
         return cls._instance
 
@@ -44,8 +47,11 @@ class CommentList:
         instance = cls._instance
         if instance is None:
             raise Exception("CommentList is not initialized.")
-        return [comment for comment in instance.comments
-                if comment.is_value_in_range(value)]
+        return [
+            comment
+            for comment in instance.comments
+            if comment.is_value_in_range(value)
+        ]
 
     def __repr__(self) -> str:
         return f"CommentList({self.comments})"

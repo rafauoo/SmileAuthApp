@@ -42,5 +42,7 @@ def compare_csv_files(folder1: str, folder2: str) -> None:
 
 if __name__ == "__main__":
     folder1 = os.path.abspath(os.path.join(os.sep, DATA_DIR, "outputs"))
-    folder2 = os.path.abspath(os.path.join(os.sep, DATA_DIR, "outputs_new_flow"))
+    folder2 = os.path.abspath(
+        os.path.join(os.sep, DATA_DIR, "outputs_new_flow")
+    )
     compare_csv_files(folder1, folder2)

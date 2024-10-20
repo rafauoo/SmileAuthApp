@@ -7,7 +7,9 @@ if __name__ == "__main__":
         video_bytes = video_file.read()
         video_base64 = base64.b64encode(video_bytes).decode("utf-8")
 
-response = requests.post("http://192.168.0.192:8000/video/", json={"video": video_base64})
+response = requests.post(
+    "http://192.168.0.192:8000/video/", json={"video": video_base64}
+)
 
 print(response.json())
 video_bytes = base64.b64decode(video_base64)

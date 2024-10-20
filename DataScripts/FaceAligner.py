@@ -47,7 +47,9 @@ class FaceAligner:
         if self.desired_face_photo_height is None:
             self.desired_face_photo_height = self.desired_face_photo_width
 
-    def align(self, image: MatLike, gray: MatLike, rect: dlib.rectangle) -> MatLike:
+    def align(
+        self, image: MatLike, gray: MatLike, rect: dlib.rectangle
+    ) -> MatLike:
         """Aligns face on the frame
 
         :param image: source frame
@@ -147,7 +149,10 @@ class FaceAligner:
         matrix[1, 2] += tY - eyes_center[1]
 
         # apply the affine transformation
-        (w, h) = (self.desired_face_photo_width, self.desired_face_photo_height)
+        (w, h) = (
+            self.desired_face_photo_width,
+            self.desired_face_photo_height,
+        )
         output = cv2.warpAffine(image, matrix, (w, h), flags=cv2.INTER_CUBIC)
 
         return output

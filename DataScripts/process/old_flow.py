@@ -8,7 +8,11 @@ from DataScripts.config import (
     SMILE_DURATION_MIN_RATIO,
 )
 import hashlib
-from DataScripts.config import FACES_FEATURES_DET_FP, LIPS_CORNER1_IDX, LIPS_CORNER2_IDX
+from DataScripts.config import (
+    FACES_FEATURES_DET_FP,
+    LIPS_CORNER1_IDX,
+    LIPS_CORNER2_IDX,
+)
 from DataScripts.config import (
     NUM_FACES_FEATURES,
     DESIRED_FACE_PHOTO_WIDTH,
@@ -137,7 +141,9 @@ def detect_faces_on_frames(frames):
             faces.append(aligned_face)
         except (MoreThanOneFaceException, NoFaceException) as e:
             print(e)  # Handle or log exceptions as needed
-            faces.append(None)  # Append None or some default value in case of an error
+            faces.append(
+                None
+            )  # Append None or some default value in case of an error
 
     return faces
 
@@ -199,7 +205,9 @@ def detect_smiles(faces):
         diffs_in_time.append({"frame": num, "diff": curr_diff})
     # finding top of the chart (to be able to find the end of the smile - It has to be after the top of
     # the chart.)
-    filtered_diffs = [_dict for _dict in diffs_in_time if _dict["diff"] is not None]
+    filtered_diffs = [
+        _dict for _dict in diffs_in_time if _dict["diff"] is not None
+    ]
     sorted_diffs = sorted(filtered_diffs, key=lambda d: d["diff"])
     biggest_diff_frame = sorted_diffs[-1]["frame"]
 
@@ -227,7 +235,8 @@ def detect_smiles(faces):
                 beg_found is False
                 and dY > BEG_SMILE_THRESHOLD
                 and all(
-                    rise_diff > (diffs_in_time[i]["diff"] + MIN_DIFF_IN_RISE_SMILE_BEG)
+                    rise_diff
+                    > (diffs_in_time[i]["diff"] + MIN_DIFF_IN_RISE_SMILE_BEG)
                     for rise_diff in rise_diffs
                 )
             ):
@@ -309,13 +318,17 @@ GENERATE ANGLES DATA
 """
 f1 = lambda num: f"{num}x"
 f2 = lambda num: f"{num}y"
-header = ["frame_number"] + [f(i) for i in range(NUM_FACES_FEATURES) for f in (f1, f2)]
+header = ["frame_number"] + [
+    f(i) for i in range(NUM_FACES_FEATURES) for f in (f1, f2)
+]
 
 
 def save_landmarks_row(writer, landmarks, frame_number):
     x = lambda n: landmarks.part(n).x
     y = lambda n: landmarks.part(n).y
-    row = [frame_number] + [f(i) for i in range(NUM_FACES_FEATURES) for f in (x, y)]
+    row = [frame_number] + [
+        f(i) for i in range(NUM_FACES_FEATURES) for f in (x, y)
+    ]
     writer.writerow(row)
 
 
@@ -358,10 +371,14 @@ def angle_between(v1, v2):
 
 def prepare_angle_data(data):
     left_lips_corner_x = data[f"{LIPS_CORNER1_IDX}x"]
-    left_lips_corner_y = DESIRED_FACE_PHOTO_WIDTH - data[f"{LIPS_CORNER1_IDX}y"]
+    left_lips_corner_y = (
+        DESIRED_FACE_PHOTO_WIDTH - data[f"{LIPS_CORNER1_IDX}y"]
+    )
 
     right_lips_corner_x = data[f"{LIPS_CORNER2_IDX}x"]
-    right_lips_corner_y = DESIRED_FACE_PHOTO_WIDTH - data[f"{LIPS_CORNER2_IDX}y"]
+    right_lips_corner_y = (
+        DESIRED_FACE_PHOTO_WIDTH - data[f"{LIPS_CORNER2_IDX}y"]
+    )
 
     nose_top_x = data[f"{NOSE_TOP_IDX}x"]
     nose_top_y = DESIRED_FACE_PHOTO_WIDTH - data[f"{NOSE_TOP_IDX}y"]

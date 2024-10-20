@@ -17,9 +17,32 @@ from DataScripts.config import (
 )
 from DataScripts.utils import get_filenames_sorted_by_frame_num, get_frame_num
 
-f1 = lambda num: f"{num}x"
-f2 = lambda num: f"{num}y"
-header = ["frame_number"] + [f(i) for i in range(NUM_FACES_FEATURES) for f in (f1, f2)]
+
+def f1(num: int) -> str:
+    """Returns x string
+
+    :param num: number
+    :type num: int
+    :return: x string
+    :rtype: str
+    """
+    return f"{num}x"
+
+
+def f2(num: int) -> str:
+    """Returns y string
+
+    :param num: number
+    :type num: int
+    :return: y string
+    :rtype: str
+    """
+    return f"{num}y"
+
+
+header = ["frame_number"] + [
+    f(i) for i in range(NUM_FACES_FEATURES) for f in (f1, f2)
+]
 
 
 def angle_between(v1: tuple, v2: tuple) -> np.ndarray:
@@ -37,7 +60,7 @@ def angle_between(v1: tuple, v2: tuple) -> np.ndarray:
     return np.arccos(np.clip(np.dot(v1_u, v2_u), -1.0, 1.0))
 
 
-def create_ff_data_file_writer(filepath: str) -> tuple[IO, _csv._writer]:
+def create_ff_data_file_writer(filepath: str) -> tuple[IO, _csv.writer]:
     """Opens file and creates writes object.
 
     :param filepath: filepath
@@ -52,7 +75,9 @@ def create_ff_data_file_writer(filepath: str) -> tuple[IO, _csv._writer]:
 
 
 def save_landmarks_row(
-    writer: _csv._writer, landmarks: dlib.full_object_detection, frame_number: int
+    writer: _csv.writer,
+    landmarks: dlib.full_object_detection,
+    frame_number: int,
 ) -> None:
     """Writes one row of face data.
 
@@ -63,9 +88,16 @@ def save_landmarks_row(
     :param frame_number: frame ID
     :type frame_number: int
     """
-    x = lambda n: landmarks.part(n).x
-    y = lambda n: landmarks.part(n).y
-    row = [frame_number] + [f(i) for i in range(NUM_FACES_FEATURES) for f in (x, y)]
+
+    def x(landmarks: dlib.full_object_detection, n: int) -> int:
+        return landmarks.part(n).x
+
+    def y(landmarks: dlib.full_object_detection, n: int) -> int:
+        return landmarks.part(n).y
+
+    row = [frame_number] + [
+        f(landmarks, i) for i in range(NUM_FACES_FEATURES) for f in (x, y)
+    ]
     writer.writerow(row)
 
 
@@ -78,10 +110,14 @@ def prepare_angle_data(data: pd.DataFrame) -> pd.DataFrame:
     :rtype: pd.DataFrame
     """
     left_lips_corner_x = data[f"{LIPS_CORNER1_IDX}x"]
-    left_lips_corner_y = DESIRED_FACE_PHOTO_WIDTH - data[f"{LIPS_CORNER1_IDX}y"]
+    left_lips_corner_y = (
+        DESIRED_FACE_PHOTO_WIDTH - data[f"{LIPS_CORNER1_IDX}y"]
+    )
 
     right_lips_corner_x = data[f"{LIPS_CORNER2_IDX}x"]
-    right_lips_corner_y = DESIRED_FACE_PHOTO_WIDTH - data[f"{LIPS_CORNER2_IDX}y"]
+    right_lips_corner_y = (
+        DESIRED_FACE_PHOTO_WIDTH - data[f"{LIPS_CORNER2_IDX}y"]
+    )
 
     nose_top_x = data[f"{NOSE_TOP_IDX}x"]
     nose_top_y = DESIRED_FACE_PHOTO_WIDTH - data[f"{NOSE_TOP_IDX}y"]
@@ -117,11 +153,15 @@ def smiles_to_csv(id: int, video_name: str) -> None:
 
     print(f"**********************************************\n{video_name}\n")
 
-    ffd_path = os.path.abspath(os.path.join(os.sep, TMP_DIR, str(id), f"all_data.csv"))
+    ffd_path = os.path.abspath(
+        os.path.join(os.sep, TMP_DIR, str(id), "all_data.csv")
+    )
     f, _writer = create_ff_data_file_writer(ffd_path)
 
     for face_name in faces_names:
-        face_path = os.path.abspath(os.path.join(os.sep, smiles_dir, face_name))
+        face_path = os.path.abspath(
+            os.path.join(os.sep, smiles_dir, face_name)
+        )
 
         img = cv2.imread(face_path)
         gray = cv2.cvtColor(src=img, code=cv2.COLOR_BGR2GRAY)
@@ -132,8 +172,10 @@ def smiles_to_csv(id: int, video_name: str) -> None:
         save_landmarks_row(_writer, _landmarks, _frame_number)
 
     f.close()
-    print(f"all_data.csv face features data file created successfully.")
+    print("all_data.csv face features data file created successfully.")
     data = pd.read_csv(ffd_path, delimiter=";")
     selected_data_x = prepare_angle_data(data)
-    out_ffd_path = os.path.abspath(os.path.join(os.sep, TMP_DIR, str(id), f"data.csv"))
+    out_ffd_path = os.path.abspath(
+        os.path.join(os.sep, TMP_DIR, str(id), "data.csv")
+    )
     selected_data_x.to_csv(out_ffd_path, sep=";", index=False, header=True)

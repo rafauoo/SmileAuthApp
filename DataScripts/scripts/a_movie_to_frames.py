@@ -25,12 +25,16 @@ def movie_to_frames(id: int, video_name: str) -> None:
     :type video_name: str
     """
     print(f"**********************************************\n{id}\n")
-    frames_dir = os.path.abspath(os.path.join(os.sep, TMP_DIR, str(id), "frames"))
+    frames_dir = os.path.abspath(
+        os.path.join(os.sep, TMP_DIR, str(id), "frames")
+    )
     if not os.path.exists(frames_dir):
         os.makedirs(frames_dir)
 
     current_frame = 0
-    video_path = os.path.abspath(os.path.join(os.sep, TMP_DIR, str(id), video_name))
+    video_path = os.path.abspath(
+        os.path.join(os.sep, TMP_DIR, str(id), video_name)
+    )
     video = cv2.VideoCapture(video_path)
 
     os.chdir(frames_dir)

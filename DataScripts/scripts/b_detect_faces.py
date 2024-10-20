@@ -58,7 +58,9 @@ def save_face(face: MatLike, face_name: str) -> None:
         raise
 
 
-def process_frame(frame_name: str, frames_dir: str, faces_dir: str) -> str | None:
+def process_frame(
+    frame_name: str, frames_dir: str, faces_dir: str
+) -> str | None:
     """Process one frame of the video - detect face.
 
     :param frame_name: name of the frame to process
