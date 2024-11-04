@@ -48,7 +48,6 @@ EXPORT FRAMES FROM VIDEO
 
 
 def export_frames_from_video(video_bytes):
-    # Otwórz strumień wideo z bajtów za pomocą PyAV
     container = av.open(io.BytesIO(video_bytes))
     frames = []
     rotation = 0
@@ -56,13 +55,8 @@ def export_frames_from_video(video_bytes):
         rotation = detect_rotation(video_bytes)
     except ValueError:
         roration = 0
-
-    # Iteracja przez klatki wideo
     for frame in container.decode(video=0):
-        # Konwersja klatki do formatu kompatybilnego z OpenCV (BGR)
         img = frame.to_ndarray(format="bgr24")
-
-        # Obróć obraz w zależności od orientacji
         if rotation != 0:
             if rotation == 2:
                 img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
@@ -454,4 +448,3 @@ def flow(video_bytes: bytes) -> pd.DataFrame:
     faces = [face for num, face in enumerate(faces) if num in ids]
     angles = generate_data(faces)
     return angles
-

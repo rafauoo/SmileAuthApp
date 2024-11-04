@@ -5,3 +5,5 @@ node_modules/
 htmlcov
 .coverage
 experiments
+tmp
+backups

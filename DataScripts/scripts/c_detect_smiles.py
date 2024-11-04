@@ -72,8 +72,6 @@ def detect_smiles(id: int, video_name: str) -> None:
         _frame_number = get_frame_num(face_name)
 
         face = detector(gray)[0]
-        if _frame_number == 87:
-            cv2.imshow("Image Title", img)
 
         _landmarks = predictor(image=gray, box=face)
 
@@ -180,7 +178,7 @@ def detect_smiles(id: int, video_name: str) -> None:
         "num_smiles_frames": num_smiles_frames,
     }
     print(smile_data)
-    show_smile_plot(diffs_in_time)
+    #show_smile_plot(diffs_in_time)
     smiles_data = {
         "smile_config": {
             "BEG_SMILE_THRESHOLD": BEG_SMILE_THRESHOLD,
