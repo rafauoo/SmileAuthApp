@@ -438,14 +438,20 @@ SAVE DATA TO CSV
 """
 
 
-def flow(video_bytes):
-    # tmp_dir = create_unique_tmp_dir(TMP_DIR, random.randbytes(10))
+def flow(video_bytes: bytes) -> pd.DataFrame:
+    """Entry point for processing video to retrieve angle data from it.
+
+    :param video_bytes: bytes of the video
+    :type video_bytes: bytes
+    :raises SmileNotDetectedException: smile was not detected or was too short
+    :return: angles data
+    :rtype: pd.DataFrame
+    """
     frames = export_frames_from_video(video_bytes)
     faces = detect_faces_on_frames(frames)
     smile_data = detect_smiles(faces)
     ids = get_selected_ids(smile_data)
     faces = [face for num, face in enumerate(faces) if num in ids]
-    # for num, face in enumerate(faces):
-    #     cv2.imwrite(f"face{num}.jpg", face)
     angles = generate_data(faces)
     return angles
+
