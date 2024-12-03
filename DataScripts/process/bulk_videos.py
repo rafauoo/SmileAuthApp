@@ -39,7 +39,7 @@ def process_videos(from_path: str, out_path: str) -> None:
     video_files = os.listdir(from_path)
     from_paths = [from_path for i in range(0, len(video_files))]
     out_paths = [out_path for i in range(0, len(video_files))]
-    with ThreadPoolExecutor(max_workers=10) as executor:
+    with ThreadPoolExecutor(max_workers=8) as executor:
         executor.map(process_video, from_paths, out_paths, video_files)
 
 
