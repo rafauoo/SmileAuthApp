@@ -1,26 +1,2402 @@
 [
   {
-    "min": 0,
-    "max": 33,
+    "min": 78,
+    "max": 81,
     "content": {
-      "pl": "Polski komentarz",
-      "en": "English comment"
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 96,
+    "max": 100,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 87,
+    "max": 88,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 74,
+    "max": 77,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 96,
+    "max": 97,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 29,
+    "max": 30,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 11,
+    "max": 14,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 37,
+    "max": 40,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 13,
+    "max": 14,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 91,
+    "max": 93,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 65,
+    "max": 68,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 16,
+    "max": 19,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 74,
+    "max": 77,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 5,
+    "max": 7,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 80,
+    "max": 82,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 24,
+    "max": 26,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 75,
+    "max": 76,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 48,
+    "max": 50,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 92,
+    "max": 95,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 25,
+    "max": 26,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 75,
+    "max": 77,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 24,
+    "max": 26,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 29,
+    "max": 32,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 53,
+    "max": 55,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 47,
+    "max": 49,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 77,
+    "max": 78,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 48,
+    "max": 49,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 12,
+    "max": 13,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 22,
+    "max": 25,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 50,
+    "max": 51,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 79,
+    "max": 82,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 27,
+    "max": 30,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 39,
+    "max": 42,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 72,
+    "max": 74,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 60,
+    "max": 62,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 93,
+    "max": 95,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 70,
+    "max": 72,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 70,
+    "max": 71,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 30,
+    "max": 32,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 47,
+    "max": 50,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 1,
+    "max": 3,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 36,
+    "max": 37,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 14,
+    "max": 16,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 87,
+    "max": 88,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 63,
+    "max": 66,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 93,
+    "max": 94,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 84,
+    "max": 87,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 89,
+    "max": 91,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 76,
+    "max": 78,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 20,
+    "max": 21,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 20,
+    "max": 21,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 74,
+    "max": 76,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 93,
+    "max": 96,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 61,
+    "max": 64,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 81,
+    "max": 83,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 83,
+    "max": 86,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 61,
+    "max": 63,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 72,
+    "max": 74,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 44,
+    "max": 47,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 78,
+    "max": 81,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 17,
+    "max": 20,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 41,
+    "max": 43,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 63,
+    "max": 65,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 42,
+    "max": 45,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 7,
+    "max": 9,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 60,
+    "max": 61,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 82,
+    "max": 84,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 87,
+    "max": 90,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
     }
   },
   {
     "min": 33,
-    "max": 66,
+    "max": 36,
     "content": {
-      "pl": "Inny polski komentarz",
-      "en": "Another English comment"
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 12,
+    "max": 14,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 43,
+    "max": 44,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 23,
+    "max": 24,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 70,
+    "max": 73,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 43,
+    "max": 44,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 68,
+    "max": 70,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 5,
+    "max": 6,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 72,
+    "max": 75,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
     }
   },
   {
     "min": 66,
+    "max": 68,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 28,
+    "max": 31,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 78,
+    "max": 79,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 14,
+    "max": 17,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 49,
+    "max": 50,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 95,
+    "max": 96,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 49,
+    "max": 51,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 58,
+    "max": 60,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 7,
+    "max": 9,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 83,
+    "max": 86,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 61,
+    "max": 62,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 90,
+    "max": 93,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 85,
+    "max": 88,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 52,
+    "max": 55,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 70,
+    "max": 73,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 30,
+    "max": 32,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 24,
+    "max": 26,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 8,
+    "max": 9,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 41,
+    "max": 42,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 94,
+    "max": 96,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 75,
+    "max": 78,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 92,
+    "max": 94,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 79,
+    "max": 82,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 10,
+    "max": 11,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 56,
+    "max": 58,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 41,
+    "max": 43,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 30,
+    "max": 32,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 19,
+    "max": 20,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 53,
+    "max": 55,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 97,
     "max": 100,
     "content": {
-      "pl": "Jeszcze jeden polski komentarz",
-      "en": "Yet another English comment"
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 46,
+    "max": 49,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 17,
+    "max": 18,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 93,
+    "max": 95,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 18,
+    "max": 20,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 45,
+    "max": 47,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 61,
+    "max": 62,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 83,
+    "max": 84,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 0,
+    "max": 1,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 76,
+    "max": 78,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 92,
+    "max": 94,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 91,
+    "max": 93,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 15,
+    "max": 16,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 11,
+    "max": 14,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 69,
+    "max": 72,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 70,
+    "max": 72,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 72,
+    "max": 74,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 14,
+    "max": 16,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 29,
+    "max": 30,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 21,
+    "max": 24,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 57,
+    "max": 58,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 2,
+    "max": 4,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 4,
+    "max": 5,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 20,
+    "max": 22,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 85,
+    "max": 87,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 63,
+    "max": 66,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 53,
+    "max": 54,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 56,
+    "max": 58,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 23,
+    "max": 26,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 46,
+    "max": 48,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 67,
+    "max": 70,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 81,
+    "max": 83,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 7,
+    "max": 9,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 41,
+    "max": 44,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 68,
+    "max": 69,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 44,
+    "max": 45,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 86,
+    "max": 87,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 33,
+    "max": 35,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 50,
+    "max": 52,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 77,
+    "max": 78,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 52,
+    "max": 53,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 92,
+    "max": 94,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 29,
+    "max": 31,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 16,
+    "max": 17,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 76,
+    "max": 78,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 90,
+    "max": 93,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 17,
+    "max": 19,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 62,
+    "max": 65,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 13,
+    "max": 14,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 37,
+    "max": 40,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 50,
+    "max": 51,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 33,
+    "max": 34,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 94,
+    "max": 96,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 87,
+    "max": 88,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 91,
+    "max": 93,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 94,
+    "max": 95,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 50,
+    "max": 51,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 20,
+    "max": 22,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 86,
+    "max": 87,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 87,
+    "max": 89,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 53,
+    "max": 54,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 68,
+    "max": 69,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 49,
+    "max": 51,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 11,
+    "max": 13,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 42,
+    "max": 44,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 39,
+    "max": 42,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 65,
+    "max": 67,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 7,
+    "max": 9,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 7,
+    "max": 10,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 38,
+    "max": 41,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 62,
+    "max": 63,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 39,
+    "max": 41,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 28,
+    "max": 30,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 7,
+    "max": 10,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 66,
+    "max": 67,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 1,
+    "max": 2,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 85,
+    "max": 88,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 41,
+    "max": 44,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 5,
+    "max": 8,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 2,
+    "max": 5,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 5,
+    "max": 7,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 3,
+    "max": 5,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 27,
+    "max": 29,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 68,
+    "max": 71,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 15,
+    "max": 16,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 84,
+    "max": 86,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 87,
+    "max": 88,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 0,
+    "max": 1,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 49,
+    "max": 52,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 57,
+    "max": 59,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 83,
+    "max": 84,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 15,
+    "max": 16,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 50,
+    "max": 51,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 36,
+    "max": 39,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 43,
+    "max": 44,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 76,
+    "max": 77,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 16,
+    "max": 17,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 26,
+    "max": 29,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 60,
+    "max": 63,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 26,
+    "max": 29,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 36,
+    "max": 39,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 54,
+    "max": 56,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 7,
+    "max": 9,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 16,
+    "max": 18,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 3,
+    "max": 6,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 47,
+    "max": 49,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 88,
+    "max": 90,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 28,
+    "max": 31,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 77,
+    "max": 78,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 72,
+    "max": 73,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 65,
+    "max": 67,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 6,
+    "max": 9,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 18,
+    "max": 19,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 75,
+    "max": 77,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 54,
+    "max": 57,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 55,
+    "max": 57,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 59,
+    "max": 61,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 3,
+    "max": 6,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 55,
+    "max": 56,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 63,
+    "max": 65,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 94,
+    "max": 97,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 23,
+    "max": 24,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 55,
+    "max": 58,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 8,
+    "max": 10,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 23,
+    "max": 24,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 31,
+    "max": 34,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 72,
+    "max": 73,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 72,
+    "max": 75,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 85,
+    "max": 88,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 52,
+    "max": 53,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 73,
+    "max": 74,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 81,
+    "max": 82,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 48,
+    "max": 51,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 32,
+    "max": 33,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 15,
+    "max": 16,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 20,
+    "max": 21,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 22,
+    "max": 24,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 8,
+    "max": 9,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 27,
+    "max": 29,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 38,
+    "max": 41,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 89,
+    "max": 92,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 32,
+    "max": 34,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 67,
+    "max": 70,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 74,
+    "max": 75,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 95,
+    "max": 97,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 10,
+    "max": 12,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 0,
+    "max": 3,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 67,
+    "max": 68,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 44,
+    "max": 46,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 27,
+    "max": 30,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 90,
+    "max": 91,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 63,
+    "max": 65,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 28,
+    "max": 30,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 61,
+    "max": 62,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 62,
+    "max": 64,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 15,
+    "max": 17,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 73,
+    "max": 75,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 93,
+    "max": 96,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 39,
+    "max": 42,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 92,
+    "max": 93,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 22,
+    "max": 24,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 45,
+    "max": 46,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 7,
+    "max": 8,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 3,
+    "max": 5,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 8,
+    "max": 9,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 82,
+    "max": 83,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 35,
+    "max": 38,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 66,
+    "max": 69,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 87,
+    "max": 88,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 8,
+    "max": 10,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 52,
+    "max": 54,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 33,
+    "max": 34,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 55,
+    "max": 57,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 51,
+    "max": 53,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 12,
+    "max": 13,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 84,
+    "max": 87,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 26,
+    "max": 27,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 10,
+    "max": 11,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 15,
+    "max": 17,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 37,
+    "max": 39,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 2,
+    "max": 3,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 33,
+    "max": 36,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 79,
+    "max": 82,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 74,
+    "max": 75,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 72,
+    "max": 74,
+    "content": {
+      "pl": "To naprawdę dobry uśmiech! Możesz spróbować dodać więcej ciepła w spojrzeniu.",
+      "en": "This is a really good smile! You might try adding more warmth in your gaze."
+    }
+  },
+  {
+    "min": 24,
+    "max": 27,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 43,
+    "max": 45,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 22,
+    "max": 23,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 56,
+    "max": 58,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 1,
+    "max": 4,
+    "content": {
+      "pl": "Uśmiech wygląda bardzo sztucznie. Spróbuj się rozluźnić i pomyśleć o czymś przyjemnym.",
+      "en": "The smile looks very artificial. Try to relax and think about something pleasant."
+    }
+  },
+  {
+    "min": 95,
+    "max": 97,
+    "content": {
+      "pl": "Świetna robota! Twój uśmiech jest bardzo autentyczny i przyjazny.",
+      "en": "Great job! Your smile is very authentic and friendly."
+    }
+  },
+  {
+    "min": 32,
+    "max": 35,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
+    }
+  },
+  {
+    "min": 47,
+    "max": 49,
+    "content": {
+      "pl": "Uśmiech wygląda coraz lepiej, ale można jeszcze go dopracować.",
+      "en": "The smile is looking better, but it could use some fine-tuning."
+    }
+  },
+  {
+    "min": 19,
+    "max": 22,
+    "content": {
+      "pl": "Twój uśmiech wymaga więcej naturalności. Uspokój oddech i spróbuj raz jeszcze.",
+      "en": "Your smile needs more naturalness. Calm your breathing and try again."
     }
   }
 ]
