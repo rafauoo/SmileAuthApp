@@ -13,6 +13,7 @@ export default function AppLayout() {
     setPrevSegment(currSegment);
     setCurrSegment(segments[0]);
   }, [segments]);
+  console.log(prevSegment, currSegment);
   return (
     <Stack>
       <Stack.Screen
@@ -43,7 +44,7 @@ export default function AppLayout() {
           gestureEnabled: true,
           gestureDirection: "horizontal",
           animation:
-            prevSegment === "settings" ? "slide_from_left" : "slide_from_right",
+            currSegment === "settings" ? "slide_from_left" : "slide_from_right",
         }}
       />
       <Stack.Screen

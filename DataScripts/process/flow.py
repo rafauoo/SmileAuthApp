@@ -86,10 +86,9 @@ def faces_landmarks(
             # Checking whether there is exaclty one face detected
             if len(_faces) > 1:
                 raise MoreThanOneFaceException(
-                    f"More than one face detected in #{num}.", ""
-                )
+                    f"More than one face detected in #{num}.")
             if len(_faces) == 0:
-                raise NoFaceException(f"No face detected in #{num}.", "")
+                raise NoFaceException(f"No face detected in #{num}.")
 
             # aligning the face
             aligned_face = fa.align(frame, _gray, _faces[0])
@@ -152,7 +151,7 @@ def smile_data_from_beg_to_end(
     counter = CURRENT_MIN_NUM_SMILE_FRAMES
     dist_deque = collections.deque(maxlen=NUM_FRAMES_RISE_SMILE_BEG)
     for i, (landmarks, dist) in enumerate(mouth_edges_distances(video_bytes)):
-        if first_dist == None:
+        if first_dist is None:
             first_dist = dist  # set first distance
         last_diff = curr_diff
         curr_diff = abs(dist - first_dist)
@@ -264,7 +263,7 @@ def generate_data(video_bytes: bytes) -> pd.DataFrame:
         row = [num] + [f(i) for i in range(NUM_FACES_FEATURES) for f in (x, y)]
         all_landmarks.append(row)
     if len(all_landmarks) < CURRENT_MIN_NUM_SMILE_FRAMES:
-        raise SmileNotDetectedException("Smile was not detected.", "")
+        raise SmileNotDetectedException("Smile was not detected.")
     f1 = lambda num: f"{num}x"
     f2 = lambda num: f"{num}y"
     header = ["frame_number"] + [

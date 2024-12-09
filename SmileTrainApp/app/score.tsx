@@ -26,10 +26,7 @@ export default function ScoreScreen() {
   const videoRef = useRef<Video>(null);
   const router = useRouter();
   const [isNavigating, setIsNavigating] = React.useState<boolean>(false);
-  useEffect(() => {
-    videoRef.current?.playAsync();
-  }, [video]);
-
+  console.log(video);
   function handleSwipeRight(event: PanGestureHandlerGestureEvent) {
     if (event.nativeEvent.translationX > 100 && !isNavigating) {
       setIsNavigating(true);
@@ -50,6 +47,7 @@ export default function ScoreScreen() {
               source={{ uri: video }}
               style={styles.video}
               isLooping
+              onLoad={() => videoRef.current?.playAsync()}
               isMuted
               resizeMode={ResizeMode.CONTAIN}
             />
@@ -69,7 +67,7 @@ export default function ScoreScreen() {
               <Text style={styles.scoreText}>{scoreNum.toFixed(2)}%</Text>
               <View style={styles.progressBarContainer}>
                 <ProgressBar
-                  progress={scoreNum / 100}
+                  animatedValue={scoreNum / 100}
                   color={getProgressBarColor(scoreNum)}
                   style={styles.progressBar}
                 />
