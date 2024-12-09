@@ -21,9 +21,6 @@ export default function VideoViewComponent({
   const router = useRouter();
   const { t, i18n } = useTranslation();
   const commentKey = i18n.language as "pl" | "en";
-  useEffect(() => {
-    videoRef.current?.playAsync();
-  }, [video]);
 
   const handleCancel = () => {
     setVideo("");
@@ -149,6 +146,7 @@ export default function VideoViewComponent({
         source={{ uri: video }}
         style={styles.video}
         isLooping
+        onLoad={() => videoRef.current?.playAsync()}
         isMuted
         resizeMode={ResizeMode.COVER}
       />

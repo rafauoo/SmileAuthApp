@@ -61,6 +61,8 @@ async def upload_video(data: VideoData) -> dict:
         )
 
     except Exception as e:
+        print(data)
+        print(str(e))
         raise HTTPException(
             status_code=500,
             detail={"statusText": str(e), "error": "Exception"},
@@ -68,4 +70,4 @@ async def upload_video(data: VideoData) -> dict:
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="192.168.1.56", port=8000)
+    uvicorn.run(app, host="172.20.10.5", port=8000)

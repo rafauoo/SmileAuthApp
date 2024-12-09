@@ -45,7 +45,7 @@ export default function EvaluationList({ history, onDelete }: Props) {
             </Text>
             <View style={styles.progressBarContainer}>
               <ProgressBar
-                progress={Number(item.score) / 100}
+                animatedValue={Number(item.score) / 100}
                 color={getProgressBarColor(Number(item.score))}
                 style={styles.progressBar}
               />
