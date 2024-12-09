@@ -32,7 +32,7 @@ class CommentList:
     @classmethod
     def from_file(cls, file_path: str):
         if cls._instance is None:
-            with open(file_path) as fp:
+            with open(file_path, 'r', encoding='utf-8') as fp:
                 comments_data = json.load(fp)
                 comments = [
                     Comment(comment["min"], comment["max"], comment["content"])

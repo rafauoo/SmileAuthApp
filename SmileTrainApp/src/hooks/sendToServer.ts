@@ -19,8 +19,6 @@ export async function sendVideoToServer(videoUri: string): Promise<SendVideoResu
         "Content-Type": "application/json",
       },
     });
-    
-    console.log("Response status: ", response.status);
 
     if (!response.ok) {
       const result = await response.json();

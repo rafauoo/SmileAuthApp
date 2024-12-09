@@ -4,7 +4,6 @@ import { ProgressBar } from "react-native-paper";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { Video, ResizeMode } from "expo-av";
 import { format } from "date-fns";
-import { useEffect } from "react";
 import BottomRowScore from "@/src/components/BottomRowScore";
 import { PanGestureHandlerGestureEvent } from "react-native-gesture-handler";
 import {

@@ -3,6 +3,7 @@ import av
 import cv2
 import dlib
 import collections
+from math import ceil
 from dotmap import DotMap
 import pandas as pd
 import numpy as np
@@ -247,6 +248,31 @@ def prepare_angle_data(data: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(angles, columns=["lips_corners_from_nose_angle"])
 
 
+def interpolate_keypoints_evenly(keypoints, target_frames=39):
+    """Interpolates keypoints to match the target number of frames
+
+    :param keypoints: list of keypoints for each frame
+    :type keypoints: list
+    :param target_frames: desired number of frames, defaults to 39
+    :type target_frames: int, optional
+    :return: interpolated keypoints
+    :rtype: list
+    """
+    current_frames = len(keypoints)
+    frames_to_add = target_frames - current_frames
+    interpolated_indexes = [ceil(i * current_frames / (frames_to_add + 1)) for i in range (1, frames_to_add + 1)]
+    interpolated = []
+    for i in range(current_frames):
+        if i in interpolated_indexes:
+            start = np.array(keypoints[i - 1])
+            end = np.array(keypoints[i])
+            fraction = 0.5
+            new_frame = (start + fraction * (end - start)).tolist()
+            interpolated.append(new_frame)
+        interpolated.append(keypoints[i])
+    return interpolated
+
+
 def generate_data(video_bytes: bytes) -> pd.DataFrame:
     """Prepares smiles data for a video
 
@@ -263,7 +289,9 @@ def generate_data(video_bytes: bytes) -> pd.DataFrame:
         row = [num] + [f(i) for i in range(NUM_FACES_FEATURES) for f in (x, y)]
         all_landmarks.append(row)
     if len(all_landmarks) < CURRENT_MIN_NUM_SMILE_FRAMES:
-        raise SmileNotDetectedException("Smile was not detected.")
+        if len(all_landmarks) < CURRENT_MIN_NUM_SMILE_FRAMES / 2:
+            raise SmileNotDetectedException("Smile was not detected.")
+        all_landmarks = interpolate_keypoints_evenly(all_landmarks)
     f1 = lambda num: f"{num}x"
     f2 = lambda num: f"{num}y"
     header = ["frame_number"] + [

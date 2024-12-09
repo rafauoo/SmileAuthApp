@@ -61,8 +61,6 @@ async def upload_video(data: VideoData) -> dict:
         )
 
     except Exception as e:
-        print(data)
-        print(str(e))
         raise HTTPException(
             status_code=500,
             detail={"statusText": str(e), "error": "Exception"},
