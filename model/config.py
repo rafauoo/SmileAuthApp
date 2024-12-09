@@ -12,11 +12,11 @@ CLASSES_NAMES = ["not authentic", "authentic"]
 LSTM_config = DotMap(
     {
         "num_epochs": 2000,
-        "batch_size": 32,
-        "num_hidden": 512,
-        "num_lstm_layers": 3,
-        "dropout": 0.55,
-        "learning_rate": 0.000096,
+        'batch_size': 64,
+        'num_hidden': 256,
+        'num_lstm_layers': 2,
+        'dropout': 0.35,
+        'learning_rate': 0.0005
     }
 )
 
@@ -25,8 +25,8 @@ LSTM_config = DotMap(
 TRAIN/TEST CONFIG
 """
 
-TRAIN_CKPT_PATH = "./model/checkpoints/best-checkpoint-v6.ckpt"
-TRAIN_CSV_DIR = "DataScripts/outputs"
+TRAIN_CKPT_PATH = "./model/checkpoints/best-checkpoint-v38.ckpt"
+TRAIN_CSV_DIR = "out"
 
-TEST_CKPT_PATH = "./model/checkpoints/best-checkpoint-v6.ckpt"
-TEST_CSV_DIR = "DataScripts/outputs"
+TEST_CKPT_PATH = "./model/checkpoints/best-checkpoint-v38.ckpt"
+TEST_CSV_DIR = "out"

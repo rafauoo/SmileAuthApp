@@ -7,3 +7,4 @@ htmlcov
 experiments
 tmp
 backups
+*.csv

@@ -1,7 +1,7 @@
 from model.lstm import SmileAuthenticityPredictor
 from model.data import load_data_from_csv
-from utils import get_trainer
-from predictions import review_predictions
+from model.utils import get_trainer
+from model.predictions import review_predictions
 from model.dataloader import FacesFeaturesDataModule
 from model.config import TEST_CKPT_PATH, TEST_CSV_DIR
 
@@ -18,7 +18,7 @@ def test():
         data = load_data_from_csv(csv_directory)
         train_data = data
         test_data = data
-        batch_size = 32
+        batch_size = 64
         data_module = FacesFeaturesDataModule(
             train_data, test_data, batch_size=batch_size
         )

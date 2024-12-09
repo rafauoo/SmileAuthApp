@@ -68,4 +68,4 @@ async def upload_video(data: VideoData) -> dict:
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="192.168.1.56", port=8000)
+    uvicorn.run(app, host="192.168.0.192", port=8000)

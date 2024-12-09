@@ -54,7 +54,7 @@ def export_frames_from_video(video_bytes):
     try:
         rotation = detect_rotation(video_bytes)
     except ValueError:
-        roration = 0
+        rotation = 0
     for frame in container.decode(video=0):
         img = frame.to_ndarray(format="bgr24")
         if rotation != 0:
