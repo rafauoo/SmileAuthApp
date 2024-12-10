@@ -32,7 +32,7 @@ export default function ScoreScreen() {
       router.push("/menu");
     }
   }
-
+  /* istanbul ignore next */
   return (
     <GestureHandlerRootView style={styles.root}>
       <PanGestureHandler

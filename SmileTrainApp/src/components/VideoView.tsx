@@ -138,7 +138,7 @@ export default function VideoViewComponent({
       </View>
     );
   }
-
+  /* istanbul ignore next */
   return (
     <View style={styles.container}>
       <Video

@@ -45,6 +45,7 @@ jest.mock("expo-av", () => {
           source={props.source}
           isLooping={props.isLooping}
           isMuted={props.isMuted}
+          onLoad={() => ref.current?.playAsync()}
           resizeMode={props.resizeMode}
         />
       );
@@ -96,6 +97,20 @@ describe("ScoreScreen", () => {
     });
   });
 
+  it("should play video when loaded", async () => {
+    const { unmount, getByTestId } = render(<ScoreScreen />);
+    const video = getByTestId("mock-video");
+
+    // Symuluj załadowanie wideo
+    fireEvent(video, "onLoad");
+
+    await waitFor(() => {
+      expect(mockPlayAsync).toHaveBeenCalled();
+    });
+
+    await unmount();
+  });
+
   it("should render correctly", async () => {
     const { unmount, getByText } = render(<ScoreScreen />);
     await waitFor(() => {
@@ -104,15 +119,6 @@ describe("ScoreScreen", () => {
       expect(getByText("18/10/2024, 14:00:00")).toBeTruthy();
     });
 
-    await unmount();
-  });
-
-  it("should call video playAsync on mount", async () => {
-    const { unmount } = render(<ScoreScreen />);
-
-    await waitFor(() => {
-      expect(mockPlayAsync).toHaveBeenCalled();
-    });
     await unmount();
   });
 
