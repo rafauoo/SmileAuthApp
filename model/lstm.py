@@ -6,6 +6,7 @@ import torch.optim as optim
 import pytorch_lightning as pl
 from torchmetrics.functional import accuracy
 from model.config import LSTM_config as lstm_conf
+from model.config import CSV_METRICS_PATH
 
 
 class FacesFeaturesLSTM(nn.Module):
@@ -49,7 +50,7 @@ class SmileAuthenticityPredictor(pl.LightningModule):
         super().__init__()
         self.model = FacesFeaturesLSTM(num_features=num_features, num_classes=num_classes)
         self.loss_func = nn.CrossEntropyLoss()
-        self.csv_path = Path("epoch_metrics.csv")
+        self.csv_path = Path(CSV_METRICS_PATH)
         self._initialize_csv()
 
     def forward(self, x, auths=None):
@@ -127,8 +128,8 @@ class SmileAuthenticityPredictor(pl.LightningModule):
             "scheduler": torch.optim.lr_scheduler.ReduceLROnPlateau(
                 optimizer,
                 mode="min",
-                factor=0.99,
-                patience=15000,
+                factor=0.97,
+                patience=25,
                 verbose=True
             ),
             "monitor": "val_loss",

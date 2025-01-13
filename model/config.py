@@ -11,15 +11,16 @@ CLASSES_NAMES = ["not authentic", "authentic"]
 
 LSTM_config = DotMap(
     {
-        "num_epochs": 2000,
+        "num_epochs": 3000,
         'batch_size': 64,
-        'num_hidden': 256,
+        'num_hidden': 512,
         'num_lstm_layers': 2,
         'dropout': 0.35,
         'learning_rate': 0.0005
     }
 )
 
+CSV_METRICS_PATH = "epoch_metrics_29prim.csv"
 
 """
 TRAIN/TEST CONFIG

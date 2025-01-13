@@ -1,4 +1,4 @@
-const VIDEO_API_URL = "http://192.168.0.192:8000/video/";
+const VIDEO_API_URL = "http://52.178.29.188:8000/video/";
 
 const chartColor = "255, 255, 255";
 const labelChartColor = "255, 255, 255";
