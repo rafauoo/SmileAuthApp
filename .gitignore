@@ -7,4 +7,3 @@ htmlcov
 draw_plot.py
 tmp
 backups
-*.csv
