@@ -12,18 +12,16 @@ def min_loss(num):
     return min_loss_row['loss']
 
 def main():
-    # Ustawienie argumentów przyjmowanych z wiersza poleceń
     parser = argparse.ArgumentParser(description="Uruchomienie testów i generowanie wykresów.")
     parser.add_argument(
         "num",
         metavar="N", 
         type=int, 
-        nargs="+",  # "+" oznacza, że można podać jeden lub więcej numerów
+        nargs="+",
         help="Numer folderu (NUM), z którego mają być pobrane dane."
     )
     args = parser.parse_args()
 
-    # Pobranie argumentu NUM
     NUM = args.num
 
     for num in NUM:

@@ -5,19 +5,16 @@ from loss_plot import save_loss_plot
 
 
 def main():
-    # Ustawienie argumentów przyjmowanych z wiersza poleceń
     parser = argparse.ArgumentParser(description="Uruchomienie testów i generowanie wykresów.")
     parser.add_argument(
-        "num",  # Argument pozycyjny
+        "num",
         type=int, 
         help="Numer folderu (NUM), z którego mają być pobrane dane."
     )
     args = parser.parse_args()
 
-    # Pobranie argumentu NUM
     NUM = args.num
 
-    # Wywołanie funkcji
     test(NUM)
     save_acc_plot(NUM)
     save_loss_plot(NUM)

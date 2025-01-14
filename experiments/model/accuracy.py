@@ -15,13 +15,12 @@ def print_accuracy(nums):
 
 
 if __name__ == "__main__":
-    # Tworzymy parser argumentów
     parser = argparse.ArgumentParser(description="Generowanie wykresu dokładności dla wielu numerów.")
     parser.add_argument(
         "nums", 
         metavar="N", 
         type=int, 
-        nargs="+",  # "+" oznacza, że można podać jeden lub więcej numerów
+        nargs="+",
         help="Numery folderów do przetworzenia"
     )
 
