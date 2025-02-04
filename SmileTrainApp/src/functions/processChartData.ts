@@ -56,26 +56,43 @@ export default function processChartData(history: Evaluation[], period: string, 
             data = data.map((score, index) => (countPerWeek[index] > 0 ? score / countPerWeek[index] : 0));
             break;
         case periodList[2]:
-            // labels
-            labels = labelsXaxis.year;
-
+            labels = [...labelsXaxis.year]; // Kopia etykiet
             data = Array(12).fill(0);
             let countPerMonth = Array(12).fill(0);
-
+        
+            let monthsMap = new Map();
+        
+            // Tworzenie mapy dla ostatnich 12 miesięcy
+            for (let i = 11; i >= 0; i--) {
+                let date = moment().subtract(i, 'months');
+                let key = date.format('YYYY-MM');
+                let monthIndex = date.month(); // Indeks miesiąca zgodnie z labelsXaxis.year
+        
+                monthsMap.set(key, { index: monthIndex, score: 0, count: 0 });
+            }
+        
             history.forEach(evaluation => {
-                const evaluationDate = moment((new Date(evaluation.date)));
-                const month = evaluationDate.month();
-                if (evaluationDate.year() === today.year()) {
-                    data[month] += evaluation.score;
-                    countPerMonth[month] += 1;
+                const evaluationDate = moment(new Date(evaluation.date));
+                let key = evaluationDate.format('YYYY-MM');
+        
+                if (monthsMap.has(key)) {
+                    let entry = monthsMap.get(key);
+                    data[entry.index] += evaluation.score;
+                    countPerMonth[entry.index] += 1;
                 }
             });
-    
+        
+            // Obliczanie średnich wyników
             data = data.map((score, index) => (countPerMonth[index] > 0 ? score / countPerMonth[index] : 0));
-            
-            data = data.slice(today.month() + 1).concat(data.slice(0, today.month() + 1));
-            labels = labels.slice(today.month() + 1).concat(labels.slice(0, today.month() + 1));
+        
+            // Przesunięcie etykiet zgodnie z ostatnimi 12 miesiącami
+            let shiftIndex = today.month() + 1; // Indeks, od którego zaczynamy przesunięcie
+            data = data.slice(shiftIndex).concat(data.slice(0, shiftIndex));
+            labels = labels.slice(shiftIndex).concat(labels.slice(0, shiftIndex));
+        
             break;
+            
+            
         default:
             break;
     }
